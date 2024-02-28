@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhvgeu4rf8l5d"]
+
+[ext_resource type="Texture2D" uid="uid://hpo3gydbf35r" path="res://icon.svg" id="1_jjnkn"]
+[ext_resource type="Script" path="res://scripts/Enemyscript.cs" id="2_gvp5q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fekrp"]
+radius = 49.7786
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e08lu"]
+bg_color = Color(0.588235, 0.00392157, 0.188235, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_djjep"]
+bg_color = Color(0.0901961, 0.431373, 0.137255, 1)
+
+[node name="Enemy" type="CharacterBody2D"]
+texture_filter = 2
+position = Vector2(0.00012207, 0)
+rotation = 3.14159
+scale = Vector2(0.140625, 0.140625)
+script = ExtResource("2_gvp5q")
+enemyHealth = 5
+enemySpeed = 2.0
+
+[node name="MoveTimer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.000865936, 0)
+rotation = 3.14159
+scale = Vector2(0.79, 0.79)
+texture = ExtResource("1_jjnkn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fekrp")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -71.1104
+offset_top = 63.9998
+offset_right = 68.8896
+offset_bottom = 90.9998
+theme_override_styles/background = SubResource("StyleBoxFlat_e08lu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_djjep")
+max_value = 5.0
+step = 1.0
+value = 5.0
+show_percentage = false
+
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

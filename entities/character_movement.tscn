@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgr5wcxpvrx00"]
+
+[ext_resource type="Script" path="res://scripts/PlayerMovement.cs" id="1_is0cf"]
+[ext_resource type="Script" path="res://scripts/PlayerCamera2D.cs" id="2_qfhpf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8m8xq"]
+
+[node name="CharacterMovement" type="CharacterBody2D"]
+position = Vector2(582, 325)
+script = ExtResource("1_is0cf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8m8xq")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("2_qfhpf")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
