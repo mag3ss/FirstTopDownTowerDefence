@@ -9,10 +9,11 @@
 position = Vector2(582, 325)
 script = ExtResource("1_is0cf")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_8m8xq")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("2_qfhpf")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_8m8xq")

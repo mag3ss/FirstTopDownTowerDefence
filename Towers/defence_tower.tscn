@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cn1016sbkblk5"]
 
-[ext_resource type="Texture2D" uid="uid://hpo3gydbf35r" path="res://icon.svg" id="1_qgg6a"]
+[ext_resource type="Texture2D" uid="uid://cbhv2b220hu6y" path="res://assets/Retainers/Wizards/RedWizard.png" id="2_6r87a"]
 [ext_resource type="Script" path="res://scripts/defence_tower.cs" id="2_kublw"]
 [ext_resource type="Script" path="res://scripts/TowerWeapon.cs" id="3_66cor"]
 [ext_resource type="PackedScene" uid="uid://btvliifst2v5q" path="res://entities/bullet.tscn" id="4_67400"]
@@ -18,7 +18,9 @@ motion_mode = 1
 script = ExtResource("2_kublw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_qgg6a")
+rotation = 3.14159
+scale = Vector2(6, 6)
+texture = ExtResource("2_6r87a")
 
 [node name="AttackTimer" type="Timer" parent="."]
 

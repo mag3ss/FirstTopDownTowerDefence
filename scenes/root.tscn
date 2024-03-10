@@ -1,7 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://borud7k232sp0"]
+[gd_scene load_steps=15 format=3 uid="uid://borud7k232sp0"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.cs" id="1_4prpp"]
-[ext_resource type="Texture2D" uid="uid://xcog3a8kr8di" path="res://assets/gameBackground001.png" id="1_obomc"]
+[ext_resource type="Texture2D" uid="uid://cvn8vpax4a6lr" path="res://assets/gameBackground001-export.png" id="2_cm6ol"]
 [ext_resource type="PackedScene" uid="uid://bgr5wcxpvrx00" path="res://entities/character_movement.tscn" id="3_uugq0"]
 [ext_resource type="Script" path="res://scripts/GenerateEnemies.cs" id="3_wqc84"]
 [ext_resource type="Script" path="res://scripts/Progressbars.cs" id="4_ley25"]
@@ -13,7 +13,7 @@
 [sub_resource type="Curve2D" id="Curve2D_bsihs"]
 bake_interval = 0.01
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1153, 93, 0, 0, 0, 0, 868, 96, 0, 0, 0, 0, 870, 330, 0, 0, 0, 0, 866, 438, 0, 0, 0, 0, 599, 442, 0, 0, 0, 0, 599, 217, 0, 0, 0, 0, 366, 217, 0, 0, 0, 0, 368, 443, 0, 0, 0, 0, 138, 439, 0, 0, 0, 0, 139, 99, 0, 0, 0, 0, 2, 92)
+"points": PackedVector2Array(0, 0, 0, 0, 1277, 119, 0, 0, 0, 0, 923, 125, 0, 0, 0, 0, 920, 416, 0, 0, 0, 0, 912, 560, 0, 0, 0, 0, 580, 564, 0, 0, 0, 0, 578, 274, 0, 0, 0, 0, 288, 273, 0, 0, 0, 0, 288, 557, 0, 0, 0, 0, -2, 558, 0, 0, 0, 0, -8, 124, 0, 0, 0, 0, -171, 117)
 }
 point_count = 11
 
@@ -23,6 +23,12 @@ bg_color = Color(0.737255, 0.0705882, 0.254902, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ro7cw"]
 bg_color = Color(0.0352941, 0.666667, 0.298039, 1)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_arfmr"]
+size = Vector2(1463.5, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pekk1"]
+size = Vector2(20, 832)
+
 [node name="root" type="Node2D"]
 script = ExtResource("1_4prpp")
 
@@ -31,15 +37,15 @@ texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1.0
-offset_top = -2.0
-offset_right = 1157.0
-offset_bottom = 650.0
+offset_left = -723.0
+offset_top = -556.0
+offset_right = 976.0
+offset_bottom = 735.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.5, 1.5)
 size_flags_vertical = 3
-texture = ExtResource("1_obomc")
-metadata/_edit_use_anchors_ = true
+texture = ExtResource("2_cm6ol")
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_bsihs")
@@ -143,7 +149,26 @@ collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Control/Area2D"]
-polygon = PackedVector2Array(158, 77, 161, 408, 340, 415, 340, 183, 619, 185, 626, 411, 839, 415, 839.478, 357.761, 840.014, 293.671, 842, 56, 1170, 65, 1171, 115, 896, 120, 902, 296, 1167, 292, 1170, 364, 898, 359, 894, 471, 567, 467, 566, 234, 391, 233, 397, 470, 112, 466, 109, 122, -9, 125, -6, 58)
+position = Vector2(49, 38)
+polygon = PackedVector2Array(-26, 52, -27, 495, 206, 488, 205, 198, 556, 196, 563, 501, 840, 493, 840, 415, 840, 353, 842, 56, 1223, 56, 1224, 112, 896, 120, 899, 351, 1222, 350, 1223, 412, 898, 408, 892, 551, 501, 555, 495, 259, 273, 255, 270, 547, -88, 548, -88, 113, -222, 109, -221, 47)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(552.5, 0.5)
+shape = SubResource("RectangleShape2D_arfmr")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(556.75, 821)
+shape = SubResource("RectangleShape2D_arfmr")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-181, 414)
+shape = SubResource("RectangleShape2D_pekk1")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1280, 407)
+shape = SubResource("RectangleShape2D_pekk1")
 
 [connection signal="timeout" from="GameTimer" to="Path2D" method="_on_game_timer_timeout"]
 [connection signal="gui_input" from="ShopMenu/Panel/FlowContainer/Panel" to="ShopMenu/Panel/FlowContainer/Panel" method="OnGuiInput"]
