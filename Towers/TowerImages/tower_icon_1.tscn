@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ys4b7re48j5g"]
 
-[ext_resource type="Texture2D" uid="uid://hpo3gydbf35r" path="res://icon.svg" id="1_vvbur"]
 [ext_resource type="Script" path="res://Towers/TowerImages/tower_icon_1.cs" id="1_xalgx"]
+[ext_resource type="Texture2D" uid="uid://cbhv2b220hu6y" path="res://assets/Retainers/Wizards/RedWizard.png" id="2_oohos"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aq37q"]
 bg_color = Color(0.988235, 0, 0, 0.545098)
@@ -38,14 +38,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -11.0
-offset_top = -11.0
-offset_right = 11.0
-offset_bottom = 11.0
+offset_left = -23.0
+offset_top = -20.0
+offset_right = -1.0
+offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_vvbur")
+scale = Vector2(2, 2)
+texture = ExtResource("2_oohos")
 expand_mode = 3
+flip_h = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" type="Area2D" parent="."]

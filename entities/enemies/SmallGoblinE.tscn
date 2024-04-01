@@ -1,11 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhvgeu4rf8l5d"]
+[gd_scene load_steps=6 format=3 uid="uid://c0c7awsxmyuxs"]
 
-[ext_resource type="Texture2D" uid="uid://byv1d6sq8yvf8" path="res://assets/Monsters/SmallGoblin.png" id="2_6xj56"]
-[ext_resource type="Script" path="res://scripts/Enemyscript.cs" id="2_gvp5q"]
+[ext_resource type="Script" path="res://scripts/SmallGoblinE.cs" id="1_15sha"]
+[ext_resource type="Texture2D" uid="uid://c7i4uu685we65" path="res://assets/Monsters/SmallGoblinwWeapon.png" id="2_gxfvd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_50jmg"]
-radius = 35.5564
-height = 99.5555
+radius = 56.8889
+height = 128.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e08lu"]
 bg_color = Color(0.588235, 0.00392157, 0.188235, 1)
@@ -18,9 +18,7 @@ texture_filter = 2
 position = Vector2(0.00012207, 0)
 rotation = 3.14159
 scale = Vector2(0.140625, 0.140625)
-script = ExtResource("2_gvp5q")
-enemyHealth = 5
-enemySpeed = 2.0
+script = ExtResource("1_15sha")
 
 [node name="MoveTimer" type="Timer" parent="."]
 wait_time = 0.05
@@ -32,7 +30,7 @@ autostart = true
 texture_filter = 1
 position = Vector2(0.000865936, 0)
 scale = Vector2(8, 8)
-texture = ExtResource("2_6xj56")
+texture = ExtResource("2_gxfvd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-7.11024, -1.80258e-05)
@@ -40,9 +38,9 @@ shape = SubResource("CapsuleShape2D_50jmg")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = -71.1104
-offset_top = 63.9998
+offset_top = 78.222
 offset_right = 68.8896
-offset_bottom = 90.9998
+offset_bottom = 105.222
 theme_override_styles/background = SubResource("StyleBoxFlat_e08lu")
 theme_override_styles/fill = SubResource("StyleBoxFlat_djjep")
 max_value = 5.0

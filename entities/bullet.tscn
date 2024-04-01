@@ -4,19 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://5fifyb1rpdag" path="res://assets/Projectiles/SmallFireBall.png" id="2_lgyy2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_in6g4"]
-size = Vector2(9, 8)
+size = Vector2(11, 10)
 
-[node name="Bullet" type="RigidBody2D"]
-gravity_scale = 0.0
-lock_rotation = true
-max_contacts_reported = 2
-contact_monitor = true
+[node name="Bullet" type="CharacterBody2D"]
 script = ExtResource("1_4wbfd")
-bulletDamage = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.5, 1)
-shape = SubResource("RectangleShape2D_in6g4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1, 0)
@@ -27,4 +18,10 @@ texture = ExtResource("2_lgyy2")
 [node name="BulletTimer" type="Timer" parent="."]
 autostart = true
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1.5, 1)
+shape = SubResource("RectangleShape2D_in6g4")
+
+[connection signal="body_entered" from="Area2D" to="." method="OnArea2dBodyEntered"]

@@ -2,27 +2,43 @@
 
 [ext_resource type="Texture2D" uid="uid://cbhv2b220hu6y" path="res://assets/Retainers/Wizards/RedWizard.png" id="2_6r87a"]
 [ext_resource type="Script" path="res://scripts/defence_tower.cs" id="2_kublw"]
-[ext_resource type="Script" path="res://scripts/TowerWeapon.cs" id="3_66cor"]
 [ext_resource type="PackedScene" uid="uid://btvliifst2v5q" path="res://entities/bullet.tscn" id="4_67400"]
+[ext_resource type="AudioStream" uid="uid://ktu05g7n4plt" path="res://assets/SFX/fireball-whoosh-1-179125.mp3" id="5_ytxtk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vje54"]
 radius = 791.162
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_37g7h"]
-radius = 105.68
+[sub_resource type="CircleShape2D" id="CircleShape2D_tyeho"]
+radius = 45.3331
 
-[node name="defenceTower" type="CharacterBody2D"]
+[node name="defenceTower" type="StaticBody2D"]
 position = Vector2(485, 148)
 scale = Vector2(0.265625, 0.265625)
-motion_mode = 1
+input_pickable = true
 script = ExtResource("2_kublw")
+bulletScene = ExtResource("4_67400")
+bullet_damage = 10.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="FireBall" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ytxtk")
+volume_db = 0.5
+autoplay = true
+max_distance = 100.0
+attenuation = 0.500001
+
+[node name="Sprite2D" type="TextureRect" parent="."]
+offset_left = 94.1177
+offset_top = 90.353
+offset_right = 126.118
+offset_bottom = 122.353
 rotation = 3.14159
 scale = Vector2(6, 6)
 texture = ExtResource("2_6r87a")
 
 [node name="AttackTimer" type="Timer" parent="."]
+
+[node name="FollowTimer" type="Timer" parent="."]
+wait_time = 0.1
 
 [node name="AttackRange" type="Area2D" parent="."]
 
@@ -30,16 +46,25 @@ texture = ExtResource("2_6r87a")
 shape = SubResource("CircleShape2D_vje54")
 
 [node name="Weapon" type="Node2D" parent="."]
-script = ExtResource("3_66cor")
-bulletScene = ExtResource("4_67400")
 
-[node name="Area2D" type="Area2D" parent="." groups=["FriendlyTower"]]
-collision_layer = 8
-collision_mask = 8
+[node name="BulletContainer" type="Node" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_37g7h")
+[node name="Aim" type="Marker2D" parent="."]
+position = Vector2(52.7059, -33.8824)
 
-[connection signal="timeout" from="AttackTimer" to="Weapon" method="_on_attack_timer_timeout"]
+[node name="Menu" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="Menu"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 465.0
+offset_top = 130.0
+offset_right = 600.0
+offset_bottom = 269.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tyeho")
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]

@@ -1,23 +1,25 @@
 using Godot;
 using System;
+using static Godot.TextServer;
 
 
-public partial class bullet : RigidBody2D
+public partial class bullet : CharacterBody2D
 {
 
 	// Called when the node enters the scene tree for the first time.
 	[Export] int bulletDamage = 1;
 	private CustomSignals _customSignals;
+	float speed = 300;
 	public override void _Ready()
 	{
 		_customSignals = GetNode<CustomSignals>("/root/CustomSignals");
-        Timer timer = GetNode<Timer>("BulletTimer");
-        timer.Timeout += () => QueueFree();
-    }
+		Timer timer = GetNode<Timer>("BulletTimer");
+		timer.Timeout += () => QueueFree();
+	}
 
 
 
-	public void _on_body_entered(Enemyscript body)
+	public void OnArea2dBodyEntered(Enemyscript body)
 	{
 		if (body.IsInGroup("enemys"))
 		{
@@ -26,4 +28,14 @@ public partial class bullet : RigidBody2D
 			QueueFree();
 		}
 	}
+
+
+    public override void _PhysicsProcess(double delta)
+    {
+		var parent = (defence_tower)GetParent().GetParent();
+
+		Velocity = Transform.X * speed;
+		LookAt(parent.target.GlobalPosition);
+        MoveAndSlide();
+    }
 }

@@ -1,14 +1,21 @@
-[gd_scene load_steps=15 format=3 uid="uid://borud7k232sp0"]
+[gd_scene load_steps=18 format=3 uid="uid://borud7k232sp0"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.cs" id="1_4prpp"]
 [ext_resource type="Texture2D" uid="uid://cvn8vpax4a6lr" path="res://assets/gameBackground001-export.png" id="2_cm6ol"]
+[ext_resource type="PackedScene" uid="uid://vc32k6gsjfhk" path="res://UI/main_menu.tscn" id="2_gf3on"]
 [ext_resource type="PackedScene" uid="uid://bgr5wcxpvrx00" path="res://entities/character_movement.tscn" id="3_uugq0"]
 [ext_resource type="Script" path="res://scripts/GenerateEnemies.cs" id="3_wqc84"]
 [ext_resource type="Script" path="res://scripts/Progressbars.cs" id="4_ley25"]
+[ext_resource type="Texture2D" uid="uid://blgxcc88afapk" path="res://assets/UI/HealthInline.png" id="6_a0bg5"]
+[ext_resource type="Texture2D" uid="uid://c7bjv5c3ej1lc" path="res://assets/UI/HealthOutline-export.png" id="7_56sdv"]
 [ext_resource type="Script" path="res://scripts/Edmondossss.cs" id="7_evys7"]
 [ext_resource type="Script" path="res://scripts/ShopMenu.cs" id="7_mv3r2"]
-[ext_resource type="Texture2D" uid="uid://hpo3gydbf35r" path="res://icon.svg" id="9_oiy87"]
-[ext_resource type="Script" path="res://scenes/Tower_1.cs" id="9_qistt"]
+[ext_resource type="Texture2D" uid="uid://cbhv2b220hu6y" path="res://assets/Retainers/Wizards/RedWizard.png" id="9_pw66t"]
+[ext_resource type="Script" path="res://scripts/Tower_1.cs" id="9_qistt"]
+[ext_resource type="Texture2D" uid="uid://62yc1xqt0k5u" path="res://assets/Retainers/Wizards/GreenWizard.png" id="13_ek7w2"]
+[ext_resource type="Texture2D" uid="uid://slymglomkqm1" path="res://assets/Retainers/Wizards/PurpleWizard.png" id="14_yqveh"]
+[ext_resource type="FontFile" uid="uid://ns3a7qjrjw2t" path="res://assets/PublicPixel-z84yD.ttf" id="15_2ofl0"]
+[ext_resource type="Texture2D" uid="uid://dib3woi7lkjjy" path="res://assets/Retainers/Cleric.png" id="16_3bn1a"]
 
 [sub_resource type="Curve2D" id="Curve2D_bsihs"]
 bake_interval = 0.01
@@ -17,20 +24,11 @@ _data = {
 }
 point_count = 11
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4lu0e"]
-bg_color = Color(0.737255, 0.0705882, 0.254902, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ro7cw"]
-bg_color = Color(0.0352941, 0.666667, 0.298039, 1)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_arfmr"]
-size = Vector2(1463.5, 21)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pekk1"]
-size = Vector2(20, 832)
-
 [node name="root" type="Node2D"]
 script = ExtResource("1_4prpp")
+
+[node name="MainMenu" parent="." instance=ExtResource("2_gf3on")]
+metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
@@ -55,6 +53,10 @@ script = ExtResource("3_wqc84")
 wait_time = 3.0
 autostart = true
 
+[node name="WavePause" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
 [node name="CharacterMovement" parent="." instance=ExtResource("3_uugq0")]
 position = Vector2(534, 403)
 collision_layer = 2
@@ -63,16 +65,26 @@ collision_mask = 2
 [node name="CanvasLayer" type="CanvasLayer" parent="CharacterMovement"]
 script = ExtResource("4_ley25")
 
-[node name="HealthBar" type="ProgressBar" parent="CharacterMovement/CanvasLayer"]
+[node name="HealthBar" type="TextureProgressBar" parent="CharacterMovement/CanvasLayer"]
+texture_filter = 1
+anchors_preset = -1
+anchor_left = -0.00520833
 offset_left = 19.0
 offset_top = 13.0
 offset_right = 388.0
 offset_bottom = 26.0
-theme_override_styles/background = SubResource("StyleBoxFlat_4lu0e")
-theme_override_styles/fill = SubResource("StyleBoxFlat_ro7cw")
-step = 1.0
 value = 100.0
-show_percentage = false
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_under = ExtResource("6_a0bg5")
+texture_over = ExtResource("7_56sdv")
+texture_progress = ExtResource("6_a0bg5")
+tint_under = Color(0.831373, 0, 0, 0.529412)
+tint_over = Color(0, 0, 0, 1)
+tint_progress = Color(0, 0.866667, 0, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="Money" type="Label" parent="CharacterMovement/CanvasLayer"]
@@ -81,6 +93,26 @@ offset_top = 17.0
 offset_right = 1461.0
 offset_bottom = 40.0
 text = "Money:"
+metadata/_edit_use_anchors_ = true
+
+[node name="Time" type="Label" parent="CharacterMovement/CanvasLayer"]
+offset_left = 723.0
+offset_top = 20.0
+offset_right = 763.0
+offset_bottom = 43.0
+text = "Time: 00:00:00"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="CharacterMovement/CanvasLayer"]
+offset_left = 603.0
+offset_top = 22.0
+offset_right = 700.0
+offset_bottom = 48.0
+text = "Wave: 1"
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="CharacterMovement/CanvasLayer"]
+autostart = true
 
 [node name="TowerSpawner" type="Node2D" parent="."]
 script = ExtResource("7_evys7")
@@ -102,27 +134,63 @@ offset_bottom = 241.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="FlowContainer" type="GridContainer" parent="ShopMenu/Panel"]
+[node name="Label" type="Label" parent="ShopMenu/Panel"]
+texture_filter = 1
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -375.5
-offset_top = -220.0
-offset_right = 375.5
-offset_bottom = 220.0
+offset_left = -139.0
+offset_top = 16.5
+offset_right = 140.0
+offset_bottom = 47.5
 grow_horizontal = 2
-grow_vertical = 2
-columns = 4
+theme_override_fonts/font = ExtResource("15_2ofl0")
+theme_override_font_sizes/font_size = 31
+text = "Retainers"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Panel" type="Panel" parent="ShopMenu/Panel/FlowContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="ShopMenu/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -373.0
+offset_top = -408.0
+offset_right = 374.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="FlowContainer2" type="FlowContainer" parent="ShopMenu/Panel/ScrollContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer"]
+layout_mode = 2
+text = "Wizards -"
+
+[node name="HSeparator" type="HSeparator" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+
+[node name="FlowContainer" type="GridContainer" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2"]
+layout_mode = 2
+columns = 3
+
+[node name="Panel" type="Panel" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/FlowContainer"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
+tooltip_text = "Red Wizard"
 script = ExtResource("9_qistt")
 
-[node name="TextureRect" type="TextureRect" parent="ShopMenu/Panel/FlowContainer/Panel"]
+[node name="TextureRect" type="TextureRect" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/FlowContainer/Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -135,14 +203,395 @@ offset_right = 31.0
 offset_bottom = 33.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("9_oiy87")
+texture = ExtResource("9_pw66t")
 expand_mode = 2
+flip_h = true
+
+[node name="Label" type="Label" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/FlowContainer/Panel"]
+layout_mode = 0
+offset_left = 0.5
+offset_top = 57.0
+offset_right = 81.5
+offset_bottom = 80.0
+text = "50$"
+horizontal_alignment = 1
+
+[node name="Panel2" type="Panel" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/FlowContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/FlowContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -31.0
+offset_right = 31.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_ek7w2")
+expand_mode = 2
+flip_h = true
+
+[node name="Label" type="Label" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/FlowContainer/Panel2"]
+layout_mode = 0
+offset_left = 0.5
+offset_top = 57.0
+offset_right = 81.5
+offset_bottom = 80.0
+text = "250$"
+horizontal_alignment = 1
+
+[node name="Panel3" type="Panel" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/FlowContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/FlowContainer/Panel3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -31.0
+offset_right = 31.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_yqveh")
+expand_mode = 2
+flip_h = true
+
+[node name="Label" type="Label" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/FlowContainer/Panel3"]
+layout_mode = 0
+offset_left = 0.5
+offset_top = 57.0
+offset_right = 81.5
+offset_bottom = 80.0
+text = "500$"
+horizontal_alignment = 1
+
+[node name="GridContainer3" type="GridContainer" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer3"]
+layout_mode = 2
+text = "Holy"
+
+[node name="HSeparator" type="HSeparator" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer3"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+
+[node name="GridContainer2" type="GridContainer" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2"]
+layout_mode = 2
+columns = 4
+
+[node name="Panel" type="Panel" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer2"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer2/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -31.0
+offset_right = 31.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_3bn1a")
+expand_mode = 2
+flip_h = true
+
+[node name="Label" type="Label" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer2/Panel"]
+layout_mode = 0
+offset_left = 0.5
+offset_top = 57.0
+offset_right = 81.5
+offset_bottom = 80.0
+text = "50$"
+horizontal_alignment = 1
+
+[node name="Panel2" type="Panel" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer2"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer2/Panel2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -31.0
+offset_right = 31.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 2
+flip_h = true
+
+[node name="Label" type="Label" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer2/Panel2"]
+layout_mode = 0
+offset_left = 0.5
+offset_top = 57.0
+offset_right = 81.5
+offset_bottom = 80.0
+text = "50$"
+horizontal_alignment = 1
+
+[node name="Panel3" type="Panel" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer2"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer2/Panel3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -31.0
+offset_right = 31.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 2
+flip_h = true
+
+[node name="Label" type="Label" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer2/Panel3"]
+layout_mode = 0
+offset_left = 0.5
+offset_top = 57.0
+offset_right = 81.5
+offset_bottom = 80.0
+text = "50$"
+horizontal_alignment = 1
+
+[node name="GridContainer4" type="GridContainer" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer4"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer4"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+
+[node name="GridContainer5" type="GridContainer" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2"]
+layout_mode = 2
+columns = 4
+
+[node name="Panel" type="Panel" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer5"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer5/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -31.0
+offset_right = 31.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 2
+flip_h = true
+
+[node name="Label" type="Label" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer5/Panel"]
+layout_mode = 0
+offset_left = 0.5
+offset_top = 57.0
+offset_right = 81.5
+offset_bottom = 80.0
+text = "50$"
+horizontal_alignment = 1
+
+[node name="Panel2" type="Panel" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer5"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer5/Panel2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -31.0
+offset_right = 31.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 2
+flip_h = true
+
+[node name="Label" type="Label" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer5/Panel2"]
+layout_mode = 0
+offset_left = 0.5
+offset_top = 57.0
+offset_right = 81.5
+offset_bottom = 80.0
+text = "50$"
+horizontal_alignment = 1
+
+[node name="Panel3" type="Panel" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer5"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer5/Panel3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -31.0
+offset_right = 31.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 2
+flip_h = true
+
+[node name="Label" type="Label" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer5/Panel3"]
+layout_mode = 0
+offset_left = 0.5
+offset_top = 57.0
+offset_right = 81.5
+offset_bottom = 80.0
+text = "50$"
+horizontal_alignment = 1
+
+[node name="GridContainer6" type="GridContainer" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer6"]
+layout_mode = 2
+text = "Holy"
+
+[node name="HSeparator" type="HSeparator" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer6"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+
+[node name="GridContainer7" type="GridContainer" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2"]
+layout_mode = 2
+columns = 4
+
+[node name="Panel" type="Panel" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer7"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer7/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -31.0
+offset_right = 31.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_3bn1a")
+expand_mode = 2
+flip_h = true
+
+[node name="Label" type="Label" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer7/Panel"]
+layout_mode = 0
+offset_left = 0.5
+offset_top = 57.0
+offset_right = 81.5
+offset_bottom = 80.0
+text = "50$"
+horizontal_alignment = 1
+
+[node name="Panel2" type="Panel" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer7"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer7/Panel2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -31.0
+offset_right = 31.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 2
+flip_h = true
+
+[node name="Label" type="Label" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer7/Panel2"]
+layout_mode = 0
+offset_left = 0.5
+offset_top = 57.0
+offset_right = 81.5
+offset_bottom = 80.0
+text = "50$"
+horizontal_alignment = 1
+
+[node name="Panel3" type="Panel" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer7"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer7/Panel3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -31.0
+offset_right = 31.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 2
+flip_h = true
+
+[node name="Label" type="Label" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer7/Panel3"]
+layout_mode = 0
+offset_left = 0.5
+offset_top = 57.0
+offset_right = 81.5
+offset_bottom = 80.0
+text = "50$"
+horizontal_alignment = 1
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1159.0
 offset_bottom = 650.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" type="Area2D" parent="Control" groups=["FriendlyTower"]]
 collision_layer = 8
@@ -150,25 +599,11 @@ collision_mask = 8
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Control/Area2D"]
 position = Vector2(49, 38)
-polygon = PackedVector2Array(-26, 52, -27, 495, 206, 488, 205, 198, 556, 196, 563, 501, 840, 493, 840, 415, 840, 353, 842, 56, 1223, 56, 1224, 112, 896, 120, 899, 351, 1222, 350, 1223, 412, 898, 408, 892, 551, 501, 555, 495, 259, 273, 255, 270, 547, -88, 548, -88, 113, -222, 109, -221, 47)
+polygon = PackedVector2Array(-26, 52, -27, 495, 206, 491, 205, 198, 556, 196, 563, 501, 840, 493, 840, 415, 840, 353, 842, 56, 1223, 56, 1224, 112, 896, 120, 899, 351, 1222, 350, 1223, 412, 898, 408, 892, 551, 501, 555, 495, 259, 273, 255, 271, 556, -88, 548, -88, 113, -222, 109, -221, 47)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(552.5, 0.5)
-shape = SubResource("RectangleShape2D_arfmr")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(556.75, 821)
-shape = SubResource("RectangleShape2D_arfmr")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-181, 414)
-shape = SubResource("RectangleShape2D_pekk1")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1280, 407)
-shape = SubResource("RectangleShape2D_pekk1")
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [connection signal="timeout" from="GameTimer" to="Path2D" method="_on_game_timer_timeout"]
-[connection signal="gui_input" from="ShopMenu/Panel/FlowContainer/Panel" to="ShopMenu/Panel/FlowContainer/Panel" method="OnGuiInput"]
+[connection signal="timeout" from="WavePause" to="Path2D" method="OnWavePauseTimeout"]
+[connection signal="timeout" from="CharacterMovement/CanvasLayer/Timer" to="CharacterMovement/CanvasLayer" method="OnTimerTimeout"]
+[connection signal="gui_input" from="ShopMenu/Panel/ScrollContainer/FlowContainer2/FlowContainer/Panel" to="ShopMenu/Panel/ScrollContainer/FlowContainer2/FlowContainer/Panel" method="OnGuiInput"]
