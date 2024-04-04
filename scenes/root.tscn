@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://borud7k232sp0"]
+[gd_scene load_steps=20 format=3 uid="uid://borud7k232sp0"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.cs" id="1_4prpp"]
 [ext_resource type="Texture2D" uid="uid://cvn8vpax4a6lr" path="res://assets/gameBackground001-export.png" id="2_cm6ol"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://bgr5wcxpvrx00" path="res://entities/character_movement.tscn" id="3_uugq0"]
 [ext_resource type="Script" path="res://scripts/GenerateEnemies.cs" id="3_wqc84"]
 [ext_resource type="Script" path="res://scripts/Progressbars.cs" id="4_ley25"]
+[ext_resource type="PackedScene" uid="uid://bhvgeu4rf8l5d" path="res://entities/enemies/enemy.tscn" id="5_83p17"]
 [ext_resource type="Texture2D" uid="uid://blgxcc88afapk" path="res://assets/UI/HealthInline.png" id="6_a0bg5"]
+[ext_resource type="PackedScene" uid="uid://c0c7awsxmyuxs" path="res://entities/enemies/SmallGoblinE.tscn" id="6_abj2p"]
 [ext_resource type="Texture2D" uid="uid://c7bjv5c3ej1lc" path="res://assets/UI/HealthOutline-export.png" id="7_56sdv"]
 [ext_resource type="Script" path="res://scripts/Edmondossss.cs" id="7_evys7"]
 [ext_resource type="Script" path="res://scripts/ShopMenu.cs" id="7_mv3r2"]
@@ -48,6 +50,8 @@ texture = ExtResource("2_cm6ol")
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_bsihs")
 script = ExtResource("3_wqc84")
+SmallGoblin = ExtResource("5_83p17")
+SmallGoblinE = ExtResource("6_abj2p")
 
 [node name="GameTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -585,23 +589,6 @@ offset_right = 81.5
 offset_bottom = 80.0
 text = "50$"
 horizontal_alignment = 1
-
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1159.0
-offset_bottom = 650.0
-metadata/_edit_use_anchors_ = true
-
-[node name="Area2D" type="Area2D" parent="Control" groups=["FriendlyTower"]]
-collision_layer = 8
-collision_mask = 8
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Control/Area2D"]
-position = Vector2(49, 38)
-polygon = PackedVector2Array(-26, 52, -27, 495, 206, 491, 205, 198, 556, 196, 563, 501, 840, 493, 840, 415, 840, 353, 842, 56, 1223, 56, 1224, 112, 896, 120, 899, 351, 1222, 350, 1223, 412, 898, 408, 892, 551, 501, 555, 495, 259, 273, 255, 271, 556, -88, 548, -88, 113, -222, 109, -221, 47)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [connection signal="timeout" from="GameTimer" to="Path2D" method="_on_game_timer_timeout"]
 [connection signal="timeout" from="WavePause" to="Path2D" method="OnWavePauseTimeout"]

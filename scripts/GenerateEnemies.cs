@@ -1,21 +1,32 @@
 using Godot;
+using Godot.Collections;
 
 public partial class GenerateEnemies : Path2D
 {
+	//Enemies
+	//-----------Goblins-----------
+	[Export] PackedScene SmallGoblin;
+	[Export] PackedScene SmallGoblinE;
+	//-----------Orcs-----------
+	[Export] PackedScene SmallOrc;
 
-	PackedScene packedScene = ResourceLoader.Load("res://entities/enemies/enemy.tscn") as PackedScene;
+
+
+
 	private PathFollow2D pathToFollow;
 	private Timer timer;
 	private Timer wavePause;
+	private int firstWave = 10;
 
 	private bool ongoingWave;
 	private int WaveNum = 1;
 	private float difficulty = 1;
 	private int totalEnemies;
+    private Array<PackedScene> enemies;
 
-
-	public override void _Ready()
+    public override void _Ready()
 	{
+		enemies.Add(SmallGoblin);
 		timer = GetParent().GetNode<Timer>("GameTimer");
         wavePause = GetParent().GetNode<Timer>("WavePause");
         NewWave();
@@ -36,15 +47,12 @@ public partial class GenerateEnemies : Path2D
 		PathFollow2D pathToFollow = new PathFollow2D();
 		AddChild(pathToFollow);
 		pathToFollow.Loop = false;
-		var enemyCharacter = (Enemyscript)packedScene.Instantiate();
-		//enemyCharacter.enemyHealth = (int)(enemyCharacter.enemyHealth);
+		var enemyCharacter = (Enemyscript)enemies[0].Instantiate();
+		enemyCharacter.enemyHealth *= difficulty;
 		pathToFollow.AddChild(enemyCharacter);
 		enemyCharacter.AddToGroup("enemys");
 		totalEnemies++;
-		if (totalEnemies == 0)
-		{
-            timer.Stop();
-        }
+		
 	}
 
 	public void OnWavePauseTimeout()

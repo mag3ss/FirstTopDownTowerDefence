@@ -11,7 +11,7 @@ public partial class defence_tower : StaticBody2D
     [Export] float bps = 5f;
     [Export] float bullet_damage = 30f;
     private bool isShooting;
-    private CharacterBody2D bullet; // Declare bullet as a class-level variable
+    private CharacterBody2D bullet;
 	private Node bulletContainer;
 	private Marker2D Aim;
 	private bool onMenu;
@@ -38,7 +38,7 @@ public partial class defence_tower : StaticBody2D
 	{
 		Aim = GetNode<Marker2D>("Aim");
 		bulletContainer = GetNode<Node>("BulletContainer");
-		upgradeMenu = GetNode<CanvasLayer>("Menu");
+		upgradeMenu = GetNode<CanvasLayer>("UpgradeMenu");
 		attackTimer = GetNode<Timer>("AttackTimer");
 		attackArea = GetNode<Area2D>("AttackRange");
 		followTimer = GetNode<Timer>("FollowTimer");
@@ -48,8 +48,10 @@ public partial class defence_tower : StaticBody2D
 		gameManager.defenceTowerInstance = this;
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _PhysicsProcess(double delta)
+
+
+    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public override void _PhysicsProcess(double delta)
 	{
 		if (lookAtClosestEnemy)
 		{
@@ -149,6 +151,44 @@ public partial class defence_tower : StaticBody2D
 			bullet.GlobalPosition = Aim.GlobalPosition;
         }
     }
+
+    public void OnInputEvent(Viewport viewport, InputEvent @event, int shapeIdx){
+        if (@event is InputEventMouseButton mouseButton){
+            if (upgradeMenu.Visible == false && mouseButton.Pressed && mouseButton.ButtonMask == (MouseButtonMask)1){
+                var towerPath = GetTree().Root.GetNode<Node2D>("root/TowerSpawner");
+                foreach (StaticBody2D towers in towerPath.GetChildren()){
+                    if (towers.Name != this.Name){
+                        towers.GetNode<CanvasLayer>("UpgradeMenu").Hide();
+                    }
+                }
+                hideMenu();
+            }
+            else if (upgradeMenu.Visible && mouseButton.Pressed && mouseButton.ButtonMask == (MouseButtonMask)1){
+                hideMenu();
+            }
+        }
+    }
+
+    public override void _Input(InputEvent @event){
+		if (upgradeMenu.Visible && Input.IsActionJustPressed("cancel")){
+            hideMenu();
+        }
+        else if (@event is InputEventMouseButton mouseButton1 && upgradeMenu.Visible && onMenu == false){
+            if (mouseButton1.Pressed && mouseButton1.ButtonMask == (MouseButtonMask)1){
+                GD.Print("Mouse Clicked");
+                hideMenu();
+            }
+        }
+    }
+
+    public void OnPanelMouseEntered()=> onMenu = true;
+    public void OnPanelMouseExited()=> onMenu = false;
+
+	private void hideMenu(){
+        upgradeMenu.Visible = !upgradeMenu.Visible;
+		onMenu = !onMenu;
+    }
+
 }
 
 

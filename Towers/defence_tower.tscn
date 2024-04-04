@@ -41,6 +41,8 @@ texture = ExtResource("2_6r87a")
 wait_time = 0.1
 
 [node name="AttackRange" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
 
 [node name="AttackShape" type="CollisionShape2D" parent="AttackRange"]
 shape = SubResource("CircleShape2D_vje54")
@@ -52,19 +54,24 @@ shape = SubResource("CircleShape2D_vje54")
 [node name="Aim" type="Marker2D" parent="."]
 position = Vector2(52.7059, -33.8824)
 
-[node name="Menu" type="CanvasLayer" parent="."]
+[node name="UpgradeMenu" type="CanvasLayer" parent="."]
+visible = false
 
-[node name="Control" type="Control" parent="Menu"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 465.0
-offset_top = 130.0
-offset_right = 600.0
-offset_bottom = 269.0
+[node name="Panel" type="Panel" parent="UpgradeMenu"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -307.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tyeho")
 
+[connection signal="input_event" from="." to="." method="OnInputEvent"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
+[connection signal="mouse_entered" from="UpgradeMenu/Panel" to="." method="OnPanelMouseEntered"]
+[connection signal="mouse_exited" from="UpgradeMenu/Panel" to="." method="OnPanelMouseExited"]

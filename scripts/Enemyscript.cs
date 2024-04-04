@@ -14,7 +14,7 @@ public partial class Enemyscript : CharacterBody2D
 
     [Export] public int enemyDamage = 1;
 	[Export] public float enemySpeed = 2f;
-    [Export] public int enemyHealth = 25;
+    [Export] public float enemyHealth = 25;
     public int enemyValue = 25;
 	private RemoteTransform2D _transform;
 
