@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://vc32k6gsjfhk" path="res://UI/main_menu.tscn" id="2_gf3on"]
 [ext_resource type="PackedScene" uid="uid://bgr5wcxpvrx00" path="res://entities/character_movement.tscn" id="3_uugq0"]
 [ext_resource type="Script" path="res://scripts/GenerateEnemies.cs" id="3_wqc84"]
+[ext_resource type="Curve2D" uid="uid://gfx5horlvo50" path="res://Path2Ds/ForestPath.tres" id="4_kpgli"]
 [ext_resource type="Script" path="res://scripts/Progressbars.cs" id="4_ley25"]
 [ext_resource type="PackedScene" uid="uid://bhvgeu4rf8l5d" path="res://entities/enemies/enemy.tscn" id="5_83p17"]
 [ext_resource type="Texture2D" uid="uid://blgxcc88afapk" path="res://assets/UI/HealthInline.png" id="6_a0bg5"]
@@ -18,13 +19,6 @@
 [ext_resource type="Texture2D" uid="uid://slymglomkqm1" path="res://assets/Retainers/Wizards/PurpleWizard.png" id="14_yqveh"]
 [ext_resource type="FontFile" uid="uid://ns3a7qjrjw2t" path="res://assets/PublicPixel-z84yD.ttf" id="15_2ofl0"]
 [ext_resource type="Texture2D" uid="uid://dib3woi7lkjjy" path="res://assets/Retainers/Cleric.png" id="16_3bn1a"]
-
-[sub_resource type="Curve2D" id="Curve2D_bsihs"]
-bake_interval = 0.01
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1277, 119, 0, 0, 0, 0, 923, 125, 0, 0, 0, 0, 920, 416, 0, 0, 0, 0, 912, 560, 0, 0, 0, 0, 580, 564, 0, 0, 0, 0, 578, 274, 0, 0, 0, 0, 288, 273, 0, 0, 0, 0, 288, 557, 0, 0, 0, 0, -2, 558, 0, 0, 0, 0, -8, 124, 0, 0, 0, 0, -171, 117)
-}
-point_count = 11
 
 [node name="root" type="Node2D"]
 script = ExtResource("1_4prpp")
@@ -48,7 +42,7 @@ size_flags_vertical = 3
 texture = ExtResource("2_cm6ol")
 
 [node name="Path2D" type="Path2D" parent="."]
-curve = SubResource("Curve2D_bsihs")
+curve = ExtResource("4_kpgli")
 script = ExtResource("3_wqc84")
 SmallGoblin = ExtResource("5_83p17")
 SmallGoblinE = ExtResource("6_abj2p")
@@ -58,7 +52,7 @@ wait_time = 3.0
 autostart = true
 
 [node name="WavePause" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 15.0
 one_shot = true
 
 [node name="CharacterMovement" parent="." instance=ExtResource("3_uugq0")]

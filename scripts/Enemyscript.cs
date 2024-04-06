@@ -27,8 +27,7 @@ public partial class Enemyscript : CharacterBody2D
 		_customSignals.EnemyDamage += HandleEnemyDamage;
 		_follow = GetParent<PathFollow2D>();
 		attackTimer = GetNode<Timer>("AttackTimer");
-		healthBar.Value = enemyHealth;
-		_transform.RemotePath = healthBar.GetPath();
+		UpdateHealthBar();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -47,7 +46,7 @@ public partial class Enemyscript : CharacterBody2D
 			return;
 		
 		enemyHealth -= damageDealt;
-		healthBar.Value = enemyHealth;
+		UpdateHealthBar();
 		if (enemyHealth <= 0)
 		{
 			gameManager.GlobalValues.playerCurrency += enemyValue;
@@ -55,6 +54,11 @@ public partial class Enemyscript : CharacterBody2D
 			QueueFree();
 		}
 	}
+
+	public void UpdateHealthBar()
+	{
+        healthBar.Value = enemyHealth;
+    }
 
 
 	public void _on_move_timer_timeout()

@@ -31,7 +31,7 @@ public partial class ShopMenu : CanvasLayer
 
 	public override void _Process(double delta){
 		if (icon1 != null){
-			icon1.GlobalPosition = GetViewport().GetMousePosition();
+			icon1.GlobalPosition = icon1.GetGlobalMousePosition();
 			if (!Input.IsMouseButtonPressed((MouseButton)1)){
 				if (gameManager.GlobalValues.IsOccupied == false)
 				{

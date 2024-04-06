@@ -10,13 +10,22 @@ public partial class bullet : CharacterBody2D
 	[Export] int bulletDamage = 1;
 	private CustomSignals _customSignals;
 	float speed = 300;
-	private string previousName;
+	private ulong previousName;
+		
+	
 	public override void _Ready()
 	{
+		var parentTower = (defence_tower)GetParent().GetParent();
+		if (parentTower.target != null){
+			previousName = parentTower.target.GetInstanceId();
+		}
 		_customSignals = GetNode<CustomSignals>("/root/CustomSignals");
 		Timer timer = GetNode<Timer>("BulletTimer");
 		timer.Timeout += () => QueueFree();
+		
 	}
+
+
 
 
 
@@ -30,21 +39,16 @@ public partial class bullet : CharacterBody2D
 	}
 
 
-	public override void _PhysicsProcess(double delta)
-    {
+	public override void _PhysicsProcess(double delta){
 		var parent = (defence_tower)GetParent().GetParent();
-		var enemyTarget = parent.target;
-		if (enemyTarget != null){
-            if (enemyTarget.Name != previousName){
-                LookAt(enemyTarget.GlobalPosition);
-                previousName = enemyTarget.Name;
-                Velocity = Vector2.Zero;
-            }
-            else
-            {
-                Velocity = Transform.X * speed;
-            }
-        }
-        MoveAndSlide();
-    }
+		if (parent.target != null){
+			var tempName = parent.target.GetInstanceId();
+			if (tempName == previousName){
+				LookAt(parent.target.GlobalPosition);
+			}
+			
+		}
+		Velocity = Transform.X * speed;
+		MoveAndSlide();
+	}
 }

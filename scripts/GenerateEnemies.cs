@@ -22,14 +22,14 @@ public partial class GenerateEnemies : Path2D
 	private int WaveNum = 1;
 	private float difficulty = 1;
 	private int totalEnemies;
-    private Array<PackedScene> enemies;
+    private Array<PackedScene> enemies = new Array<PackedScene>();
 
     public override void _Ready()
 	{
 		enemies.Add(SmallGoblin);
 		timer = GetParent().GetNode<Timer>("GameTimer");
         wavePause = GetParent().GetNode<Timer>("WavePause");
-        NewWave();
+		timer.Start();
 	}
 
 
@@ -38,7 +38,8 @@ public partial class GenerateEnemies : Path2D
         WaveNum++;
 		timer.Start();
 		ongoingWave = true;
-		difficulty *= 1.075f;
+		difficulty *= 1.125f;
+		GD.Print("Wave " + WaveNum);
     }
 
 
@@ -51,13 +52,19 @@ public partial class GenerateEnemies : Path2D
 		enemyCharacter.enemyHealth *= difficulty;
 		pathToFollow.AddChild(enemyCharacter);
 		enemyCharacter.AddToGroup("enemys");
+		enemyCharacter.UpdateHealthBar();
+		if (totalEnemies == firstWave + 10)
+		{
+            ongoingWave = false;
+			timer.Stop();
+            wavePause.Start();
+        }
 		totalEnemies++;
-		
 	}
 
 	public void OnWavePauseTimeout()
 	{
         NewWave();
-		timer.Start();
+		wavePause.Stop();
     }
 }
