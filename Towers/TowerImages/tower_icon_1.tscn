@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ys4b7re48j5g"]
 
-[ext_resource type="Script" path="res://Towers/TowerImages/tower_icon_1.cs" id="1_xalgx"]
+[ext_resource type="Script" path="res://scripts/tower_icon_1.cs" id="1_xalgx"]
 [ext_resource type="Texture2D" uid="uid://cbhv2b220hu6y" path="res://assets/Retainers/Wizards/RedWizard.png" id="2_oohos"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aq37q"]

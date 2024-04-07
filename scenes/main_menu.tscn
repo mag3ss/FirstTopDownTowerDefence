@@ -1,0 +1,148 @@
+[gd_scene load_steps=6 format=3 uid="uid://vc32k6gsjfhk"]
+
+[ext_resource type="Texture2D" uid="uid://c62c7c1sm6slk" path="res://assets/UIassets/UpdatedMainMenu.png" id="1_75odl"]
+[ext_resource type="Script" path="res://scripts/main_menu.cs" id="1_nk774"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cy4ld"]
+bg_color = Color(0.227451, 0.227451, 0.227451, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ww7kj"]
+bg_color = Color(0.227451, 0.227451, 0.227451, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11y4u"]
+bg_color = Color(0.333333, 0.333333, 0.333333, 1)
+
+[node name="MainMenu" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nk774")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_75odl")
+
+[node name="OptionsMenu" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Panel" type="Panel" parent="OptionsMenu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -342.5
+offset_top = -252.5
+offset_right = 342.5
+offset_bottom = 252.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Menu" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Panel" type="Panel" parent="Menu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -235.5
+offset_top = -204.5
+offset_right = 235.5
+offset_bottom = 204.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Menu/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Container" type="AspectRatioContainer" parent="Menu/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Panel/Container"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Play" type="Button" parent="Menu/Panel/Container/VBoxContainer"]
+texture_filter = 2
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_cy4ld")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ww7kj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_11y4u")
+text = "Play"
+
+[node name="Settings" type="Button" parent="Menu/Panel/Container/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "Settings
+"
+
+[node name="Quit" type="Button" parent="Menu/Panel/Container/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "Quit
+"
+
+[node name="Modes" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Panel" type="Panel" parent="Modes"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -203.0
+offset_top = -227.0
+offset_right = 203.0
+offset_bottom = 227.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Modes/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -90.0
+offset_right = 99.0
+offset_bottom = 107.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="TextureButton" parent="Modes/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Button2" type="TextureButton" parent="Modes/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[connection signal="pressed" from="Menu/Panel/Container/VBoxContainer/Quit" to="." method="OnQuitPressed"]

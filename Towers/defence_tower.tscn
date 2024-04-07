@@ -1,12 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://cn1016sbkblk5"]
+[gd_scene load_steps=9 format=3 uid="uid://cn1016sbkblk5"]
 
 [ext_resource type="Texture2D" uid="uid://cbhv2b220hu6y" path="res://assets/Retainers/Wizards/RedWizard.png" id="2_6r87a"]
 [ext_resource type="Script" path="res://scripts/defence_tower.cs" id="2_kublw"]
 [ext_resource type="PackedScene" uid="uid://btvliifst2v5q" path="res://entities/bullet.tscn" id="4_67400"]
+[ext_resource type="Texture2D" uid="uid://8uku7d2mcfa5" path="res://assets/UIassets/BuyPanel.png" id="5_o76ow"]
 [ext_resource type="AudioStream" uid="uid://ktu05g7n4plt" path="res://assets/SFX/fireball-whoosh-1-179125.mp3" id="5_ytxtk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vje54"]
 radius = 791.162
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7r2l1"]
+radius = 60.3529
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7ibq"]
+bg_color = Color(0.0745098, 0.0745098, 0.0745098, 0.576471)
+corner_radius_top_left = 790
+corner_radius_top_right = 790
+corner_radius_bottom_right = 790
+corner_radius_bottom_left = 790
 
 [node name="defenceTower" type="StaticBody2D"]
 position = Vector2(485, 148)
@@ -50,6 +61,7 @@ shape = SubResource("CircleShape2D_vje54")
 position = Vector2(52.7059, -33.8824)
 
 [node name="UpgradeMenu" type="CanvasLayer" parent="."]
+layer = 2
 visible = false
 
 [node name="Panel" type="Panel" parent="UpgradeMenu"]
@@ -60,6 +72,31 @@ anchor_bottom = 1.0
 offset_top = -307.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="UpgradeMenu/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -11.0
+offset_top = -4.0
+offset_right = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_o76ow")
+expand_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7r2l1")
+
+[node name="Range" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(1000, 1000)
+offset_left = -794.0
+offset_top = -791.0
+offset_right = 798.0
+offset_bottom = 790.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_t7ibq")
 
 [connection signal="input_event" from="." to="." method="OnInputEvent"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

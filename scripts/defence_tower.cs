@@ -15,6 +15,7 @@ public partial class defence_tower : StaticBody2D
 	private Node bulletContainer;
 	private Marker2D Aim;
 	private bool onMenu;
+	private Panel attackRangeVisiual;
 
 	float fire_rate;
 	public Node2D target;
@@ -36,6 +37,7 @@ public partial class defence_tower : StaticBody2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		attackRangeVisiual = GetNode<Panel>("Range");
 		Aim = GetNode<Marker2D>("Aim");
 		bulletContainer = GetNode<Node>("BulletContainer");
 		upgradeMenu = GetNode<CanvasLayer>("UpgradeMenu");
@@ -187,7 +189,9 @@ public partial class defence_tower : StaticBody2D
 
 	private void hideMenu(){
 		upgradeMenu.Visible = !upgradeMenu.Visible;
+		attackRangeVisiual.Visible = !attackRangeVisiual.Visible;
 		onMenu = !onMenu;
+
 	}
 
 }

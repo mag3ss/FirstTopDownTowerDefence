@@ -29,10 +29,8 @@ public partial class bullet : CharacterBody2D
 
 
 
-	public void OnArea2dBodyEntered(Enemyscript body)
-	{
-		if (body.IsInGroup("enemys"))
-		{
+	public void OnArea2dBodyEntered(Enemyscript body){
+		if (body.IsInGroup("enemys")){
 			_customSignals.EmitSignal(nameof(CustomSignals.EnemyDamage), bulletDamage, body.id.ToString());
 			QueueFree();
 		}
@@ -46,7 +44,6 @@ public partial class bullet : CharacterBody2D
 			if (tempName == previousName){
 				LookAt(parent.target.GlobalPosition);
 			}
-			
 		}
 		Velocity = Transform.X * speed;
 		MoveAndSlide();

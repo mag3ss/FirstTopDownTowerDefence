@@ -1,8 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://borud7k232sp0"]
+[gd_scene load_steps=22 format=3 uid="uid://borud7k232sp0"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.cs" id="1_4prpp"]
 [ext_resource type="Texture2D" uid="uid://cvn8vpax4a6lr" path="res://assets/gameBackground001-export.png" id="2_cm6ol"]
-[ext_resource type="PackedScene" uid="uid://vc32k6gsjfhk" path="res://UI/main_menu.tscn" id="2_gf3on"]
+[ext_resource type="PackedScene" uid="uid://vc32k6gsjfhk" path="res://scenes/main_menu.tscn" id="2_gf3on"]
 [ext_resource type="PackedScene" uid="uid://bgr5wcxpvrx00" path="res://entities/character_movement.tscn" id="3_uugq0"]
 [ext_resource type="Script" path="res://scripts/GenerateEnemies.cs" id="3_wqc84"]
 [ext_resource type="Curve2D" uid="uid://gfx5horlvo50" path="res://Path2Ds/ForestPath.tres" id="4_kpgli"]
@@ -15,9 +15,11 @@
 [ext_resource type="Script" path="res://scripts/ShopMenu.cs" id="7_mv3r2"]
 [ext_resource type="Texture2D" uid="uid://cbhv2b220hu6y" path="res://assets/Retainers/Wizards/RedWizard.png" id="9_pw66t"]
 [ext_resource type="Script" path="res://scripts/Tower_1.cs" id="9_qistt"]
+[ext_resource type="Texture2D" uid="uid://cyq1tbno3l3ya" path="res://assets/UIassets/SettingsButton.png" id="12_p7wul"]
 [ext_resource type="Texture2D" uid="uid://62yc1xqt0k5u" path="res://assets/Retainers/Wizards/GreenWizard.png" id="13_ek7w2"]
 [ext_resource type="Texture2D" uid="uid://slymglomkqm1" path="res://assets/Retainers/Wizards/PurpleWizard.png" id="14_yqveh"]
 [ext_resource type="FontFile" uid="uid://ns3a7qjrjw2t" path="res://assets/PublicPixel-z84yD.ttf" id="15_2ofl0"]
+[ext_resource type="Texture2D" uid="uid://8uku7d2mcfa5" path="res://assets/UIassets/BuyPanel.png" id="15_n5kwc"]
 [ext_resource type="Texture2D" uid="uid://dib3woi7lkjjy" path="res://assets/Retainers/Cleric.png" id="16_3bn1a"]
 
 [node name="root" type="Node2D"]
@@ -112,6 +114,18 @@ metadata/_edit_use_anchors_ = true
 [node name="Timer" type="Timer" parent="CharacterMovement/CanvasLayer"]
 autostart = true
 
+[node name="TextureRect" type="TextureButton" parent="CharacterMovement/CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -41.0
+offset_top = 5.0
+offset_right = -6.0
+offset_bottom = 40.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+texture_normal = ExtResource("12_p7wul")
+
 [node name="TowerSpawner" type="Node2D" parent="."]
 script = ExtResource("7_evys7")
 
@@ -127,10 +141,19 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -396.0
 offset_top = -241.5
-offset_right = 396.0
-offset_bottom = 241.5
+offset_right = 404.0
+offset_bottom = 258.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="ShopMenu/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_n5kwc")
 
 [node name="Label" type="Label" parent="ShopMenu/Panel"]
 texture_filter = 1
@@ -139,9 +162,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -139.0
-offset_top = 16.5
+offset_top = 37.5
 offset_right = 140.0
-offset_bottom = 47.5
+offset_bottom = 68.5
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("15_2ofl0")
 theme_override_font_sizes/font_size = 31
@@ -157,9 +180,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -373.0
-offset_top = -408.0
+offset_top = -421.5
 offset_right = 374.0
-offset_bottom = -9.0
+offset_bottom = -22.5
 grow_horizontal = 2
 grow_vertical = 0
 
