@@ -1,19 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://vc32k6gsjfhk"]
+[gd_scene load_steps=5 format=3 uid="uid://vc32k6gsjfhk"]
 
 [ext_resource type="Texture2D" uid="uid://c62c7c1sm6slk" path="res://assets/UIassets/UpdatedMainMenu.png" id="1_75odl"]
 [ext_resource type="Script" path="res://scripts/main_menu.cs" id="1_nk774"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cy4ld"]
-bg_color = Color(0.227451, 0.227451, 0.227451, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ww7kj"]
-bg_color = Color(0.227451, 0.227451, 0.227451, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11y4u"]
-bg_color = Color(0.333333, 0.333333, 0.333333, 1)
+[ext_resource type="Texture2D" uid="uid://duq2v4sw4qg26" path="res://assets/UIassets/PlayButton.png" id="3_1mk0b"]
+[ext_resource type="Texture2D" uid="uid://cykduiywi6min" path="res://assets/UIassets/PlayButton_OnHover.png" id="4_ij0od"]
 
 [node name="MainMenu" type="Control"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,9 +40,9 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Menu" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Panel" type="Panel" parent="Menu"]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -63,45 +55,36 @@ offset_bottom = 204.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="Menu/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -189.5
+offset_top = -129.0
+offset_right = 189.5
+offset_bottom = 129.0
 grow_horizontal = 2
 grow_vertical = 2
-expand_mode = 1
-
-[node name="Container" type="AspectRatioContainer" parent="Menu/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Panel/Container"]
-layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Play" type="Button" parent="Menu/Panel/Container/VBoxContainer"]
-texture_filter = 2
-custom_minimum_size = Vector2(200, 50)
+[node name="Play" type="TextureButton" parent="Menu/VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
-theme_override_font_sizes/font_size = 21
-theme_override_styles/normal = SubResource("StyleBoxFlat_cy4ld")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ww7kj")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_11y4u")
-text = "Play"
+texture_normal = ExtResource("3_1mk0b")
+texture_hover = ExtResource("4_ij0od")
+stretch_mode = 0
 
-[node name="Settings" type="Button" parent="Menu/Panel/Container/VBoxContainer"]
+[node name="Settings" type="Button" parent="Menu/VBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 text = "Settings
 "
 
-[node name="Quit" type="Button" parent="Menu/Panel/Container/VBoxContainer"]
+[node name="Quit" type="Button" parent="Menu/VBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 text = "Quit
@@ -145,4 +128,4 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[connection signal="pressed" from="Menu/Panel/Container/VBoxContainer/Quit" to="." method="OnQuitPressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/Quit" to="." method="OnQuitPressed"]
