@@ -1,7 +1,4 @@
 using Godot;
-using System;
-using static Godot.TextServer;
-
 
 public partial class bullet : CharacterBody2D
 {
@@ -9,9 +6,10 @@ public partial class bullet : CharacterBody2D
 	// Called when the node enters the scene tree for the first time.
 	[Export] int bulletDamage = 1;
 	private CustomSignals _customSignals;
-	float speed = 300;
+	public float speed = 300;
 	private ulong previousName;
-		
+	private float speedMultiplier = 1f;
+	
 	
 	public override void _Ready()
 	{
@@ -22,14 +20,11 @@ public partial class bullet : CharacterBody2D
 		_customSignals = GetNode<CustomSignals>("/root/CustomSignals");
 		Timer timer = GetNode<Timer>("BulletTimer");
 		timer.Timeout += () => QueueFree();
-		
-	}
+        _customSignals.ChangeSpeed += ChangedEnemySpeed;
 
+    }
 
-
-
-
-	public void OnArea2dBodyEntered(Enemyscript body){
+    public void OnArea2dBodyEntered(Enemyscript body){
 		if (body.IsInGroup("enemys")){
 			_customSignals.EmitSignal(nameof(CustomSignals.EnemyDamage), bulletDamage, body.id.ToString());
 			QueueFree();
@@ -45,7 +40,11 @@ public partial class bullet : CharacterBody2D
 				LookAt(parent.target.GlobalPosition);
 			}
 		}
-		Velocity = Transform.X * speed;
-		MoveAndSlide();
+        Velocity = (Transform.X * speed) * speedMultiplier;
+        MoveAndSlide();
 	}
+
+    private void ChangedEnemySpeed(int speedChange){
+        speedMultiplier = speedChange;
+    }
 }

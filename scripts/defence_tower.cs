@@ -7,17 +7,15 @@ using System.Xml.Linq;
 public partial class defence_tower : StaticBody2D
 {
 	[Export] PackedScene bulletScene;
-	[Export] float bullet_speed = 400;
-	[Export] float bps = 5f;
-	[Export] float bullet_damage = 30f;
 	private bool isShooting;
 	private CharacterBody2D bullet;
+	public int speedMultiplier = 1;
 	private Node bulletContainer;
 	private Marker2D Aim;
 	private bool onMenu;
 	private Panel attackRangeVisiual;
 
-	float fire_rate;
+	public float fire_rate;
 	public Node2D target;
 
 	public Array<Node2D> enemies;
@@ -43,10 +41,9 @@ public partial class defence_tower : StaticBody2D
 		upgradeMenu = GetNode<CanvasLayer>("UpgradeMenu");
 		attackTimer = GetNode<Timer>("AttackTimer");
 		attackArea = GetNode<Area2D>("AttackRange");
-		followTimer = GetNode<Timer>("FollowTimer");
+
 
 		enemies = new Array<Node2D>();
-		fire_rate = 1 / bps;
 		gameManager.defenceTowerInstance = this;
 	}
 
@@ -144,7 +141,7 @@ public partial class defence_tower : StaticBody2D
 		}
 	}
 
-	public void _on_attack_timer_timeout()
+	private void _on_attack_timer_timeout()
 	{
 		isShooting = true;
 		if (gameManager.defenceTowerInstance.enemies.Count >= 0 && target != null)

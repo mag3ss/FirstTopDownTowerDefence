@@ -10,7 +10,6 @@ public partial class ShopMenu : CanvasLayer
 	private bool _isTowerSelected;
 	private CharacterBody2D _towerrr;
 	private Node2D _tower;
-	private Node2D fredrik;
 	private Node2D icon1;
 	private int tempValue;
 

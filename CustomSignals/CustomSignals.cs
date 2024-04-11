@@ -12,6 +12,8 @@ public partial class CustomSignals : Node
 
     [Signal] public delegate void EnemyKillEventHandler(int IDnumber);
 
+    [Signal] public delegate void ChangeSpeedEventHandler(int speedChange);
+
     
 
 

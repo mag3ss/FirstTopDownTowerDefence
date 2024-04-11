@@ -21,11 +21,6 @@ scale = Vector2(0.140625, 0.140625)
 collision_layer = 8
 collision_mask = 8
 script = ExtResource("1_t4a62")
-enemyHealth = 5
-
-[node name="MoveTimer" type="Timer" parent="."]
-wait_time = 0.05
-autostart = true
 
 [node name="AttackTimer" type="Timer" parent="."]
 
@@ -57,5 +52,4 @@ step = 1.0
 value = 5.0
 show_percentage = false
 
-[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

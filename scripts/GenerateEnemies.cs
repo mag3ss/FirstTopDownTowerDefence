@@ -22,14 +22,18 @@ public partial class GenerateEnemies : Path2D
 	private int WaveNum = 1;
 	private float difficulty = 1;
 	private int totalEnemies;
+	private int newEnemySpeed = 1;
+	private CustomSignals _customSignals;
     private Array<PackedScene> enemies = new Array<PackedScene>();
 
     public override void _Ready()
 	{
+		_customSignals = GetNode<CustomSignals>("/root/CustomSignals");
 		enemies.Add(SmallGoblin);
 		timer = GetParent().GetNode<Timer>("GameTimer");
         wavePause = GetParent().GetNode<Timer>("WavePause");
-		timer.Start();
+        _customSignals.ChangeSpeed += ChangedEnemySpeed;
+        timer.Start();
 	}
 
 
@@ -50,6 +54,7 @@ public partial class GenerateEnemies : Path2D
 		pathToFollow.Loop = false;
 		var enemyCharacter = (Enemyscript)enemies[0].Instantiate();
 		enemyCharacter.enemyHealth *= difficulty;
+		enemyCharacter.enemySpeed = newEnemySpeed;
 		pathToFollow.AddChild(enemyCharacter);
 		enemyCharacter.AddToGroup("enemys");
 		enemyCharacter.UpdateHealthBar();
@@ -62,7 +67,12 @@ public partial class GenerateEnemies : Path2D
 		totalEnemies++;
 	}
 
-	public void OnWavePauseTimeout()
+	private void ChangedEnemySpeed(int speedChange){
+		newEnemySpeed = speedChange;
+	}
+
+
+    public void OnWavePauseTimeout()
 	{
         NewWave();
 		wavePause.Stop();

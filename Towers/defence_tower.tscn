@@ -25,7 +25,6 @@ scale = Vector2(0.265625, 0.265625)
 input_pickable = true
 script = ExtResource("2_kublw")
 bulletScene = ExtResource("4_67400")
-bullet_damage = 10.0
 
 [node name="FireBall" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_ytxtk")
@@ -44,9 +43,6 @@ scale = Vector2(6, 6)
 texture = ExtResource("2_6r87a")
 
 [node name="AttackTimer" type="Timer" parent="."]
-
-[node name="FollowTimer" type="Timer" parent="."]
-wait_time = 0.1
 
 [node name="AttackRange" type="Area2D" parent="."]
 collision_layer = 8
