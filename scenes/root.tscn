@@ -22,6 +22,21 @@
 [ext_resource type="Texture2D" uid="uid://8uku7d2mcfa5" path="res://assets/UIassets/BuyPanel.png" id="15_n5kwc"]
 [ext_resource type="Texture2D" uid="uid://dib3woi7lkjjy" path="res://assets/Retainers/Cleric.png" id="16_3bn1a"]
 
+[sub_resource type="Animation" id="Animation_fxii4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_3uxn1"]
 resource_name = "day_night"
 length = 24.0
@@ -36,21 +51,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(0.167772, 0.410092, 0.537227, 1), Color(0.129412, 0.560784, 0.635294, 1), Color(0.924734, 0.681833, 0.51571, 1), Color(1, 1, 1, 1), Color(0.786656, 0.711983, 0.676907, 1), Color(0.129412, 0.560784, 0.635294, 1), Color(0.167772, 0.410092, 0.537227, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_fxii4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y22vh"]
