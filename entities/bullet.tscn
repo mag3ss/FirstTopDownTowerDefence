@@ -7,7 +7,17 @@
 size = Vector2(11, 10)
 
 [node name="Bullet" type="CharacterBody2D" groups=["bullet"]]
+floor_constant_speed = true
+floor_max_angle = 3.14159
 script = ExtResource("1_4wbfd")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(5.96046e-08, 1)
+rotation = -3.14159
+scale = Vector2(0.417489, 0.393932)
+energy = 0.16
+texture = ExtResource("2_lgyy2")
+texture_scale = 3.25
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1, 0)
@@ -19,6 +29,7 @@ texture = ExtResource("2_lgyy2")
 autostart = true
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 collision_layer = 8
 collision_mask = 8
 

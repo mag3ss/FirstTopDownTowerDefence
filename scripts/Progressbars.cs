@@ -80,16 +80,15 @@ public partial class Progressbars : CanvasLayer
 	private void UpdateSpeed(int speedChange, double speedMultiplier){
         if (path2D.GetChildren().Count > 0){
             foreach (Node child in path2D.GetChildren()){
-                Enemyscript enemy = child.GetChild(0) as Enemyscript;
-                enemy.enemySpeed *= speedChange;
-                timer.WaitTime *= speedMultiplier;
+                Enemyscript enemy = (Enemyscript)child.GetChild(0);
+                enemy.enemySpeed = speedChange;
+                timer.WaitTime = speedMultiplier;
             }
         }
         foreach (StaticBody2D tower in towerSpawner.GetChildren()){
             var timer = tower.GetNode<Timer>("AttackTimer");
-            timer.WaitTime *= speedMultiplier;
+            timer.WaitTime = speedMultiplier;
         }
-		gameTimer.WaitTime *= speedMultiplier;
         _customSignals.EmitSignal(nameof(CustomSignals.ChangeSpeed), speedChange);
     }
 

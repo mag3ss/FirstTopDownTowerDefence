@@ -155,17 +155,16 @@ public partial class defence_tower : StaticBody2D
 	public void OnInputEvent(Viewport viewport, InputEvent @event, int shapeIdx){
 		if (@event is InputEventMouseButton mouseButton){
 			if (upgradeMenu.Visible == false && mouseButton.Pressed && mouseButton.ButtonMask == (MouseButtonMask)1){
+				onMenu = true;
 				var towerPath = GetTree().Root.GetNode<Node2D>("root/TowerSpawner");
 				foreach (StaticBody2D towers in towerPath.GetChildren()){
 					if (towers.Name != this.Name){
 						towers.GetNode<CanvasLayer>("UpgradeMenu").Hide();
+						towers.GetNode<Panel>("Range").Hide();
 					}
 				}
 				hideMenu();
-			}
-			else if (upgradeMenu.Visible && mouseButton.Pressed && mouseButton.ButtonMask == (MouseButtonMask)1){
-				hideMenu();
-			}
+            }
 		}
 	}
 

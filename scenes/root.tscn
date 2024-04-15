@@ -1,9 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://borud7k232sp0"]
+[gd_scene load_steps=32 format=3 uid="uid://borud7k232sp0"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.cs" id="1_4prpp"]
 [ext_resource type="Texture2D" uid="uid://cvn8vpax4a6lr" path="res://assets/gameBackground001-export.png" id="2_cm6ol"]
 [ext_resource type="PackedScene" uid="uid://bgr5wcxpvrx00" path="res://entities/character_movement.tscn" id="3_uugq0"]
 [ext_resource type="Script" path="res://scripts/GenerateEnemies.cs" id="3_wqc84"]
+[ext_resource type="Texture2D" uid="uid://coiu6h0ckno6x" path="res://assets/Projectiles/leaveparticle.png" id="3_wtq51"]
 [ext_resource type="Curve2D" uid="uid://gfx5horlvo50" path="res://Path2Ds/ForestPath.tres" id="4_kpgli"]
 [ext_resource type="Script" path="res://scripts/Progressbars.cs" id="4_ley25"]
 [ext_resource type="PackedScene" uid="uid://bhvgeu4rf8l5d" path="res://entities/enemies/enemy.tscn" id="5_83p17"]
@@ -21,6 +22,32 @@
 [ext_resource type="FontFile" uid="uid://ns3a7qjrjw2t" path="res://assets/PublicPixel-z84yD.ttf" id="15_2ofl0"]
 [ext_resource type="Texture2D" uid="uid://8uku7d2mcfa5" path="res://assets/UIassets/BuyPanel.png" id="15_n5kwc"]
 [ext_resource type="Texture2D" uid="uid://dib3woi7lkjjy" path="res://assets/Retainers/Cleric.png" id="16_3bn1a"]
+
+[sub_resource type="Curve" id="Curve_gc5jn"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_i8j7w"]
+curve = SubResource("Curve_gc5jn")
+
+[sub_resource type="Curve" id="Curve_s1vhl"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.358209, 0.373626), 0.0, 0.0, 0, 0, Vector2(0.721393, 0.648352), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_kenab"]
+curve = SubResource("Curve_s1vhl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bw6qw"]
+emission_shape = 3
+emission_box_extents = Vector3(700, 300, 1)
+gravity = Vector3(125, 98, 0)
+scale_curve = SubResource("CurveTexture_i8j7w")
+turbulence_enabled = true
+turbulence_noise_strength = 4.91
+turbulence_noise_scale = 4.737
+turbulence_noise_speed = Vector3(100, -100, 0)
+turbulence_influence_max = 0.275
+turbulence_influence_over_life = SubResource("CurveTexture_kenab")
 
 [sub_resource type="Animation" id="Animation_fxii4"]
 length = 0.001
@@ -59,6 +86,9 @@ _data = {
 "day_night": SubResource("Animation_3uxn1")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rj75g"]
+size = Vector2(988, 20)
+
 [node name="root" type="Node2D"]
 script = ExtResource("1_4prpp")
 
@@ -77,6 +107,16 @@ scale = Vector2(1.5, 1.5)
 size_flags_vertical = 3
 texture = ExtResource("2_cm6ol")
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="TextureRect"]
+texture_filter = 1
+position = Vector2(861.333, 632.667)
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_bw6qw")
+texture = ExtResource("3_wtq51")
+lifetime = 3.0
+speed_scale = 0.8
+randomness = 0.52
+
 [node name="Path2D" type="Path2D" parent="."]
 curve = ExtResource("4_kpgli")
 script = ExtResource("3_wqc84")
@@ -84,7 +124,6 @@ SmallGoblin = ExtResource("5_83p17")
 SmallGoblinE = ExtResource("6_abj2p")
 
 [node name="DayNightCycle" type="CanvasModulate" parent="."]
-visible = false
 script = ExtResource("7_8dx1w")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DayNightCycle"]
@@ -93,7 +132,7 @@ libraries = {
 }
 
 [node name="Timer" type="Timer" parent="DayNightCycle"]
-wait_time = 15.0
+wait_time = 36.0
 autostart = true
 
 [node name="GameTimer" type="Timer" parent="."]
@@ -139,9 +178,9 @@ tint_progress = Color(0, 0.866667, 0, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="Money" type="Label" parent="CharacterMovement/CanvasLayer"]
-offset_left = 1344.0
+offset_left = 1342.0
 offset_top = 17.0
-offset_right = 1461.0
+offset_right = 1459.0
 offset_bottom = 40.0
 text = "Mana Crystals:"
 metadata/_edit_use_anchors_ = true
@@ -678,6 +717,16 @@ offset_right = 81.5
 offset_bottom = 80.0
 text = "50$"
 horizontal_alignment = 1
+
+[node name="Sprite2D" type="StaticBody2D" parent="."]
+disable_mode = 1
+collision_layer = 3
+collision_mask = 3
+input_pickable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D"]
+position = Vector2(484, 0)
+shape = SubResource("RectangleShape2D_rj75g")
 
 [connection signal="timeout" from="GameTimer" to="Path2D" method="_on_game_timer_timeout"]
 [connection signal="timeout" from="WavePause" to="Path2D" method="OnWavePauseTimeout"]
