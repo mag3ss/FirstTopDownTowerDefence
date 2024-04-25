@@ -97,10 +97,10 @@ texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -723.0
-offset_top = -556.0
-offset_right = 976.0
-offset_bottom = 735.0
+offset_left = 1033.0
+offset_top = -980.0
+offset_right = 2732.0
+offset_bottom = 311.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.5, 1.5)
@@ -110,7 +110,7 @@ texture = ExtResource("2_cm6ol")
 [node name="GPUParticles2D" type="GPUParticles2D" parent="TextureRect"]
 texture_filter = 1
 position = Vector2(861.333, 632.667)
-amount = 40
+amount = 10
 process_material = SubResource("ParticleProcessMaterial_bw6qw")
 texture = ExtResource("3_wtq51")
 lifetime = 3.0
@@ -231,6 +231,7 @@ offset_bottom = 869.0
 text = "2X Speed"
 
 [node name="4X" type="Button" parent="CharacterMovement/CanvasLayer"]
+visible = false
 offset_left = 1315.0
 offset_top = 793.0
 offset_right = 1392.0
