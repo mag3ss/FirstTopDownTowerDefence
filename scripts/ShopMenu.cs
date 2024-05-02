@@ -1,7 +1,4 @@
 using Godot;
-using Godot.Collections;
-using System;
-using System.Collections.Generic;
 
 public partial class ShopMenu : CanvasLayer
 {
@@ -13,20 +10,21 @@ public partial class ShopMenu : CanvasLayer
 	private Node2D icon1;
 	private int tempValue;
 
+	private Resource _tileMap;
 
-	PackedScene standardTowerIcon = ResourceLoader.Load("res://Towers/TowerImages/tower_icon_1.tscn") as PackedScene;
+	
 	PackedScene standardTower = ResourceLoader.Load("res://Towers/defence_tower.tscn") as PackedScene;
-
-	public Godot.Collections.Dictionary<string, PackedScene> towerCollecion = new Godot.Collections.Dictionary<string, PackedScene>();
  
-	public override void _Ready()
-	{
-		towerCollecion.Add("Tower1", standardTowerIcon);
-		_customSignals = GetNode<CustomSignals>("/root/CustomSignals");
-		_customSignals.BuyedTower += HandleBuyedTower;
-		_tower = GetParent().GetNode<Node2D>("TowerSpawner");
-		
-	}
+		public override void _Ready()
+		{
+			_tileMap = GetNode<Resource>("res://Towers/TowerImages/TowerIcons.tres");
+			GD.Print(_tileMap);
+	        
+
+			_customSignals = GetTree().Root.GetNode<CustomSignals>("CustomSignals");
+			_customSignals.BuyedTower += HandleBuyedTower;
+			_tower = GetParent().GetNode<Node2D>("TowerSpawner");
+		}
 
 	public override void _Process(double delta){
 		if (icon1 != null){
@@ -57,13 +55,20 @@ public partial class ShopMenu : CanvasLayer
 		}
 	}
 
+	private void OnGuiInput(InputEvent @event, int _towerID, int _towerCost){
+		if (@event is InputEventMouseButton mouseButton && mouseButton.Pressed && _towerCost <= gameManager.GlobalValues.playerCurrency){
+			gameManager.GlobalValues.playerCurrency -= _towerCost;
+			_customSignals.EmitSignal(nameof(CustomSignals.ChangedCurrency));
+			_customSignals.EmitSignal(nameof(CustomSignals.BuyedTower), _towerID, _towerCost);
+		}
+	}
+
 	public void HandleBuyedTower(int IDnumber, int towerCost){
 		hideMenu();
 		switch (IDnumber){
 			case 100:
 				PressedTower("Tower1");
 				towerCost = tempValue;
-				
 				break;
 			case 101:
 				GD.Print("Tower 2 bought");
@@ -81,20 +86,16 @@ public partial class ShopMenu : CanvasLayer
 	}
 
 	public void PressedTower(string IDnum){
-		GetTree().Root.AddChild(towerCollecion[IDnum].Instantiate());
+		// GetTree().Root.AddChild(towerCollecion[IDnum].Instantiate());
 		icon1 = GetTree().Root.GetNode<Node2D>("Node2D");
 		_isTowerSelected = true;
 	}
 
-	private void hideMenu()
-	{
+	private void hideMenu(){
         Visible = !Visible;
-        if (gameManager.GlobalValues.IsOnMenu == true)
-        {
+        if (gameManager.GlobalValues.IsOnMenu){
             gameManager.GlobalValues.IsOnMenu = false;
-        }
-        else
-        {
+        } else {
             gameManager.GlobalValues.IsOnMenu = true;
         }
     }

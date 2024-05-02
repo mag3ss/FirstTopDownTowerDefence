@@ -1,0 +1,60 @@
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://ppvax8u5ip2j"]
+
+[ext_resource type="Texture2D" uid="uid://ce1n1c1k1pxra" path="res://assets/Retainers/GameSpriteAtlas.png" id="1_ibgxa"]
+[ext_resource type="Texture2D" uid="uid://hpo3gydbf35r" path="res://icon.svg" id="2_e4ufu"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4rpe7"]
+resource_name = "Retainers"
+texture = ExtResource("1_ibgxa")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wip2q"]
+texture = ExtResource("2_e4ufu")
+
+[resource]
+sources/0 = SubResource("TileSetAtlasSource_4rpe7")
+sources/1 = SubResource("TileSetAtlasSource_wip2q")

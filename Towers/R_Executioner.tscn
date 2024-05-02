@@ -1,0 +1,118 @@
+[gd_scene load_steps=11 format=3 uid="uid://de3orgwjaut1t"]
+
+[ext_resource type="Script" path="res://scripts/defence_tower.cs" id="1_5cksg"]
+[ext_resource type="PackedScene" uid="uid://btvliifst2v5q" path="res://entities/bullet.tscn" id="2_xblgf"]
+[ext_resource type="Texture2D" uid="uid://bs0anixw3adsw" path="res://assets/Retainers/Executioner2D.png" id="3_gsatn"]
+[ext_resource type="Texture2D" uid="uid://8uku7d2mcfa5" path="res://assets/UIassets/BuyPanel.png" id="5_q5wu0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oyekv"]
+atlas = ExtResource("3_gsatn")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7rki"]
+atlas = ExtResource("3_gsatn")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qr8d3"]
+atlas = ExtResource("3_gsatn")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xc23p"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_oyekv")
+}, {
+"duration": 1.1,
+"texture": SubResource("AtlasTexture_h7rki")
+}, {
+"duration": 1.1,
+"texture": SubResource("AtlasTexture_qr8d3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oyekv")
+}],
+"loop": false,
+"name": &"Attacking",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_42a14"]
+size = Vector2(105, 46)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q8600"]
+
+[node name="defenceTower" type="StaticBody2D"]
+position = Vector2(485, 148)
+input_pickable = true
+script = ExtResource("1_5cksg")
+bulletScene = ExtResource("2_xblgf")
+
+[node name="FireBall" type="AudioStreamPlayer2D" parent="."]
+volume_db = 0.5
+autoplay = true
+max_distance = 100.0
+attenuation = 0.500001
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xc23p")
+animation = &"Attacking"
+frame = 3
+frame_progress = 1.0
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="AttackRange" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="AttackShape" type="CollisionShape2D" parent="AttackRange"]
+position = Vector2(-42.5, 0)
+shape = SubResource("RectangleShape2D_42a14")
+
+[node name="BulletContainer" type="Node" parent="."]
+
+[node name="UpgradeMenu" type="CanvasLayer" parent="."]
+layer = 2
+visible = false
+
+[node name="Panel" type="Panel" parent="UpgradeMenu"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -307.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="UpgradeMenu/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -11.0
+offset_top = -4.0
+offset_right = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_q5wu0")
+expand_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7, 1)
+shape = SubResource("CapsuleShape2D_q8600")
+
+[node name="Range" type="Panel" parent="."]
+custom_minimum_size = Vector2(1000, 1000)
+offset_left = -95.0
+offset_top = -23.0
+offset_right = 2530.0
+offset_bottom = 1127.0
+scale = Vector2(0.04, 0.04)
+
+[connection signal="input_event" from="." to="." method="OnInputEvent"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
+[connection signal="mouse_entered" from="UpgradeMenu/Panel" to="." method="OnPanelMouseEntered"]
+[connection signal="mouse_exited" from="UpgradeMenu/Panel" to="." method="OnPanelMouseExited"]

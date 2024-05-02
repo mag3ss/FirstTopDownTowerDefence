@@ -16,6 +16,7 @@ public partial class Progressbars : CanvasLayer
 	private Path2D path2D;
 	private Node2D towerSpawner;
 	private Timer gameTimer;
+	
 	public override void _Ready()
 	{
 		gameTimer = GetTree().Root.GetNode<Timer>("/root/root/GameTimer");

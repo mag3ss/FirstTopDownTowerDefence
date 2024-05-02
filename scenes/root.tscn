@@ -15,11 +15,10 @@
 [ext_resource type="Script" path="res://scripts/Edmondossss.cs" id="7_evys7"]
 [ext_resource type="Script" path="res://scripts/ShopMenu.cs" id="7_mv3r2"]
 [ext_resource type="Texture2D" uid="uid://cbhv2b220hu6y" path="res://assets/Retainers/Wizards/RedWizard.png" id="9_pw66t"]
-[ext_resource type="Script" path="res://scripts/Tower_1.cs" id="9_qistt"]
 [ext_resource type="Texture2D" uid="uid://cyq1tbno3l3ya" path="res://assets/UIassets/SettingsButton.png" id="12_p7wul"]
 [ext_resource type="Texture2D" uid="uid://62yc1xqt0k5u" path="res://assets/Retainers/Wizards/GreenWizard.png" id="13_ek7w2"]
 [ext_resource type="Texture2D" uid="uid://slymglomkqm1" path="res://assets/Retainers/Wizards/PurpleWizard.png" id="14_yqveh"]
-[ext_resource type="FontFile" uid="uid://ns3a7qjrjw2t" path="res://assets/PublicPixel-z84yD.ttf" id="15_2ofl0"]
+[ext_resource type="FontFile" uid="uid://ns3a7qjrjw2t" path="res://assets/Fonts/PublicPixel-z84yD.ttf" id="15_2ofl0"]
 [ext_resource type="Texture2D" uid="uid://8uku7d2mcfa5" path="res://assets/UIassets/BuyPanel.png" id="15_n5kwc"]
 [ext_resource type="Texture2D" uid="uid://dib3woi7lkjjy" path="res://assets/Retainers/Cleric.png" id="16_3bn1a"]
 
@@ -86,6 +85,30 @@ _data = {
 "day_night": SubResource("Animation_3uxn1")
 }
 
+[sub_resource type="CSharpScript" id="CSharpScript_mxxb1"]
+script/source = "using Godot;
+using System;
+
+public partial class Tower_1 : Panel
+{
+	// Called when the node enters the scene tree for the first time.
+	private CustomSignals _customSignals;
+	public int _towerID = 100;
+	private int _towerCost = 50;
+	public override void _Ready(){
+		_customSignals = GetNode<CustomSignals>(\"/root/CustomSignals\");
+	}
+
+	// private void OnGuiInput(InputEvent @event){
+	// 	if (@event is InputEventMouseButton mouseButton && mouseButton.Pressed && _towerCost <= gameManager.GlobalValues.playerCurrency){
+	// 		gameManager.GlobalValues.playerCurrency -= _towerCost;
+	// 		_customSignals.EmitSignal(nameof(CustomSignals.ChangedCurrency));
+	// 		_customSignals.EmitSignal(nameof(CustomSignals.BuyedTower), _towerID, _towerCost);
+	// 	}
+	// }
+}
+"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rj75g"]
 size = Vector2(988, 20)
 
@@ -97,10 +120,10 @@ texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1033.0
-offset_top = -980.0
-offset_right = 2732.0
-offset_bottom = 311.0
+offset_left = -723.0
+offset_top = -556.0
+offset_right = 976.0
+offset_bottom = 735.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.5, 1.5)
@@ -242,7 +265,6 @@ text = "4X Speed"
 script = ExtResource("7_evys7")
 
 [node name="ShopMenu" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource("7_mv3r2")
 
 [node name="Panel" type="Panel" parent="ShopMenu"]
@@ -321,7 +343,7 @@ columns = 3
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 tooltip_text = "Red Wizard"
-script = ExtResource("9_qistt")
+script = SubResource("CSharpScript_mxxb1")
 
 [node name="TextureRect" type="TextureRect" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/FlowContainer/Panel"]
 layout_mode = 1
@@ -330,12 +352,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -33.0
-offset_top = -31.0
-offset_right = 31.0
-offset_bottom = 33.0
+offset_left = -30.0
+offset_top = 30.0
+offset_right = 34.0
+offset_bottom = 94.0
 grow_horizontal = 2
 grow_vertical = 2
+rotation = -1.5708
 texture = ExtResource("9_pw66t")
 expand_mode = 2
 flip_h = true
@@ -360,12 +383,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -33.0
-offset_top = -31.0
-offset_right = 31.0
-offset_bottom = 33.0
+offset_left = -30.0
+offset_top = 33.0
+offset_right = 34.0
+offset_bottom = 97.0
 grow_horizontal = 2
 grow_vertical = 2
+rotation = -1.5708
 texture = ExtResource("13_ek7w2")
 expand_mode = 2
 flip_h = true
@@ -390,12 +414,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -33.0
-offset_top = -31.0
-offset_right = 31.0
-offset_bottom = 33.0
+offset_left = -29.0
+offset_top = 32.0
+offset_right = 35.0
+offset_bottom = 96.0
 grow_horizontal = 2
 grow_vertical = 2
+rotation = -1.5708
 texture = ExtResource("14_yqveh")
 expand_mode = 2
 flip_h = true
@@ -415,7 +440,8 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer3"]
 layout_mode = 2
-text = "Holy"
+text = "Normal
+"
 
 [node name="HSeparator" type="HSeparator" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer3"]
 custom_minimum_size = Vector2(600, 0)
@@ -424,36 +450,6 @@ layout_mode = 2
 [node name="GridContainer2" type="GridContainer" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2"]
 layout_mode = 2
 columns = 4
-
-[node name="Panel" type="Panel" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer2"]
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer2/Panel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -33.0
-offset_top = -31.0
-offset_right = 31.0
-offset_bottom = 33.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("16_3bn1a")
-expand_mode = 2
-flip_h = true
-
-[node name="Label" type="Label" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer2/Panel"]
-layout_mode = 0
-offset_left = 0.5
-offset_top = 57.0
-offset_right = 81.5
-offset_bottom = 80.0
-text = "50$"
-horizontal_alignment = 1
 
 [node name="Panel2" type="Panel" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer2"]
 custom_minimum_size = Vector2(80, 80)
@@ -735,4 +731,4 @@ shape = SubResource("RectangleShape2D_rj75g")
 [connection signal="pressed" from="CharacterMovement/CanvasLayer/Normal" to="CharacterMovement/CanvasLayer" method="OnNormalSpeedPressed"]
 [connection signal="pressed" from="CharacterMovement/CanvasLayer/2X" to="CharacterMovement/CanvasLayer" method="_on_x_pressed"]
 [connection signal="pressed" from="CharacterMovement/CanvasLayer/4X" to="CharacterMovement/CanvasLayer" method="On2xPressed"]
-[connection signal="gui_input" from="ShopMenu/Panel/ScrollContainer/FlowContainer2/FlowContainer/Panel" to="ShopMenu/Panel/ScrollContainer/FlowContainer2/FlowContainer/Panel" method="OnGuiInput"]
+[connection signal="gui_input" from="ShopMenu/Panel/ScrollContainer/FlowContainer2/FlowContainer/Panel" to="ShopMenu" method="OnGuiInput" binds= [100, 50]]
