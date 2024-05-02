@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://borud7k232sp0"]
+[gd_scene load_steps=36 format=3 uid="uid://borud7k232sp0"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.cs" id="1_4prpp"]
 [ext_resource type="Texture2D" uid="uid://cvn8vpax4a6lr" path="res://assets/gameBackground001-export.png" id="2_cm6ol"]
@@ -21,6 +21,10 @@
 [ext_resource type="FontFile" uid="uid://ns3a7qjrjw2t" path="res://assets/Fonts/PublicPixel-z84yD.ttf" id="15_2ofl0"]
 [ext_resource type="Texture2D" uid="uid://8uku7d2mcfa5" path="res://assets/UIassets/BuyPanel.png" id="15_n5kwc"]
 [ext_resource type="Texture2D" uid="uid://dib3woi7lkjjy" path="res://assets/Retainers/Cleric.png" id="16_3bn1a"]
+[ext_resource type="Texture2D" uid="uid://cjtfwebx84tmn" path="res://assets/Retainers/GreenHuntsman.png" id="22_tcgx7"]
+[ext_resource type="Texture2D" uid="uid://c1geltxvwwrla" path="res://assets/Retainers/Knight.png" id="23_a6mdh"]
+[ext_resource type="Texture2D" uid="uid://qcxegvtmjpwx" path="res://assets/Retainers/Villiger.png" id="23_qie3v"]
+[ext_resource type="TileSet" uid="uid://ppvax8u5ip2j" path="res://Towers/TowerImages/TowerIcons.tres" id="25_nj11i"]
 
 [sub_resource type="Curve" id="Curve_gc5jn"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -265,6 +269,7 @@ text = "4X Speed"
 script = ExtResource("7_evys7")
 
 [node name="ShopMenu" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("7_mv3r2")
 
 [node name="Panel" type="Panel" parent="ShopMenu"]
@@ -451,35 +456,6 @@ layout_mode = 2
 layout_mode = 2
 columns = 4
 
-[node name="Panel2" type="Panel" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer2"]
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer2/Panel2"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -33.0
-offset_top = -31.0
-offset_right = 31.0
-offset_bottom = 33.0
-grow_horizontal = 2
-grow_vertical = 2
-expand_mode = 2
-flip_h = true
-
-[node name="Label" type="Label" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer2/Panel2"]
-layout_mode = 0
-offset_left = 0.5
-offset_top = 57.0
-offset_right = 81.5
-offset_bottom = 80.0
-text = "50$"
-horizontal_alignment = 1
-
 [node name="Panel3" type="Panel" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer2"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
@@ -491,16 +467,77 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -33.0
-offset_top = -31.0
-offset_right = 31.0
-offset_bottom = 33.0
+offset_left = 32.0
+offset_top = -33.0
+offset_right = 96.0
+offset_bottom = 31.0
 grow_horizontal = 2
 grow_vertical = 2
+rotation = 1.5708
+texture = ExtResource("22_tcgx7")
 expand_mode = 2
-flip_h = true
 
 [node name="Label" type="Label" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer2/Panel3"]
+layout_mode = 0
+offset_left = 0.5
+offset_top = 57.0
+offset_right = 81.5
+offset_bottom = 80.0
+text = "50$"
+horizontal_alignment = 1
+
+[node name="Panel4" type="Panel" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer2"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer2/Panel4"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 32.0
+offset_top = -33.0
+offset_right = 96.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+texture = ExtResource("23_qie3v")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer2/Panel4"]
+layout_mode = 0
+offset_left = 0.5
+offset_top = 57.0
+offset_right = 81.5
+offset_bottom = 80.0
+text = "50$"
+horizontal_alignment = 1
+
+[node name="Panel5" type="Panel" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer2"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer2/Panel5"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 32.0
+offset_top = -33.0
+offset_right = 96.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+texture = ExtResource("23_a6mdh")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer2/Panel5"]
 layout_mode = 0
 offset_left = 0.5
 offset_top = 57.0
@@ -724,6 +761,11 @@ input_pickable = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D"]
 position = Vector2(484, 0)
 shape = SubResource("RectangleShape2D_rj75g")
+
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2(1.5, 1.5)
+tile_set = ExtResource("25_nj11i")
+format = 2
 
 [connection signal="timeout" from="GameTimer" to="Path2D" method="_on_game_timer_timeout"]
 [connection signal="timeout" from="WavePause" to="Path2D" method="OnWavePauseTimeout"]

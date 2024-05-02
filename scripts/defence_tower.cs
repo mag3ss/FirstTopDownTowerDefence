@@ -2,6 +2,7 @@ using Godot;
 using Godot.Collections;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Xml.Linq;
 
 public partial class defence_tower : StaticBody2D
@@ -188,6 +189,11 @@ public partial class defence_tower : StaticBody2D
 		attackRangeVisiual.Visible = !attackRangeVisiual.Visible;
 		onMenu = !onMenu;
 
+	}
+
+	private void SellButton(){
+		QueueFree();
+		
 	}
 
 }
