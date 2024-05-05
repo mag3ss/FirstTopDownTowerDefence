@@ -40,7 +40,7 @@ public partial class bullet : CharacterBody2D
 				LookAt(parent.target.GlobalPosition);
 			}
 		}
-        Velocity = (Transform.X * speed) * speedMultiplier;
+        Velocity = Transform.X * speed * speedMultiplier;
         MoveAndSlide();
 	}
 

@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class main_menu : Control
 {
@@ -9,7 +8,10 @@ public partial class main_menu : Control
 		
 	}
 
-	public void OnQuitPressed(){
+	private void OnQuitPressed(){
         GetTree().Quit();
     }
+
+	private void OnPlayButtonPressed(){
+	}
 }

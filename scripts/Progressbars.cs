@@ -1,6 +1,4 @@
 using Godot;
-using System;
-using System.Runtime.CompilerServices;
 
 public partial class Progressbars : CanvasLayer
 {
@@ -22,18 +20,17 @@ public partial class Progressbars : CanvasLayer
 		gameTimer = GetTree().Root.GetNode<Timer>("/root/root/GameTimer");
 		path2D = GetParent().GetParent().GetNode<Path2D>("Path2D");
 		_customSignals = GetNode<CustomSignals>("/root/CustomSignals");
-		_customSignals.ChangedCurrency += HandleCurrentCurrency;
 		healthBar = GetNode<TextureProgressBar>("HealthBar");
 		currentMoney = GetNode<Label>("Money");
 		timerLabel = GetNode<Label>("Time");
 		timer = GetNode<Timer>("Timer");
 		towerSpawner = GetParent().GetParent().GetNode<Node2D>("TowerSpawner");
-		currentMoney.Text = "Money: " + gameManager.GlobalValues.playerCurrency;
 	}
 
 	public override void _Process(double delta)
 	{
 		healthBar.Value = gameManager.GlobalValues.playerHealth;
+		currentMoney.Text = "Money: " + gameManager.GlobalValues.playerCurrency;
 
 	}
 
@@ -63,6 +60,13 @@ public partial class Progressbars : CanvasLayer
 		}
 	}
 
+	private void _on_x_pressed(){
+		if (gameManager.GlobalValues.gameSpeed != 2){
+			gameManager.GlobalValues.gameSpeed = 2;
+			UpdateSpeed(2, 0.5);
+        }
+    }
+
     private void On2xPressed(){
 		if (gameManager.GlobalValues.gameSpeed != 3){
 			gameManager.GlobalValues.gameSpeed = 3;
@@ -71,12 +75,7 @@ public partial class Progressbars : CanvasLayer
 	}
 
 
-    private void _on_x_pressed(){
-		if (gameManager.GlobalValues.gameSpeed != 2){
-			gameManager.GlobalValues.gameSpeed = 2;
-			UpdateSpeed(2, 0.5);
-        }
-    }
+    
 
 	private void UpdateSpeed(int speedChange, double speedMultiplier){
         if (path2D.GetChildren().Count > 0){
@@ -92,9 +91,4 @@ public partial class Progressbars : CanvasLayer
         }
         _customSignals.EmitSignal(nameof(CustomSignals.ChangeSpeed), speedChange);
     }
-
-    private void HandleCurrentCurrency()
-	{
-		currentMoney.Text = "Money " + gameManager.GlobalValues.playerCurrency.ToString();
-	}
 }

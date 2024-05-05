@@ -1,13 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://de3orgwjaut1t"]
+[gd_scene load_steps=12 format=3 uid="uid://de3orgwjaut1t"]
 
 [ext_resource type="Script" path="res://scripts/defence_tower.cs" id="1_5cksg"]
-[ext_resource type="PackedScene" uid="uid://btvliifst2v5q" path="res://entities/bullet.tscn" id="2_xblgf"]
+[ext_resource type="PackedScene" uid="uid://nh1jow0usta5" path="res://entities/Projectiles/Axe.tscn" id="2_c36cd"]
 [ext_resource type="Texture2D" uid="uid://bs0anixw3adsw" path="res://assets/Retainers/Executioner2D.png" id="3_gsatn"]
 [ext_resource type="Texture2D" uid="uid://8uku7d2mcfa5" path="res://assets/UIassets/BuyPanel.png" id="5_q5wu0"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oyekv"]
-atlas = ExtResource("3_gsatn")
-region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h7rki"]
 atlas = ExtResource("3_gsatn")
@@ -17,12 +13,13 @@ region = Rect2(32, 32, 32, 32)
 atlas = ExtResource("3_gsatn")
 region = Rect2(0, 32, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_oyekv"]
+atlas = ExtResource("3_gsatn")
+region = Rect2(32, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_xc23p"]
 animations = [{
 "frames": [{
-"duration": 2.0,
-"texture": SubResource("AtlasTexture_oyekv")
-}, {
 "duration": 1.1,
 "texture": SubResource("AtlasTexture_h7rki")
 }, {
@@ -33,20 +30,28 @@ animations = [{
 "texture": SubResource("AtlasTexture_oyekv")
 }],
 "loop": false,
-"name": &"Attacking",
-"speed": 12.0
+"name": &"Attack",
+"speed": 13.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_42a14"]
-size = Vector2(105, 46)
+[sub_resource type="CircleShape2D" id="CircleShape2D_eclc7"]
+radius = 126.004
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q8600"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6qt0"]
+bg_color = Color(0.164706, 0.164706, 0.164706, 0.572549)
+corner_radius_top_left = 1024
+corner_radius_top_right = 1000
+corner_radius_bottom_right = 1000
+corner_radius_bottom_left = 1000
 
 [node name="defenceTower" type="StaticBody2D"]
 position = Vector2(485, 148)
 input_pickable = true
 script = ExtResource("1_5cksg")
-bulletScene = ExtResource("2_xblgf")
+towerValue = 50
+bulletScene = ExtResource("2_c36cd")
 
 [node name="FireBall" type="AudioStreamPlayer2D" parent="."]
 volume_db = 0.5
@@ -54,23 +59,30 @@ autoplay = true
 max_distance = 100.0
 attenuation = 0.500001
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+[node name="TowerSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(14, 2)
+rotation = 3.14159
 sprite_frames = SubResource("SpriteFrames_xc23p")
-animation = &"Attacking"
-frame = 3
+animation = &"Attack"
+frame = 2
 frame_progress = 1.0
 
 [node name="AttackTimer" type="Timer" parent="."]
+wait_time = 2.0
 
 [node name="AttackRange" type="Area2D" parent="."]
+visible = false
 collision_layer = 8
 collision_mask = 8
 
 [node name="AttackShape" type="CollisionShape2D" parent="AttackRange"]
-position = Vector2(-42.5, 0)
-shape = SubResource("RectangleShape2D_42a14")
+position = Vector2(7, 1)
+shape = SubResource("CircleShape2D_eclc7")
 
 [node name="BulletContainer" type="Node" parent="."]
+
+[node name="Aim" type="Marker2D" parent="."]
+position = Vector2(36, 0)
 
 [node name="UpgradeMenu" type="CanvasLayer" parent="."]
 layer = 2
@@ -103,12 +115,15 @@ position = Vector2(7, 1)
 shape = SubResource("CapsuleShape2D_q8600")
 
 [node name="Range" type="Panel" parent="."]
+visible = false
 custom_minimum_size = Vector2(1000, 1000)
-offset_left = -95.0
-offset_top = -23.0
-offset_right = 2530.0
-offset_bottom = 1127.0
-scale = Vector2(0.04, 0.04)
+offset_left = -120.0
+offset_top = -126.0
+offset_right = 1145.0
+offset_bottom = 1144.0
+scale = Vector2(0.2, 0.2)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n6qt0")
 
 [connection signal="input_event" from="." to="." method="OnInputEvent"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

@@ -121,13 +121,20 @@ offset_bottom = 107.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="TextureButton" parent="Modes/Panel/VBoxContainer"]
+[node name="Button" type="Button" parent="Modes/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+text = "Levels"
 
-[node name="Button2" type="TextureButton" parent="Modes/Panel/VBoxContainer"]
+[node name="Button2" type="Button" parent="Modes/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+text = "Endless Mode"
+
+[node name="Button3" type="Button" parent="Modes/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Sandbox"
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 layout_mode = 1
@@ -142,4 +149,5 @@ grow_horizontal = 2
 scale = Vector2(4, 4)
 texture = ExtResource("5_lcyfx")
 
+[connection signal="pressed" from="Menu/VBoxContainer/Play" to="." method="OnPlayButtonPressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/Quit" to="." method="OnQuitPressed"]

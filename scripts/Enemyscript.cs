@@ -1,7 +1,5 @@
 using Godot;
 using System;
-using System.Runtime.CompilerServices;
-
 
 public partial class Enemyscript : CharacterBody2D
 {
@@ -15,7 +13,7 @@ public partial class Enemyscript : CharacterBody2D
 
     [Export] public int enemyDamage = 1;
     [Export] public float enemyHealth = 25;
-    public int enemyValue = 25;
+    [Export] public int enemyValue = 10;
 	private RemoteTransform2D _transform;
 
 	public override void _Ready()
@@ -47,7 +45,6 @@ public partial class Enemyscript : CharacterBody2D
 		UpdateHealthBar();
 		if (enemyHealth <= 0){
 			gameManager.GlobalValues.playerCurrency += enemyValue;
-			_customSignals.EmitSignal(nameof(CustomSignals.ChangedCurrency));
 			QueueFree();
 		}
 	}

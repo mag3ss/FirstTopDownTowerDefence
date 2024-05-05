@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://borud7k232sp0"]
+[gd_scene load_steps=34 format=3 uid="uid://borud7k232sp0"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.cs" id="1_4prpp"]
 [ext_resource type="Texture2D" uid="uid://cvn8vpax4a6lr" path="res://assets/gameBackground001-export.png" id="2_cm6ol"]
@@ -21,36 +21,13 @@
 [ext_resource type="FontFile" uid="uid://ns3a7qjrjw2t" path="res://assets/Fonts/PublicPixel-z84yD.ttf" id="15_2ofl0"]
 [ext_resource type="Texture2D" uid="uid://8uku7d2mcfa5" path="res://assets/UIassets/BuyPanel.png" id="15_n5kwc"]
 [ext_resource type="Texture2D" uid="uid://dib3woi7lkjjy" path="res://assets/Retainers/Cleric.png" id="16_3bn1a"]
+[ext_resource type="PackedScene" uid="uid://cn1016sbkblk5" path="res://Towers/defence_tower.tscn" id="16_t101b"]
+[ext_resource type="PackedScene" uid="uid://de3orgwjaut1t" path="res://Towers/R_Executioner.tscn" id="17_a5tlw"]
 [ext_resource type="Texture2D" uid="uid://cjtfwebx84tmn" path="res://assets/Retainers/GreenHuntsman.png" id="22_tcgx7"]
 [ext_resource type="Texture2D" uid="uid://c1geltxvwwrla" path="res://assets/Retainers/Knight.png" id="23_a6mdh"]
 [ext_resource type="Texture2D" uid="uid://qcxegvtmjpwx" path="res://assets/Retainers/Villiger.png" id="23_qie3v"]
 [ext_resource type="TileSet" uid="uid://ppvax8u5ip2j" path="res://Towers/TowerImages/TowerIcons.tres" id="25_nj11i"]
-
-[sub_resource type="Curve" id="Curve_gc5jn"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_i8j7w"]
-curve = SubResource("Curve_gc5jn")
-
-[sub_resource type="Curve" id="Curve_s1vhl"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.358209, 0.373626), 0.0, 0.0, 0, 0, Vector2(0.721393, 0.648352), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_kenab"]
-curve = SubResource("Curve_s1vhl")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bw6qw"]
-emission_shape = 3
-emission_box_extents = Vector3(700, 300, 1)
-gravity = Vector3(125, 98, 0)
-scale_curve = SubResource("CurveTexture_i8j7w")
-turbulence_enabled = true
-turbulence_noise_strength = 4.91
-turbulence_noise_scale = 4.737
-turbulence_noise_speed = Vector3(100, -100, 0)
-turbulence_influence_max = 0.275
-turbulence_influence_over_life = SubResource("CurveTexture_kenab")
+[ext_resource type="Texture2D" uid="uid://c7ygyxidch5w4" path="res://assets/Retainers/Executioner2D (2).png" id="26_s3feu"]
 
 [sub_resource type="Animation" id="Animation_fxii4"]
 length = 0.001
@@ -80,7 +57,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 4, 8, 12, 16, 20, 24),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(0.167772, 0.410092, 0.537227, 1), Color(0.129412, 0.560784, 0.635294, 1), Color(0.924734, 0.681833, 0.51571, 1), Color(1, 1, 1, 1), Color(0.786656, 0.711983, 0.676907, 1), Color(0.129412, 0.560784, 0.635294, 1), Color(0.167772, 0.410092, 0.537227, 1)]
+"values": [Color(1, 1, 1, 1), Color(0.964706, 0.784314, 0.658824, 1), Color(0.486275, 0.615686, 0.560784, 1), Color(0, 0.301961, 0.301961, 1), Color(0.486275, 0.615686, 0.560784, 1), Color(0.964706, 0.784314, 0.658824, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y22vh"]
@@ -134,15 +111,29 @@ scale = Vector2(1.5, 1.5)
 size_flags_vertical = 3
 texture = ExtResource("2_cm6ol")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="TextureRect"]
+[node name="GPUParticles2D" type="CPUParticles2D" parent="TextureRect"]
 texture_filter = 1
-position = Vector2(861.333, 632.667)
+position = Vector2(824, 570)
+scale = Vector2(0.5, 0.5)
 amount = 10
-process_material = SubResource("ParticleProcessMaterial_bw6qw")
-texture = ExtResource("3_wtq51")
-lifetime = 3.0
+lifetime = 6.5
 speed_scale = 0.8
-randomness = 0.52
+randomness = 0.27
+lifetime_randomness = 0.29
+local_coords = true
+draw_order = 1
+texture = ExtResource("3_wtq51")
+emission_shape = 3
+emission_rect_extents = Vector2(800, 200)
+direction = Vector2(1, 1)
+spread = 180.0
+gravity = Vector2(15, 15)
+initial_velocity_min = 10.1
+initial_velocity_max = 50.51
+angular_velocity_max = 5.0
+linear_accel_max = 4.04
+tangential_accel_max = 5.0
+scale_amount_max = 1.25
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = ExtResource("4_kpgli")
@@ -244,17 +235,17 @@ size_flags_horizontal = 8
 texture_normal = ExtResource("12_p7wul")
 
 [node name="Normal" type="Button" parent="CharacterMovement/CanvasLayer"]
-offset_left = 1022.0
-offset_top = 800.0
-offset_right = 1140.0
-offset_bottom = 863.0
+offset_left = 1390.0
+offset_top = 922.0
+offset_right = 1508.0
+offset_bottom = 985.0
 text = "Normal Speed"
 
 [node name="2X" type="Button" parent="CharacterMovement/CanvasLayer"]
-offset_left = 1189.0
-offset_top = 793.0
-offset_right = 1268.0
-offset_bottom = 869.0
+offset_left = 1586.0
+offset_top = 913.0
+offset_right = 1665.0
+offset_bottom = 989.0
 text = "2X Speed"
 
 [node name="4X" type="Button" parent="CharacterMovement/CanvasLayer"]
@@ -269,8 +260,11 @@ text = "4X Speed"
 script = ExtResource("7_evys7")
 
 [node name="ShopMenu" type="CanvasLayer" parent="."]
+layer = 10
 visible = false
 script = ExtResource("7_mv3r2")
+FireWizard = ExtResource("16_t101b")
+Exectioner = ExtResource("17_a5tlw")
 
 [node name="Panel" type="Panel" parent="ShopMenu"]
 anchors_preset = 8
@@ -572,14 +566,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -33.0
-offset_top = -31.0
-offset_right = 31.0
-offset_bottom = 33.0
+offset_left = 29.0
+offset_top = -43.0
+offset_right = 83.0
+offset_bottom = 11.0
 grow_horizontal = 2
 grow_vertical = 2
+rotation = 1.5708
+texture = ExtResource("26_s3feu")
 expand_mode = 2
-flip_h = true
 
 [node name="Label" type="Label" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer5/Panel"]
 layout_mode = 0
@@ -773,4 +768,5 @@ format = 2
 [connection signal="pressed" from="CharacterMovement/CanvasLayer/Normal" to="CharacterMovement/CanvasLayer" method="OnNormalSpeedPressed"]
 [connection signal="pressed" from="CharacterMovement/CanvasLayer/2X" to="CharacterMovement/CanvasLayer" method="_on_x_pressed"]
 [connection signal="pressed" from="CharacterMovement/CanvasLayer/4X" to="CharacterMovement/CanvasLayer" method="On2xPressed"]
-[connection signal="gui_input" from="ShopMenu/Panel/ScrollContainer/FlowContainer2/FlowContainer/Panel" to="ShopMenu" method="OnGuiInput" binds= [100, 50]]
+[connection signal="gui_input" from="ShopMenu/Panel/ScrollContainer/FlowContainer2/FlowContainer/Panel" to="ShopMenu" method="OnGuiInput" binds= [0, 50]]
+[connection signal="gui_input" from="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer5/Panel" to="ShopMenu" method="OnGuiInput" binds= [1, 50]]

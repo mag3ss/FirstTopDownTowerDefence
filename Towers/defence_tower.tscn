@@ -1,17 +1,28 @@
-[gd_scene load_steps=10 format=3 uid="uid://cn1016sbkblk5"]
+[gd_scene load_steps=11 format=3 uid="uid://cn1016sbkblk5"]
 
 [ext_resource type="Texture2D" uid="uid://cbhv2b220hu6y" path="res://assets/Retainers/Wizards/RedWizard.png" id="2_6r87a"]
 [ext_resource type="Script" path="res://scripts/defence_tower.cs" id="2_kublw"]
-[ext_resource type="PackedScene" uid="uid://btvliifst2v5q" path="res://entities/bullet.tscn" id="4_67400"]
+[ext_resource type="PackedScene" uid="uid://btvliifst2v5q" path="res://entities/Projectiles/bullet.tscn" id="2_wwpc4"]
 [ext_resource type="Texture2D" uid="uid://8uku7d2mcfa5" path="res://assets/UIassets/BuyPanel.png" id="5_o76ow"]
 [ext_resource type="AudioStream" uid="uid://ktu05g7n4plt" path="res://assets/SFX/fireball-whoosh-1-179125.mp3" id="5_ytxtk"]
 [ext_resource type="Texture2D" uid="uid://hpo3gydbf35r" path="res://icon.svg" id="6_loih7"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_7r2l1"]
+radius = 67.7648
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6g62f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6r87a")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 5.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_vje54"]
 radius = 791.162
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_7r2l1"]
-radius = 60.3529
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7ibq"]
 bg_color = Color(0.0745098, 0.0745098, 0.0745098, 0.576471)
@@ -25,7 +36,11 @@ position = Vector2(485, 148)
 scale = Vector2(0.265625, 0.265625)
 input_pickable = true
 script = ExtResource("2_kublw")
-bulletScene = ExtResource("4_67400")
+towerValue = 50
+bulletScene = ExtResource("2_wwpc4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7r2l1")
 
 [node name="FireBall" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_ytxtk")
@@ -34,14 +49,11 @@ autoplay = true
 max_distance = 100.0
 attenuation = 0.500001
 
-[node name="Sprite2D" type="TextureRect" parent="."]
-offset_left = 94.1177
-offset_top = 90.353
-offset_right = 126.118
-offset_bottom = 122.353
+[node name="TowerSprite" type="AnimatedSprite2D" parent="."]
 rotation = 3.14159
 scale = Vector2(6, 6)
-texture = ExtResource("2_6r87a")
+sprite_frames = SubResource("SpriteFrames_6g62f")
+animation = &"Attack"
 
 [node name="AttackTimer" type="Timer" parent="."]
 
@@ -59,7 +71,7 @@ shape = SubResource("CircleShape2D_vje54")
 position = Vector2(52.7059, -33.8824)
 
 [node name="UpgradeMenu" type="CanvasLayer" parent="."]
-layer = 2
+layer = 10
 visible = false
 
 [node name="Panel" type="Panel" parent="UpgradeMenu"]
@@ -70,6 +82,7 @@ anchor_bottom = 1.0
 offset_top = -307.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="UpgradeMenu/Panel"]
 layout_mode = 1
@@ -81,19 +94,42 @@ offset_top = -4.0
 offset_right = 12.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 0
 texture = ExtResource("5_o76ow")
 expand_mode = 1
 
 [node name="Button" type="Button" parent="UpgradeMenu/Panel"]
 layout_mode = 0
-offset_left = 1741.0
-offset_top = 139.0
-offset_right = 1877.0
-offset_bottom = 275.0
+offset_left = 1722.0
+offset_top = 43.0
+offset_right = 1858.0
+offset_bottom = 179.0
 icon = ExtResource("6_loih7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_7r2l1")
+[node name="Label" type="Label" parent="UpgradeMenu/Panel/Button"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_top = 137.0
+offset_right = 135.0
+offset_bottom = 186.0
+text = "Sell: 50$"
+horizontal_alignment = 1
+
+[node name="Button2" type="Button" parent="UpgradeMenu/Panel"]
+layout_mode = 0
+offset_left = 1202.0
+offset_top = 56.0
+offset_right = 1323.0
+offset_bottom = 162.0
+text = "Look At Nearest"
+
+[node name="Button3" type="Button" parent="UpgradeMenu/Panel"]
+layout_mode = 0
+offset_left = 1383.0
+offset_top = 56.0
+offset_right = 1504.0
+offset_bottom = 162.0
+text = "Look At The Nearest The End"
 
 [node name="Range" type="Panel" parent="."]
 visible = false
@@ -102,6 +138,7 @@ offset_left = -794.0
 offset_top = -791.0
 offset_right = 798.0
 offset_bottom = 790.0
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_t7ibq")
 
 [connection signal="input_event" from="." to="." method="OnInputEvent"]
@@ -110,4 +147,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_t7ibq")
 [connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
 [connection signal="mouse_entered" from="UpgradeMenu/Panel" to="." method="OnPanelMouseEntered"]
 [connection signal="mouse_exited" from="UpgradeMenu/Panel" to="." method="OnPanelMouseExited"]
-[connection signal="pressed" from="UpgradeMenu/Panel/Button" to="." method="SellButton"]
+[connection signal="pressed" from="UpgradeMenu/Panel/Button" to="." method="OnSellButtonPressed"]
+[connection signal="pressed" from="UpgradeMenu/Panel/Button2" to="." method="LookAtNearestButton"]
+[connection signal="pressed" from="UpgradeMenu/Panel/Button3" to="." method="LookAtFirstEnemyButton"]

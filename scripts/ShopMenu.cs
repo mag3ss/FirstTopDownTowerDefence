@@ -1,3 +1,5 @@
+using System;
+using System.Runtime.CompilerServices;
 using Godot;
 using Godot.Collections;
 
@@ -8,39 +10,37 @@ public partial class ShopMenu : CanvasLayer
 	private bool _isTowerSelected;
 	private CharacterBody2D _towerrr;
 	private Node2D _tower;
-	private Node2D icon1;
+	private Node2D newTower;
 	private int tempValue;
-
-	private Array<Node2D> towerCollecion = new Array<Node2D>();
-
-	[Export] private Node2D FireWizard;
-
-	private TileMap _tileMap;
-
-	
-	PackedScene standardTower = ResourceLoader.Load("res://Towers/defence_tower.tscn") as PackedScene;
+	private int towerID;
+	private Array<PackedScene> towerCollecion = new Array<PackedScene>();
+	[Export] private PackedScene FireWizard;
+	[Export] private PackedScene Exectioner;
  
-		public override void _Ready() {
-			_tileMap = GetParent().GetNode<TileMap>("TileMap");
-			// _tileMap.SetCell(0, new Vector2I(1,1), 0, new Vector2I(1,1));
-			_customSignals = GetNode<CustomSignals>("/root/CustomSignals");
-			_tower = GetParent().GetNode<Node2D>("TowerSpawner");
-		}
+	public override void _Ready() {
+		_customSignals = GetNode<CustomSignals>("/root/CustomSignals");
+		_tower = GetParent().GetNode<Node2D>("TowerSpawner");
+		// -------------------------------------
+		// Tower Collection
+		// -------------------------------------
+		towerCollecion.Add(FireWizard);
+		towerCollecion.Add(Exectioner);
+		// -------------------------------------
+	}
 
 	public override void _Process(double delta){
-		if (_tileMap != null){
-			_tileMap.GlobalPosition = _tileMap.GetGlobalMousePosition();
+		if (newTower != null){
+			newTower.GlobalPosition = newTower.GetGlobalMousePosition();
 			if (!Input.IsMouseButtonPressed((MouseButton)1)){
-				if (gameManager.GlobalValues.IsOccupied == false)
-				{
-					Node2D standard_tower = (Node2D)standardTower.Instantiate();
-					_tower.AddChild(standard_tower);
-					standard_tower.Position = icon1.GlobalPosition;
+				if (gameManager.GlobalValues.IsOccupied == false){
+					var ActualTower = (Node2D)towerCollecion[towerID].Instantiate();
+					_tower.AddChild(ActualTower);
+					ActualTower.GlobalPosition = newTower.GlobalPosition;
 				} else {
 					gameManager.GlobalValues.playerCurrency += tempValue;
 				}
-				_tileMap.QueueFree();
-				_tileMap = null;
+				newTower.QueueFree();
+				newTower = null;
 			}
 		}
 	}
@@ -54,20 +54,24 @@ public partial class ShopMenu : CanvasLayer
 	private void OnGuiInput(InputEvent @event, int _towerID, int _towerCost){
 		if (@event is InputEventMouseButton mouseButton && mouseButton.Pressed && _towerCost <= gameManager.GlobalValues.playerCurrency){
 			gameManager.GlobalValues.playerCurrency -= _towerCost;
-			_customSignals.EmitSignal(nameof(CustomSignals.ChangedCurrency));
-			HandleBuyedTower(_towerID, _towerCost);
-			
+			towerID = _towerID;
+			HandleBuyedTower(_towerID);
 		}
 	}
 
-	public void HandleBuyedTower(int IDnumber, int towerCost){
+	private void HandleBuyedTower(int IDnumber){
 		hideMenu();
-	}
-
-	public void PressedTower(string IDnum){
-		// GetTree().Root.AddChild(towerCollecion[IDnum].Instantiate());
-		icon1 = GetTree().Root.GetNode<Node2D>("Node2D");
-		_isTowerSelected = true;
+		newTower = (Node2D)towerCollecion[IDnumber].Instantiate();
+		foreach (Node child in newTower.GetChildren()){
+			if (child is TextureRect textureRect){
+				textureRect.Visible = true;
+			} else if (child is Panel range) {
+				range.Visible = true;
+			} else if (child is Area2D area){
+				area.Visible = false;
+			}
+		}
+		_tower.GetParent().AddChild(newTower);
 	}
 
 	private void hideMenu(){

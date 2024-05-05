@@ -1,31 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://btvliifst2v5q"]
+[gd_scene load_steps=4 format=3 uid="uid://nh1jow0usta5"]
 
-[ext_resource type="Script" path="res://scripts/bullet.cs" id="1_4wbfd"]
-[ext_resource type="Texture2D" uid="uid://5fifyb1rpdag" path="res://assets/Projectiles/SmallFireBall.png" id="2_lgyy2"]
+[ext_resource type="Script" path="res://scripts/bullet.cs" id="1_ko4hx"]
+[ext_resource type="Texture2D" uid="uid://bs0anixw3adsw" path="res://assets/Retainers/Executioner2D.png" id="2_lwor4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_in6g4"]
 size = Vector2(11, 10)
 
 [node name="Bullet" type="CharacterBody2D" groups=["bullet"]]
 floor_constant_speed = true
-floor_max_angle = 3.14159
-script = ExtResource("1_4wbfd")
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(5.96046e-08, 1)
-rotation = -3.14159
-scale = Vector2(0.417489, 0.393932)
-energy = 0.16
-texture = ExtResource("2_lgyy2")
-texture_scale = 3.25
+floor_max_angle = 0.0
+script = ExtResource("1_ko4hx")
+bulletDamage = 20
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1, 0)
 rotation = 3.14159
-scale = Vector2(2, 1.921)
-texture = ExtResource("2_lgyy2")
+scale = Vector2(0.824776, 0.99099)
+texture = ExtResource("2_lwor4")
+hframes = 2
+vframes = 2
 
 [node name="BulletTimer" type="Timer" parent="."]
+wait_time = 0.5
 autostart = true
 
 [node name="Area2D" type="Area2D" parent="."]
