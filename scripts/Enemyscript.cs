@@ -44,6 +44,7 @@ public partial class Enemyscript : CharacterBody2D
 		enemyHealth -= damageDealt;
 		UpdateHealthBar();
 		if (enemyHealth <= 0){
+			gameManager.GlobalValues.aliveEnemies -= 1;
 			gameManager.GlobalValues.playerCurrency += enemyValue;
 			QueueFree();
 		}

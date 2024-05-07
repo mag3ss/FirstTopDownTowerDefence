@@ -233,6 +233,7 @@ offset_bottom = 40.0
 grow_horizontal = 0
 size_flags_horizontal = 8
 texture_normal = ExtResource("12_p7wul")
+metadata/_edit_use_anchors_ = true
 
 [node name="Normal" type="Button" parent="CharacterMovement/CanvasLayer"]
 offset_left = 1390.0
@@ -240,6 +241,7 @@ offset_top = 922.0
 offset_right = 1508.0
 offset_bottom = 985.0
 text = "Normal Speed"
+metadata/_edit_use_anchors_ = true
 
 [node name="2X" type="Button" parent="CharacterMovement/CanvasLayer"]
 offset_left = 1586.0
@@ -247,6 +249,7 @@ offset_top = 913.0
 offset_right = 1665.0
 offset_bottom = 989.0
 text = "2X Speed"
+metadata/_edit_use_anchors_ = true
 
 [node name="4X" type="Button" parent="CharacterMovement/CanvasLayer"]
 visible = false

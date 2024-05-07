@@ -13,5 +13,6 @@ public partial class gameManager : Node
 		public static bool IsOccupied;
 		public static bool IsOnMenu;
 		public static int gameSpeed = 1;
+		public static int aliveEnemies;
 	}
 }
