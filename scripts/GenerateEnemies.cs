@@ -8,9 +8,7 @@ public partial class GenerateEnemies : Path2D
     //Enemies
     //-----------Goblins-----------
     [Export] PackedScene SmallGoblin;
-    private float smallGoblinRate = 1.1f;
-    [Export] PackedScene SmallGoblinE;
-    private float smallGoblinERate = 1.6f;
+    [Export] PackedScene Cyclopse;
     //-----------Orcs-----------
     [Export] PackedScene SmallOrc;
 
@@ -25,11 +23,13 @@ public partial class GenerateEnemies : Path2D
     private int newEnemySpeed = 1;
     private CustomSignals _customSignals;
     private Array<PackedScene> monsterCollection = new Array<PackedScene>();
+    Random rand = new Random();
 
     public override void _Ready()
     {
         monsterCollection.Add(SmallGoblin);
-        monsterCollection.Add(SmallGoblinE);
+        monsterCollection.Add(Cyclopse);
+        GD.Print(monsterCollection[1]);
         _customSignals = GetNode<CustomSignals>("/root/CustomSignals");
         timer = GetParent().GetNode<Timer>("GameTimer");
         wavePause = GetParent().GetNode<Timer>("WavePause");
@@ -37,7 +37,7 @@ public partial class GenerateEnemies : Path2D
         StartRound();
     }
 
-    private void StartRound() {
+    public void StartRound() {
         WaveNum = 0;
         totalEnemies = 10;
         gameManager.GlobalValues.aliveEnemies = totalEnemies;
@@ -55,19 +55,20 @@ public partial class GenerateEnemies : Path2D
         difficulty *= 1.125f;
     }
 
-    private void _on_game_timer_timeout()
+    public void _on_game_timer_timeout()
     {
         Random rand = new Random();
-        int enemyIndex = rand.Next(0, 50);
+        int enemyIndex = rand.Next(0, 100); // Change the range to cover 0-99 inclusive
         switch (enemyIndex)
         {
-            case int n when (n <= 25 && n >= 0):
-                SpawnMonsters(0);
+            case int n when n < 25:
+                SpawnMonsters(0); // Spawn SmallGoblin for values 0-24
                 break;
-            case int n when (n < 50 && n > 25):
-                SpawnMonsters(1);
+            case int n when n < 50:
+                SpawnMonsters(1); // Spawn Cyclopse for values 25-49
+                GD.Print("Spawning Cyclopse");
                 break;
-            case int n when (n < 100 && n >= 75):
+            case int n when n < 75:
                 GD.Print("Spawning Nothing");
                 // SpawnMonsters(2);
                 break;
@@ -90,10 +91,15 @@ public partial class GenerateEnemies : Path2D
 
     private void SpawnMonsters(int index)
     {
-        var monster = (Enemyscript)monsterCollection[index].Instantiate();
-        monster.AddToGroup("enemys");
-        pathToFollow = new PathFollow2D();
-        AddChild(pathToFollow);
-        pathToFollow.AddChild(monster);
+        if (monsterCollection[index].CanInstantiate()) {
+            var monster = (Enemyscript)monsterCollection[index].Instantiate();
+            monster.AddToGroup("enemys");
+            pathToFollow = new PathFollow2D();
+            AddChild(pathToFollow);
+            pathToFollow.AddChild(monster);
+        } else {
+            GD.Print("Can't instantiate");
+        }
+        
     }
 }

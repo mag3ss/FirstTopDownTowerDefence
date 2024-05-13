@@ -1,10 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://c0c7awsxmyuxs"]
+[gd_scene load_steps=6 format=3 uid="uid://bpemqhgkfugi6"]
 
-[ext_resource type="Texture2D" uid="uid://c7i4uu685we65" path="res://assets/Monsters/SmallGoblinwWeapon.png" id="2_gxfvd"]
+[ext_resource type="Script" path="res://scripts/Enemyscript.cs" id="1_dl23m"]
+[ext_resource type="Texture2D" uid="uid://ce1n1c1k1pxra" path="res://assets/Retainers/GameSpriteAtlas.png" id="2_ipuqf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_50jmg"]
 radius = 56.8889
-height = 128.0
+height = 184.889
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e08lu"]
 bg_color = Color(0.588235, 0.00392157, 0.188235, 1)
@@ -17,29 +18,42 @@ texture_filter = 2
 position = Vector2(0.00012207, 0)
 rotation = 3.14159
 scale = Vector2(0.140625, 0.140625)
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_dl23m")
 
 [node name="AttackTimer" type="Timer" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0.000865936, 0)
-scale = Vector2(8, 8)
-texture = ExtResource("2_gxfvd")
+position = Vector2(-63.9989, -92.4446)
+scale = Vector2(6, 6)
+texture = ExtResource("2_ipuqf")
+centered = false
+region_enabled = true
+region_rect = Rect2(166, 65, 21, 30)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-7.11024, -1.80258e-05)
+position = Vector2(0.000886081, -7.11111)
 shape = SubResource("CapsuleShape2D_50jmg")
 
+[node name="Node" type="Node" parent="."]
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Node"]
+position = Vector2(10.2657, -10.4063)
+scale = Vector2(0.0197754, 0.0197754)
+
 [node name="HealthBar" type="ProgressBar" parent="."]
-offset_left = -71.1104
-offset_top = 78.222
-offset_right = 68.8896
-offset_bottom = 105.222
+offset_left = -78.2216
+offset_top = 99.5554
+offset_right = 78.7784
+offset_bottom = 116.555
 theme_override_styles/background = SubResource("StyleBoxFlat_e08lu")
 theme_override_styles/fill = SubResource("StyleBoxFlat_djjep")
 max_value = 5.0
 step = 1.0
 value = 5.0
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

@@ -72,6 +72,7 @@ position = Vector2(52.7059, -33.8824)
 
 [node name="UpgradeMenu" type="CanvasLayer" parent="."]
 layer = 10
+visible = false
 
 [node name="Panel" type="Panel" parent="UpgradeMenu"]
 anchors_preset = 12
