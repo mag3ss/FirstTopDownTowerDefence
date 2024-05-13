@@ -5,7 +5,6 @@ public partial class SmallGoblinE : Enemyscript
 {
     public override void _Ready()
     {
-        id = Guid.NewGuid();
         healthBar = GetNode<ProgressBar>("HealthBar");
         _customSignals = GetNode<CustomSignals>("/root/CustomSignals");
         _customSignals.EnemyDamage += HandleEnemyDamage;

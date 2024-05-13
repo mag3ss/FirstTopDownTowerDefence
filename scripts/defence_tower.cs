@@ -44,7 +44,6 @@ public partial class defence_tower : StaticBody2D
 		attackTimer = GetNode<Timer>("AttackTimer");
 		attackArea = GetNode<Area2D>("AttackRange");
 
-
 		enemies = new Array<Node2D>();
 		gameManager.defenceTowerInstance = this;
 	}
@@ -73,8 +72,7 @@ public partial class defence_tower : StaticBody2D
 				minDistance = distance;
 			}
 		}
-
-		if (target != null) {
+			if (target != null) {
 			LookAt(target.GlobalPosition);
 		}
 	}

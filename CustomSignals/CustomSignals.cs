@@ -10,6 +10,8 @@ public partial class CustomSignals : Node
 
     [Signal] public delegate void ChangeSpeedEventHandler(int speedChange);
 
+    [Signal] public delegate void NewWaveEventHandler(int waveNumber);
+
     
 
 

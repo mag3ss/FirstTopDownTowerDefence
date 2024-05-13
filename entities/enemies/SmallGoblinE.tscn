@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://c0c7awsxmyuxs"]
+[gd_scene load_steps=5 format=3 uid="uid://c0c7awsxmyuxs"]
 
-[ext_resource type="Script" path="res://scripts/SmallGoblinE.cs" id="1_15sha"]
 [ext_resource type="Texture2D" uid="uid://c7i4uu685we65" path="res://assets/Monsters/SmallGoblinwWeapon.png" id="2_gxfvd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_50jmg"]
@@ -18,11 +17,6 @@ texture_filter = 2
 position = Vector2(0.00012207, 0)
 rotation = 3.14159
 scale = Vector2(0.140625, 0.140625)
-script = ExtResource("1_15sha")
-
-[node name="MoveTimer" type="Timer" parent="."]
-wait_time = 0.05
-autostart = true
 
 [node name="AttackTimer" type="Timer" parent="."]
 
@@ -48,5 +42,4 @@ step = 1.0
 value = 5.0
 show_percentage = false
 
-[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

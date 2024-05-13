@@ -1,4 +1,6 @@
 using Godot;
+using Godot.Collections;
+using System;
 using System.Collections.Generic;
 
 public partial class GenerateEnemies : Path2D
@@ -6,7 +8,9 @@ public partial class GenerateEnemies : Path2D
     //Enemies
     //-----------Goblins-----------
     [Export] PackedScene SmallGoblin;
+    private float smallGoblinRate = 1.1f;
     [Export] PackedScene SmallGoblinE;
+    private float smallGoblinERate = 1.6f;
     //-----------Orcs-----------
     [Export] PackedScene SmallOrc;
 
@@ -20,35 +24,54 @@ public partial class GenerateEnemies : Path2D
     private int totalEnemies = 10;
     private int newEnemySpeed = 1;
     private CustomSignals _customSignals;
-
-    private Dictionary<PackedScene, float> monsterSpawnRates = new Dictionary<PackedScene, float>();
+    private Array<PackedScene> monsterCollection = new Array<PackedScene>();
 
     public override void _Ready()
     {
-        monsterSpawnRates.Add(SmallGoblin, 1.9f);
-        monsterSpawnRates.Add(SmallGoblinE, 0.8f);
+        monsterCollection.Add(SmallGoblin);
+        monsterCollection.Add(SmallGoblinE);
         _customSignals = GetNode<CustomSignals>("/root/CustomSignals");
         timer = GetParent().GetNode<Timer>("GameTimer");
         wavePause = GetParent().GetNode<Timer>("WavePause");
         _customSignals.ChangeSpeed += ChangedEnemySpeed;
+        StartRound();
+    }
+
+    private void StartRound() {
+        WaveNum = 0;
+        totalEnemies = 10;
+        gameManager.GlobalValues.aliveEnemies = totalEnemies;
+        NewWave();
         timer.Start();
     }
 
-    private void NewWave()
-    {
+    private void NewWave() {
         WaveNum++;
+        _customSignals.EmitSignal(nameof(CustomSignals.NewWave), WaveNum);
         totalEnemies += 10;
-        gameManager.GlobalValues.aliveEnemies = totalEnemies; // Not sure about this line
+        gameManager.GlobalValues.aliveEnemies = totalEnemies;
         timer.Start();
         ongoingWave = true;
         difficulty *= 1.125f;
-        GD.Print("Wave " + WaveNum);
     }
 
     private void _on_game_timer_timeout()
     {
-        AdjustSpawnRates();
-        SpawnMonsters();
+        Random rand = new Random();
+        int enemyIndex = rand.Next(0, 50);
+        switch (enemyIndex)
+        {
+            case int n when (n <= 25 && n >= 0):
+                SpawnMonsters(0);
+                break;
+            case int n when (n < 50 && n > 25):
+                SpawnMonsters(1);
+                break;
+            case int n when (n < 100 && n >= 75):
+                GD.Print("Spawning Nothing");
+                // SpawnMonsters(2);
+                break;
+        }
         if (gameManager.GlobalValues.aliveEnemies <= 0){
             ongoingWave = false;
             timer.Stop();
@@ -56,41 +79,21 @@ public partial class GenerateEnemies : Path2D
         }
     }
 
-    private void ChangedEnemySpeed(int speedChange)
-    {
+    private void ChangedEnemySpeed(int speedChange) {
         newEnemySpeed = speedChange;
     }
 
-    public void OnWavePauseTimeout()
-    {
+    public void OnWavePauseTimeout() {
         NewWave();
         wavePause.Stop();
     }
 
-    private void AdjustSpawnRates()
+    private void SpawnMonsters(int index)
     {
-        foreach (var monsterType in monsterSpawnRates.Keys)
-        {
-            monsterSpawnRates[monsterType] += 0.25f;
-            monsterSpawnRates[monsterType] = Mathf.Min(0.9f, monsterSpawnRates[monsterType]);
-        }
-    }
-
-    private void SpawnMonsters()
-    {
-        foreach (var monsterType in monsterSpawnRates.Keys)
-        {
-            float spawnRate = monsterSpawnRates[monsterType];
-            int baseMonsterCount = (int)(totalEnemies * spawnRate);
-            int monsterCount = baseMonsterCount + (int)(baseMonsterCount * 0.5 * (1 - spawnRate));
-            for (int i = 0; i < monsterCount; i++)
-            {
-				pathToFollow = new PathFollow2D(); // Initialize pathToFollow
-        		AddChild(pathToFollow); // Add pathToFollow as a child of the GenerateEnemies node
-                var monster = (Enemyscript)monsterType.Instantiate();
-                monster.enemyDamage *= 1 + (int)spawnRate;
-                pathToFollow.AddChild(monster);
-            }
-        }
+        var monster = (Enemyscript)monsterCollection[index].Instantiate();
+        monster.AddToGroup("enemys");
+        pathToFollow = new PathFollow2D();
+        AddChild(pathToFollow);
+        pathToFollow.AddChild(monster);
     }
 }

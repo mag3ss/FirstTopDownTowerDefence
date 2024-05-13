@@ -5,6 +5,7 @@ public partial class Progressbars : CanvasLayer
 	private TextureProgressBar healthBar;
 	private Label timerLabel;
 	private Timer timer;
+	private Label WaveLabel;
 
 	private Label currentMoney;
 	private int seconds, minutes, hours;
@@ -20,7 +21,9 @@ public partial class Progressbars : CanvasLayer
 		gameTimer = GetTree().Root.GetNode<Timer>("/root/root/GameTimer");
 		path2D = GetParent().GetParent().GetNode<Path2D>("Path2D");
 		_customSignals = GetNode<CustomSignals>("/root/CustomSignals");
+		_customSignals.NewWave += HandleNewWave;
 		healthBar = GetNode<TextureProgressBar>("HealthBar");
+		WaveLabel = GetNode<Label>("WaveNum");
 		currentMoney = GetNode<Label>("Money");
 		timerLabel = GetNode<Label>("Time");
 		timer = GetNode<Timer>("Timer");
@@ -31,10 +34,13 @@ public partial class Progressbars : CanvasLayer
 	{
 		healthBar.Value = gameManager.GlobalValues.playerHealth;
 		currentMoney.Text = "Money: " + gameManager.GlobalValues.playerCurrency;
-
 	}
 
-	public void OnTimerTimeout(){
+	private void HandleNewWave(int NewWave) {
+		WaveLabel.Text = "Wave: " + NewWave;
+		GD.Print("Wave: " + NewWave);
+	}
+	private void OnTimerTimeout(){
 		if (seconds < 59){
             seconds++;
         }else{

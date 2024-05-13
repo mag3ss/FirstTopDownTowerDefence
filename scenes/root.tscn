@@ -110,6 +110,7 @@ grow_vertical = 2
 scale = Vector2(1.5, 1.5)
 size_flags_vertical = 3
 texture = ExtResource("2_cm6ol")
+metadata/_edit_use_anchors_ = true
 
 [node name="GPUParticles2D" type="CPUParticles2D" parent="TextureRect"]
 texture_filter = 1
@@ -211,12 +212,13 @@ offset_bottom = 43.0
 text = "Time: 00:00:00"
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="CharacterMovement/CanvasLayer"]
+[node name="WaveNum" type="Label" parent="CharacterMovement/CanvasLayer"]
 offset_left = 603.0
 offset_top = 22.0
 offset_right = 700.0
 offset_bottom = 48.0
-text = "Wave: 1"
+text = "Wave: 0
+"
 metadata/_edit_use_anchors_ = true
 
 [node name="Timer" type="Timer" parent="CharacterMovement/CanvasLayer"]
