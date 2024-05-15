@@ -40,9 +40,9 @@ offset_bottom = 252.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Menu" type="CanvasLayer" parent="."]
+[node name="MainMenu" type="CanvasLayer" parent="."]
 
-[node name="Panel" type="Panel" parent="Menu"]
+[node name="Panel" type="Panel" parent="MainMenu"]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -56,7 +56,7 @@ offset_bottom = 204.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -71,7 +71,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Play" type="TextureButton" parent="Menu/VBoxContainer"]
+[node name="Play" type="TextureButton" parent="MainMenu/VBoxContainer"]
 texture_filter = 1
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
@@ -79,13 +79,13 @@ texture_normal = ExtResource("3_1mk0b")
 texture_hover = ExtResource("4_ij0od")
 stretch_mode = 0
 
-[node name="Settings" type="Button" parent="Menu/VBoxContainer"]
+[node name="Settings" type="Button" parent="MainMenu/VBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 text = "Settings
 "
 
-[node name="Quit" type="Button" parent="Menu/VBoxContainer"]
+[node name="Quit" type="Button" parent="MainMenu/VBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 text = "Quit
@@ -149,5 +149,7 @@ grow_horizontal = 2
 scale = Vector2(4, 4)
 texture = ExtResource("5_lcyfx")
 
-[connection signal="pressed" from="Menu/VBoxContainer/Play" to="." method="OnPlayButtonPressed"]
-[connection signal="pressed" from="Menu/VBoxContainer/Quit" to="." method="OnQuitPressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/Play" to="." method="OnPlayButtonPressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/Settings" to="." method="OnsettingsPressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/Quit" to="." method="OnQuitPressed"]
+[connection signal="pressed" from="Modes/Panel/VBoxContainer/Button" to="." method="LevelsButtonPressed"]

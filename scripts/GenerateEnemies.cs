@@ -92,7 +92,7 @@ public partial class GenerateEnemies : Path2D
     private void SpawnMonsters(int index)
     {
         if (monsterCollection[index].CanInstantiate()) {
-            var monster = (Enemyscript)monsterCollection[index].Instantiate();
+            var monster = monsterCollection[index].Instantiate();
             monster.AddToGroup("enemys");
             pathToFollow = new PathFollow2D();
             AddChild(pathToFollow);

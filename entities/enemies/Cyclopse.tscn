@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bpemqhgkfugi6"]
 
-[ext_resource type="Script" path="res://scripts/Enemyscript.cs" id="1_dl23m"]
+[ext_resource type="Script" path="res://scripts/EnemyScripts/ICyclopse.cs" id="1_xga26"]
 [ext_resource type="Texture2D" uid="uid://ce1n1c1k1pxra" path="res://assets/Retainers/GameSpriteAtlas.png" id="2_ipuqf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_50jmg"]
@@ -20,7 +20,7 @@ rotation = 3.14159
 scale = Vector2(0.140625, 0.140625)
 collision_layer = 8
 collision_mask = 8
-script = ExtResource("1_dl23m")
+script = ExtResource("1_xga26")
 
 [node name="AttackTimer" type="Timer" parent="."]
 

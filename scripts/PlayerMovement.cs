@@ -2,8 +2,14 @@ using Godot;
 
 public partial class PlayerMovement : CharacterBody2D
 {
+
+
 	[Export] public int StepSize = 3;
 
+	public override void _Ready()
+	{
+		
+	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
 	{

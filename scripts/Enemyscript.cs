@@ -4,16 +4,16 @@ using System;
 public partial class Enemyscript : CharacterBody2D
 {
 	public Guid id { get;set; }
-	public int enemySpeed = 2;
+	public int enemySpeed { get; set; } = 2;
     public ProgressBar healthBar;
     public CustomSignals _customSignals;
     public PathFollow2D _follow;
     public Timer attackTimer;
 	private Timer _timer;
 
-    [Export] public int enemyDamage = 1;
-    [Export] public float enemyHealth = 25;
-    [Export] public int enemyValue = 10;
+    [Export] protected int enemyDamage { get; set; } = 5;
+    [Export] protected float enemyHealth { get; set; } = 50;
+    [Export] protected int enemyValue { get; set; } = 10;
 	private RemoteTransform2D _transform;
 
 	public override void _Ready()
