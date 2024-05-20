@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhvgeu4rf8l5d"]
+[gd_scene load_steps=6 format=3 uid="uid://bve7uattatwvu"]
 
-[ext_resource type="Script" path="res://scripts/Enemyscript.cs" id="1_t4a62"]
-[ext_resource type="Texture2D" uid="uid://byv1d6sq8yvf8" path="res://assets/Monsters/SmallGoblin.png" id="2_b31ny"]
+[ext_resource type="Script" path="res://scripts/Enemyscript.cs" id="1_mbhae"]
+[ext_resource type="Texture2D" uid="uid://c7i4uu685we65" path="res://assets/Monsters/SmallGoblinwWeapon.png" id="2_seap1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_50jmg"]
-radius = 42.6667
+radius = 49.7778
 height = 113.778
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e08lu"]
@@ -20,18 +20,18 @@ rotation = 3.14159
 scale = Vector2(0.140625, 0.140625)
 collision_layer = 8
 collision_mask = 8
-script = ExtResource("1_t4a62")
+script = ExtResource("1_mbhae")
 
 [node name="AttackTimer" type="Timer" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0.000865936, 0)
+position = Vector2(-7.11025, -1.8028e-05)
 scale = Vector2(8, 8)
-texture = ExtResource("2_b31ny")
+texture = ExtResource("2_seap1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-7.11024, -1.80258e-05)
+position = Vector2(-7.11026, 7.11109)
 shape = SubResource("CapsuleShape2D_50jmg")
 
 [node name="HealthBar" type="ProgressBar" parent="."]

@@ -8,6 +8,10 @@ public partial class GenerateEnemies : Path2D
     //Enemies
     //-----------Goblins-----------
     [Export] PackedScene SmallGoblin;
+    [Export] PackedScene SmallGoblinEquipped;
+    [Export] PackedScene MediumGoblin;
+    [Export] PackedScene BigGoblin;
+    //-----------Cyclops-----------
     [Export] PackedScene Cyclopse;
     //-----------Orcs-----------
     [Export] PackedScene SmallOrc;
@@ -28,6 +32,9 @@ public partial class GenerateEnemies : Path2D
     public override void _Ready()
     {
         monsterCollection.Add(SmallGoblin);
+        monsterCollection.Add(SmallGoblinEquipped);
+        monsterCollection.Add(MediumGoblin);
+        monsterCollection.Add(BigGoblin);
         monsterCollection.Add(Cyclopse);
         GD.Print(monsterCollection[1]);
         _customSignals = GetNode<CustomSignals>("/root/CustomSignals");
@@ -61,16 +68,20 @@ public partial class GenerateEnemies : Path2D
         int enemyIndex = rand.Next(0, 100); // Change the range to cover 0-99 inclusive
         switch (enemyIndex)
         {
-            case int n when n < 25:
-                SpawnMonsters(0); // Spawn SmallGoblin for values 0-24
+            case int n when n < 20:
+                SpawnMonsters(0);
                 break;
-            case int n when n < 50:
-                SpawnMonsters(1); // Spawn Cyclopse for values 25-49
-                GD.Print("Spawning Cyclopse");
+            case int n when n < 40:
+                SpawnMonsters(1); 
                 break;
-            case int n when n < 75:
-                GD.Print("Spawning Nothing");
-                // SpawnMonsters(2);
+            case int n when n < 60:
+                SpawnMonsters(2);
+                break;
+            case int n when n < 80:
+                SpawnMonsters(3);
+                break;
+            case int n when n < 100:
+                SpawnMonsters(4);
                 break;
         }
         if (gameManager.GlobalValues.aliveEnemies <= 0){
@@ -95,6 +106,7 @@ public partial class GenerateEnemies : Path2D
             var monster = monsterCollection[index].Instantiate();
             monster.AddToGroup("enemys");
             pathToFollow = new PathFollow2D();
+            pathToFollow.Loop = false;
             AddChild(pathToFollow);
             pathToFollow.AddChild(monster);
         } else {

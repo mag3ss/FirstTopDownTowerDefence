@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bpemqhgkfugi6"]
 
-[ext_resource type="Script" path="res://scripts/EnemyScripts/ICyclopse.cs" id="1_xga26"]
+[ext_resource type="Script" path="res://scripts/EnemyScripts/Cyclopse.cs" id="1_xga26"]
 [ext_resource type="Texture2D" uid="uid://ce1n1c1k1pxra" path="res://assets/Retainers/GameSpriteAtlas.png" id="2_ipuqf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_50jmg"]
@@ -36,12 +36,6 @@ region_rect = Rect2(166, 65, 21, 30)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.000886081, -7.11111)
 shape = SubResource("CapsuleShape2D_50jmg")
-
-[node name="Node" type="Node" parent="."]
-
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Node"]
-position = Vector2(10.2657, -10.4063)
-scale = Vector2(0.0197754, 0.0197754)
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = -78.2216

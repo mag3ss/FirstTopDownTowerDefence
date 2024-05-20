@@ -30,7 +30,7 @@ public partial class Progressbars : CanvasLayer
 		towerSpawner = GetParent().GetParent().GetNode<Node2D>("TowerSpawner");
 	}
 
-	public override void _Process(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		healthBar.Value = gameManager.GlobalValues.playerHealth;
 		currentMoney.Text = "Money: " + gameManager.GlobalValues.playerCurrency;
@@ -91,10 +91,11 @@ public partial class Progressbars : CanvasLayer
                 timer.WaitTime = speedMultiplier;
             }
         }
-        foreach (StaticBody2D tower in towerSpawner.GetChildren()){
+		if (towerSpawner.GetChildren().Count > 0){
+			foreach (StaticBody2D tower in towerSpawner.GetChildren()){
             var timer = tower.GetNode<Timer>("AttackTimer");
             timer.WaitTime = speedMultiplier;
-        }
+        }}
         _customSignals.EmitSignal(nameof(CustomSignals.ChangeSpeed), speedChange);
     }
 }

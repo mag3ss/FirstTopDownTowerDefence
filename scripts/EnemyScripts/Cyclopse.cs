@@ -7,7 +7,7 @@ public partial class Cyclopse : Enemyscript
     {
         enemyDamage = 10;
         enemyHealth = 500;
-        enemyValue = 20;
+        enemyValue = 100;
         enemySpeed = 1;
     }
 }

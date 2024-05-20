@@ -6,11 +6,14 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w76k4"]
 
 [node name="CharacterMovement" type="CharacterBody2D"]
-position = Vector2(582, 325)
+position = Vector2(960, 539)
 motion_mode = 1
 script = ExtResource("1_is0cf")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+limit_left = -500
+limit_top = -400
+limit_right = 2000
 script = ExtResource("2_qfhpf")
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]

@@ -14,13 +14,11 @@ public partial class Enemyscript : CharacterBody2D
     [Export] protected int enemyDamage { get; set; } = 5;
     [Export] protected float enemyHealth { get; set; } = 50;
     [Export] protected int enemyValue { get; set; } = 10;
-	private RemoteTransform2D _transform;
 
 	public override void _Ready()
 	{
 		_timer = GetTree().Root.GetChild(1).GetNode<Timer>("EnemyMoveTimer");
 		_timer.Timeout += _on_move_timer_timeout;
-        _transform = GetNode<Node>("Node").GetChild<RemoteTransform2D>(0);
 		id = Guid.NewGuid();
 		healthBar = GetNode<ProgressBar>("HealthBar");
 		_customSignals = GetNode<CustomSignals>("/root/CustomSignals");
@@ -31,9 +29,8 @@ public partial class Enemyscript : CharacterBody2D
 		UpdateHealthBar();
 	}
 
-	public override void _PhysicsProcess(double delta)
-	{
-		if (_follow.ProgressRatio < 0.999){
+	public override void _PhysicsProcess(double delta) {
+		if (_follow.ProgressRatio < 1){
 			attackTimer.Start();
 		}
 	}
