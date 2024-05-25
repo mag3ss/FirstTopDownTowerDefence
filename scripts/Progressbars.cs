@@ -19,7 +19,7 @@ public partial class Progressbars : CanvasLayer
 	public override void _Ready()
 	{
 		gameTimer = GetTree().Root.GetNode<Timer>("/root/root/GameTimer");
-		path2D = GetParent().GetParent().GetNode<Path2D>("Path2D");
+		path2D = GetTree().Root.GetNode<Path2D>("/root/root/Path2D");
 		_customSignals = GetNode<CustomSignals>("/root/CustomSignals");
 		_customSignals.NewWave += HandleNewWave;
 		healthBar = GetNode<TextureProgressBar>("HealthBar");
@@ -27,7 +27,6 @@ public partial class Progressbars : CanvasLayer
 		currentMoney = GetNode<Label>("Money");
 		timerLabel = GetNode<Label>("Time");
 		timer = GetNode<Timer>("Timer");
-		towerSpawner = GetParent().GetParent().GetNode<Node2D>("TowerSpawner");
 	}
 
 	public override void _PhysicsProcess(double delta)

@@ -13,8 +13,8 @@ public partial class GenerateEnemies : Path2D
     [Export] PackedScene BigGoblin;
     //-----------Cyclops-----------
     [Export] PackedScene Cyclopse;
-    //-----------Orcs-----------
-    [Export] PackedScene SmallOrc;
+    //-----------Imps-----------
+    [Export] PackedScene Imp;
 
     private PathFollow2D pathToFollow;
     private Timer timer;
@@ -36,7 +36,7 @@ public partial class GenerateEnemies : Path2D
         monsterCollection.Add(MediumGoblin);
         monsterCollection.Add(BigGoblin);
         monsterCollection.Add(Cyclopse);
-        GD.Print(monsterCollection[1]);
+        monsterCollection.Add(Imp);
         _customSignals = GetNode<CustomSignals>("/root/CustomSignals");
         timer = GetParent().GetNode<Timer>("GameTimer");
         wavePause = GetParent().GetNode<Timer>("WavePause");
@@ -65,23 +65,26 @@ public partial class GenerateEnemies : Path2D
     public void _on_game_timer_timeout()
     {
         Random rand = new Random();
-        int enemyIndex = rand.Next(0, 100); // Change the range to cover 0-99 inclusive
+        int enemyIndex = rand.Next(1, 75);
         switch (enemyIndex)
         {
-            case int n when n < 20:
+            case int n when n < 25:
                 SpawnMonsters(0);
                 break;
             case int n when n < 40:
                 SpawnMonsters(1); 
                 break;
-            case int n when n < 60:
+            case int n when n < 55:
                 SpawnMonsters(2);
                 break;
-            case int n when n < 80:
+            case int n when n < 65:
                 SpawnMonsters(3);
                 break;
-            case int n when n < 100:
+            case int n when n < 70:
                 SpawnMonsters(4);
+                break;
+            case int n when n < 75:
+                SpawnMonsters(5);
                 break;
         }
         if (gameManager.GlobalValues.aliveEnemies <= 0){

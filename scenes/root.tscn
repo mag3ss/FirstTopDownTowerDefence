@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://borud7k232sp0"]
+[gd_scene load_steps=34 format=3 uid="uid://borud7k232sp0"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.cs" id="1_4prpp"]
 [ext_resource type="Texture2D" uid="uid://cvn8vpax4a6lr" path="res://assets/gameBackground001-export.png" id="2_cm6ol"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" path="res://scripts/Progressbars.cs" id="4_ley25"]
 [ext_resource type="PackedScene" uid="uid://bhvgeu4rf8l5d" path="res://entities/enemies/enemy.tscn" id="5_83p17"]
 [ext_resource type="Texture2D" uid="uid://blgxcc88afapk" path="res://assets/UI/HealthInline.png" id="6_a0bg5"]
-[ext_resource type="Script" path="res://scripts/DayNightCycle.cs" id="7_8dx1w"]
 [ext_resource type="Texture2D" uid="uid://c7bjv5c3ej1lc" path="res://assets/UI/HealthOutline-export.png" id="7_56sdv"]
 [ext_resource type="PackedScene" uid="uid://bpemqhgkfugi6" path="res://entities/enemies/Cyclopse.tscn" id="7_atvyp"]
 [ext_resource type="Script" path="res://scripts/Edmondossss.cs" id="7_evys7"]
@@ -17,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://gfliqd61rlha" path="res://entities/enemies/MediumGoblin.tscn" id="8_8an87"]
 [ext_resource type="Texture2D" uid="uid://cbhv2b220hu6y" path="res://assets/Retainers/Wizards/RedWizard.png" id="9_pw66t"]
 [ext_resource type="PackedScene" uid="uid://curtwm2j4xne2" path="res://entities/enemies/BigGoblin.tscn" id="9_s16d5"]
+[ext_resource type="PackedScene" uid="uid://cxuhqd6wn7fld" path="res://entities/enemies/Imp.tscn" id="11_bimjs"]
+[ext_resource type="PackedScene" uid="uid://cfj184q6tnkkr" path="res://scenes/DayNightCycle.tscn" id="12_2pe2k"]
 [ext_resource type="Texture2D" uid="uid://cyq1tbno3l3ya" path="res://assets/UIassets/SettingsButton.png" id="12_p7wul"]
 [ext_resource type="Texture2D" uid="uid://62yc1xqt0k5u" path="res://assets/Retainers/Wizards/GreenWizard.png" id="13_ek7w2"]
 [ext_resource type="Texture2D" uid="uid://slymglomkqm1" path="res://assets/Retainers/Wizards/PurpleWizard.png" id="14_yqveh"]
@@ -30,43 +31,6 @@
 [ext_resource type="Texture2D" uid="uid://qcxegvtmjpwx" path="res://assets/Retainers/Villiger.png" id="23_qie3v"]
 [ext_resource type="TileSet" uid="uid://ppvax8u5ip2j" path="res://Towers/TowerImages/TowerIcons.tres" id="25_nj11i"]
 [ext_resource type="Texture2D" uid="uid://c7ygyxidch5w4" path="res://assets/Retainers/Executioner2D (2).png" id="26_s3feu"]
-
-[sub_resource type="Animation" id="Animation_fxii4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_3uxn1"]
-resource_name = "day_night"
-length = 24.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 4, 8, 12, 16, 20, 24),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.964706, 0.784314, 0.658824, 1), Color(0.486275, 0.615686, 0.560784, 1), Color(0, 0.301961, 0.301961, 1), Color(0.486275, 0.615686, 0.560784, 1), Color(0.964706, 0.784314, 0.658824, 1), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_y22vh"]
-_data = {
-"RESET": SubResource("Animation_fxii4"),
-"day_night": SubResource("Animation_3uxn1")
-}
 
 [sub_resource type="CSharpScript" id="CSharpScript_mxxb1"]
 script/source = "using Godot;
@@ -97,6 +61,7 @@ size = Vector2(988, 20)
 
 [node name="root" type="Node2D"]
 script = ExtResource("1_4prpp")
+dayNightCycle = ExtResource("12_2pe2k")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
@@ -114,7 +79,7 @@ size_flags_vertical = 3
 texture = ExtResource("2_cm6ol")
 metadata/_edit_use_anchors_ = true
 
-[node name="GPUParticles2D" type="CPUParticles2D" parent="TextureRect"]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="TextureRect"]
 texture_filter = 1
 position = Vector2(824, 570)
 scale = Vector2(0.5, 0.5)
@@ -146,18 +111,9 @@ SmallGoblinEquipped = ExtResource("7_yhdv8")
 MediumGoblin = ExtResource("8_8an87")
 BigGoblin = ExtResource("9_s16d5")
 Cyclopse = ExtResource("7_atvyp")
+Imp = ExtResource("11_bimjs")
 
-[node name="DayNightCycle" type="CanvasModulate" parent="."]
-script = ExtResource("7_8dx1w")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="DayNightCycle"]
-libraries = {
-"": SubResource("AnimationLibrary_y22vh")
-}
-
-[node name="Timer" type="Timer" parent="DayNightCycle"]
-wait_time = 36.0
-autostart = true
+[node name="DayNightCycle" parent="." instance=ExtResource("12_2pe2k")]
 
 [node name="GameTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -770,11 +726,251 @@ offset_right = 1392.0
 offset_bottom = 874.0
 text = "4X Speed"
 
+[node name="Settings" type="CanvasLayer" parent="."]
+layer = 100
+visible = false
+
+[node name="Control" type="Control" parent="Settings"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Settings/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -473.5
+offset_top = -333.5
+offset_right = 473.5
+offset_bottom = 333.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Settings/Control/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.45952
+anchor_right = 0.5
+anchor_bottom = 0.45952
+offset_left = -256.0
+offset_top = 20.0
+offset_right = 257.0
+offset_bottom = 121.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Resume"
+
+[node name="Button2" type="Button" parent="Settings/Control/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.229528
+anchor_top = 0.313805
+anchor_right = 0.771528
+anchor_bottom = 0.465805
+offset_left = 0.136978
+offset_top = 0.191986
+offset_right = -0.137024
+offset_bottom = -0.192017
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit To Main Menu"
+
+[node name="Button3" type="Button" parent="Settings/Control/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = 105.0
+offset_right = 257.0
+offset_bottom = 206.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit Game"
+
+[node name="Button4" type="Button" parent="Settings/Control/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.329085
+anchor_right = 0.5
+anchor_bottom = 0.329085
+offset_left = -256.0
+offset_top = -124.0
+offset_right = 257.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Options
+"
+
+[node name="TabContainer" type="TabContainer" parent="Settings/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 487.0
+offset_top = 207.0
+offset_right = -487.0
+offset_bottom = -206.0
+grow_horizontal = 2
+grow_vertical = 2
+tab_alignment = 1
+
+[node name="GamePlay" type="TabBar" parent="Settings/Control/TabContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/Control/TabContainer/GamePlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 175.0
+offset_right = -156.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="Settings/Control/TabContainer/GamePlay/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="MarginContainer" type="HBoxContainer" parent="Settings/Control/TabContainer/GamePlay/VBoxContainer"]
+layout_mode = 2
+
+[node name="OptionButton" type="CheckButton" parent="Settings/Control/TabContainer/GamePlay/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+button_pressed = true
+text = "Particles:"
+vertical_icon_alignment = 0
+
+[node name="MarginContainer3" type="MarginContainer" parent="Settings/Control/TabContainer/GamePlay/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="MarginContainer4" type="HBoxContainer" parent="Settings/Control/TabContainer/GamePlay/VBoxContainer"]
+layout_mode = 2
+
+[node name="OptionButton" type="CheckButton" parent="Settings/Control/TabContainer/GamePlay/VBoxContainer/MarginContainer4"]
+layout_mode = 2
+size_flags_horizontal = 6
+button_pressed = true
+text = "Night/Day Cycle:"
+vertical_icon_alignment = 0
+
+[node name="Audio" type="TabBar" parent="Settings/Control/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Video" type="TabBar" parent="Settings/Control/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/Control/TabContainer/Video"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 202.0
+offset_right = -156.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="Settings/Control/TabContainer/Video/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="MarginContainer" type="HBoxContainer" parent="Settings/Control/TabContainer/Video/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Settings/Control/TabContainer/Video/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Resolution
+"
+
+[node name="OptionButton" type="OptionButton" parent="Settings/Control/TabContainer/Video/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+item_count = 5
+selected = 2
+allow_reselect = true
+popup/item_0/text = "1366x768"
+popup/item_0/id = 0
+popup/item_1/text = "1440x900"
+popup/item_1/id = 1
+popup/item_2/text = " 1920x1080"
+popup/item_2/id = 2
+popup/item_3/text = "2560x1440"
+popup/item_3/id = 3
+popup/item_4/text = "3840x2160"
+popup/item_4/id = 4
+
+[node name="MarginContainer3" type="MarginContainer" parent="Settings/Control/TabContainer/Video/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="MarginContainer4" type="HBoxContainer" parent="Settings/Control/TabContainer/Video/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Settings/Control/TabContainer/Video/VBoxContainer/MarginContainer4"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Screen Mode"
+
+[node name="OptionButton" type="OptionButton" parent="Settings/Control/TabContainer/Video/VBoxContainer/MarginContainer4"]
+layout_mode = 2
+size_flags_horizontal = 6
+item_count = 4
+selected = 0
+popup/item_0/text = "Fullscreen"
+popup/item_0/id = 0
+popup/item_1/text = "Windowed"
+popup/item_1/id = 1
+popup/item_2/text = "Fullscreen Borderless"
+popup/item_2/id = 2
+popup/item_3/text = "Maximized"
+popup/item_3/id = 3
+
+[node name="Control" type="TabBar" parent="Settings/Control/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Node" type="Node" parent="Settings/Control/TabContainer"]
+
+[node name="Button" type="Button" parent="Settings/Control/TabContainer/Node"]
+visible = false
+offset_left = 1331.0
+offset_top = 796.0
+offset_right = 1412.0
+offset_bottom = 856.0
+text = "Back"
+
 [connection signal="timeout" from="GameTimer" to="Path2D" method="_on_game_timer_timeout"]
 [connection signal="timeout" from="WavePause" to="Path2D" method="OnWavePauseTimeout"]
 [connection signal="gui_input" from="ShopMenu/Panel/ScrollContainer/FlowContainer2/FlowContainer/Panel" to="ShopMenu" method="OnGuiInput" binds= [0, 50]]
 [connection signal="gui_input" from="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer5/Panel" to="ShopMenu" method="OnGuiInput" binds= [1, 50]]
 [connection signal="timeout" from="CanvasLayer/Timer" to="CanvasLayer" method="OnTimerTimeout"]
+[connection signal="pressed" from="CanvasLayer/TextureRect" to="." method="ToggleSettingsMenu"]
 [connection signal="pressed" from="CanvasLayer/Normal" to="CanvasLayer" method="OnNormalSpeedPressed"]
 [connection signal="pressed" from="CanvasLayer/2X" to="CanvasLayer" method="_on_x_pressed"]
 [connection signal="pressed" from="CanvasLayer/4X" to="CanvasLayer" method="On2xPressed"]
+[connection signal="pressed" from="Settings/Control/Panel/Button" to="." method="ToggleSettingsMenu"]
+[connection signal="pressed" from="Settings/Control/Panel/Button2" to="." method="QuitToMainMenu"]
+[connection signal="pressed" from="Settings/Control/Panel/Button3" to="." method="QuitGame"]
+[connection signal="pressed" from="Settings/Control/Panel/Button4" to="." method="SettingsBackBtnPressed"]
+[connection signal="toggled" from="Settings/Control/TabContainer/GamePlay/VBoxContainer/MarginContainer/OptionButton" to="." method="ShowParticles"]
+[connection signal="toggled" from="Settings/Control/TabContainer/GamePlay/VBoxContainer/MarginContainer4/OptionButton" to="." method="DayNightCycle"]
+[connection signal="item_selected" from="Settings/Control/TabContainer/Video/VBoxContainer/MarginContainer/OptionButton" to="." method="VideoResolutionSelected"]
+[connection signal="item_selected" from="Settings/Control/TabContainer/Video/VBoxContainer/MarginContainer4/OptionButton" to="." method="ScreenModeSelected"]
+[connection signal="pressed" from="Settings/Control/TabContainer/Node/Button" to="." method="SettingsBackBtnPressed"]
