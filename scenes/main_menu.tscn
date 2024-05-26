@@ -170,3 +170,4 @@ autoplay = true
 [connection signal="pressed" from="MainMenu/VBoxContainer/Settings" to="." method="OnsettingsPressed"]
 [connection signal="pressed" from="MainMenu/VBoxContainer/Quit" to="." method="OnQuitPressed"]
 [connection signal="pressed" from="Modes/Panel/VBoxContainer/Button" to="." method="LevelsButtonPressed"]
+[connection signal="pressed" from="Modes/Panel/VBoxContainer/Button2" to="." method="EndlessMode"]

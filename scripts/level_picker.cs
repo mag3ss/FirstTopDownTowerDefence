@@ -3,6 +3,7 @@ using System;
 
 public partial class level_picker : Control
 {
+	PackedScene endlessMode = ResourceLoader.Load<PackedScene>("res://scenes/root.tscn");
 	private bool[] levelsUnlocked = new bool[10] {true, false, false, false, false, false, false, false, false, false};
 	private CanvasLayer mainMenu;
 	public override void _Ready()
@@ -25,5 +26,7 @@ public partial class level_picker : Control
 				child.Disabled = false;
 			}
 		}
+		gameManager.GlobalValues.currentLevel = levelIndex;
+		GetTree().ChangeSceneToPacked(endlessMode);
 	}
 }

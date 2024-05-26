@@ -3,7 +3,8 @@ using System;
 
 public partial class main_menu : Control
 {
-	PackedScene LevelsMode = ResourceLoader.Load<PackedScene>("res://scenes/level_picker.tscn");
+	PackedScene levelsMode = ResourceLoader.Load<PackedScene>("res://scenes/level_picker.tscn");
+	PackedScene endlessMode = ResourceLoader.Load<PackedScene>("res://scenes/root.tscn");
 	private CanvasLayer mainMenu;
 	private CanvasLayer modesMenu;
 	private CanvasLayer optionsMenu;
@@ -24,7 +25,13 @@ public partial class main_menu : Control
 	}
 
 	private void LevelsButtonPressed(){
-		GetTree().ChangeSceneToPacked(LevelsMode);
+		gameManager.GlobalValues.Mode = "Levels";
+		GetTree().ChangeSceneToPacked(levelsMode);
+	}
+
+	private void EndlessMode() {
+		gameManager.GlobalValues.Mode = "Endless";
+		GetTree().ChangeSceneToPacked(endlessMode);
 	}
 
 

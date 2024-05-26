@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://borud7k232sp0"]
+[gd_scene load_steps=35 format=3 uid="uid://borud7k232sp0"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.cs" id="1_4prpp"]
 [ext_resource type="Texture2D" uid="uid://cvn8vpax4a6lr" path="res://assets/gameBackground001-export.png" id="2_cm6ol"]
@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://qcxegvtmjpwx" path="res://assets/Retainers/Villiger.png" id="23_qie3v"]
 [ext_resource type="TileSet" uid="uid://ppvax8u5ip2j" path="res://Towers/TowerImages/TowerIcons.tres" id="25_nj11i"]
 [ext_resource type="Texture2D" uid="uid://c7ygyxidch5w4" path="res://assets/Retainers/Executioner2D (2).png" id="26_s3feu"]
+[ext_resource type="Texture2D" uid="uid://bo48atjbs4jvw" path="res://assets/UI/EmptyStar.png" id="32_v1yjv"]
 
 [sub_resource type="CSharpScript" id="CSharpScript_mxxb1"]
 script/source = "using Godot;
@@ -666,7 +667,7 @@ offset_left = 1342.0
 offset_top = 17.0
 offset_right = 1459.0
 offset_bottom = 40.0
-text = "Mana Crystals:"
+text = "Money:"
 metadata/_edit_use_anchors_ = true
 
 [node name="Time" type="Label" parent="CanvasLayer"]
@@ -955,6 +956,113 @@ offset_top = 796.0
 offset_right = 1412.0
 offset_bottom = 856.0
 text = "Back"
+
+[node name="GameOverMenu" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Panel" type="Panel" parent="GameOverMenu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -267.0
+offset_top = -310.0
+offset_right = 267.0
+offset_bottom = 310.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOver" type="Label" parent="GameOverMenu/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -220.0
+offset_top = -6.0
+offset_right = -133.0
+offset_bottom = 17.0
+grow_horizontal = 2
+scale = Vector2(5, 5)
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Level" type="Label" parent="GameOverMenu/Panel"]
+layout_mode = 2
+offset_left = 132.0
+offset_top = 98.0
+offset_right = 397.0
+offset_bottom = 121.0
+text = "Level 1 Cleared!"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverMenu/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -135.0
+offset_top = -51.0
+offset_right = 130.0
+offset_bottom = 199.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScoreLabel" type="Label" parent="GameOverMenu/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Score:
+"
+horizontal_alignment = 1
+
+[node name="TimeLabel" type="Label" parent="GameOverMenu/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Time Alive:"
+horizontal_alignment = 1
+
+[node name="WaveLabel" type="Label" parent="GameOverMenu/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Waves Survived:"
+horizontal_alignment = 1
+
+[node name="KilledEnemiesLabel" type="Label" parent="GameOverMenu/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Killed Enemies:"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOverMenu/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="ExitGame" type="Button" parent="GameOverMenu/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Play Again"
+
+[node name="ExitToMenu" type="Button" parent="GameOverMenu/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Exit To Main Menu"
+
+[node name="NextLevel" type="Button" parent="GameOverMenu/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Next Level"
+
+[node name="EmptyStar1" type="Sprite2D" parent="GameOverMenu/Panel"]
+position = Vector2(362, 182)
+scale = Vector2(3, 3)
+texture = ExtResource("32_v1yjv")
+
+[node name="EmptyStar2" type="Sprite2D" parent="GameOverMenu/Panel"]
+position = Vector2(151, 182)
+scale = Vector2(3, 3)
+texture = ExtResource("32_v1yjv")
+
+[node name="EmptyStar3" type="Sprite2D" parent="GameOverMenu/Panel"]
+position = Vector2(257, 182)
+scale = Vector2(3, 3)
+texture = ExtResource("32_v1yjv")
 
 [connection signal="timeout" from="GameTimer" to="Path2D" method="_on_game_timer_timeout"]
 [connection signal="timeout" from="WavePause" to="Path2D" method="OnWavePauseTimeout"]

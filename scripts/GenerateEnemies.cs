@@ -21,10 +21,11 @@ public partial class GenerateEnemies : Path2D
     private Timer wavePause;
 
     private bool ongoingWave;
-    private int WaveNum = 1;
+    private int WaveNum;
     private float difficulty = 1;
     private int totalEnemies = 10;
     private int newEnemySpeed = 1;
+    private int enemyIndex;
     private CustomSignals _customSignals;
     private Array<PackedScene> monsterCollection = new Array<PackedScene>();
     Random rand = new Random();
@@ -45,6 +46,7 @@ public partial class GenerateEnemies : Path2D
     }
 
     public void StartRound() {
+        gameManager.GlobalValues.waveNumber = WaveNum;
         WaveNum = 0;
         totalEnemies = 10;
         gameManager.GlobalValues.aliveEnemies = totalEnemies;
@@ -52,8 +54,22 @@ public partial class GenerateEnemies : Path2D
         timer.Start();
     }
 
+    private int GetRandomEnemyIndex() {
+        int maxIndex = 55; // Default max value
+        if (WaveNum >= 15) {
+            maxIndex = 75;
+        } else if (WaveNum >= 10) {
+            maxIndex = 70;
+        } else if (WaveNum >= 5) {
+            maxIndex = 65;
+        }
+
+        return rand.Next(1, maxIndex);
+    }
+
     private void NewWave() {
         WaveNum++;
+        gameManager.GlobalValues.waveNumber = WaveNum;
         _customSignals.EmitSignal(nameof(CustomSignals.NewWave), WaveNum);
         totalEnemies += 10;
         gameManager.GlobalValues.aliveEnemies = totalEnemies;
@@ -62,10 +78,8 @@ public partial class GenerateEnemies : Path2D
         difficulty *= 1.125f;
     }
 
-    public void _on_game_timer_timeout()
-    {
-        Random rand = new Random();
-        int enemyIndex = rand.Next(1, 75);
+    public void _on_game_timer_timeout() {
+        enemyIndex = GetRandomEnemyIndex();
         switch (enemyIndex)
         {
             case int n when n < 25:
