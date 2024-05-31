@@ -14,19 +14,21 @@ public partial class level_picker : Control
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		
 	}
 
 	private void TogglePanel(int levelIndex, bool unlocked) {
-		GetNode<Panel>("CanvasLayer/Level" + levelIndex).Visible = !GetNode<Panel>("CanvasLayer/Level" + levelIndex).Visible;
-		foreach (TextureButton child in mainMenu.GetChildren()) {
+		if (levelsUnlocked[levelIndex - 1]) {
+			GetNode<Panel>("CanvasLayer/Level" + levelIndex).Visible = !GetNode<Panel>("CanvasLayer/Level" + levelIndex).Visible;
+			foreach (TextureButton child in mainMenu.GetChildren()) {
 			child.Disabled = true;
 			if (child.Name == "Icon" + levelIndex) {
 				child.Disabled = false;
 			} else if (unlocked) {
 				child.Disabled = false;
-			}
+			}}
+			gameManager.GlobalValues.currentLevel = levelIndex;
 		}
-		gameManager.GlobalValues.currentLevel = levelIndex;
 		GetTree().ChangeSceneToPacked(endlessMode);
 	}
 }

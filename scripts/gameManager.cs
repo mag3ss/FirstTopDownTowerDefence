@@ -14,6 +14,7 @@ public partial class gameManager : Node
 	public override void _Ready()
 	{
 		SettingsMenu = GetNode<CanvasLayer>("Settings");
+		GetNode<Sprite2D>("GameOverMenu/Panel/EmptyStar1").Texture = ResourceLoader.Load<Texture2D>("res://assets/UI/FilledStar.png");
 	}
 
     public override void _PhysicsProcess(double delta)

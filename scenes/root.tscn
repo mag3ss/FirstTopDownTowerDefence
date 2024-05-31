@@ -115,6 +115,7 @@ Cyclopse = ExtResource("7_atvyp")
 Imp = ExtResource("11_bimjs")
 
 [node name="DayNightCycle" parent="." instance=ExtResource("12_2pe2k")]
+visible = false
 
 [node name="GameTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -1049,17 +1050,17 @@ text = "Exit To Main Menu"
 layout_mode = 2
 text = "Next Level"
 
-[node name="EmptyStar1" type="Sprite2D" parent="GameOverMenu/Panel"]
+[node name="EmptyStar3" type="Sprite2D" parent="GameOverMenu/Panel"]
 position = Vector2(362, 182)
 scale = Vector2(3, 3)
 texture = ExtResource("32_v1yjv")
 
-[node name="EmptyStar2" type="Sprite2D" parent="GameOverMenu/Panel"]
+[node name="EmptyStar1" type="Sprite2D" parent="GameOverMenu/Panel"]
 position = Vector2(151, 182)
 scale = Vector2(3, 3)
 texture = ExtResource("32_v1yjv")
 
-[node name="EmptyStar3" type="Sprite2D" parent="GameOverMenu/Panel"]
+[node name="EmptyStar2" type="Sprite2D" parent="GameOverMenu/Panel"]
 position = Vector2(257, 182)
 scale = Vector2(3, 3)
 texture = ExtResource("32_v1yjv")
