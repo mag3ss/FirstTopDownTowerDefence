@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="TopDownTowerDefence"
-run/main_scene="res://scenes/root.tscn"
+run/main_scene="res://scenes/gameManager.tscn"
 config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -46,6 +46,10 @@ folder_colors={
 "res://scenes/": "yellow",
 "res://scripts/": "green"
 }
+
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
 
 [input]
 

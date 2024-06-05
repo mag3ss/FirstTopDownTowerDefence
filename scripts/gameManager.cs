@@ -1,64 +1,108 @@
 using Godot;
 using System;
+using System.Text.Json;
 
 public partial class gameManager : Node
 {
 	[Export] private PackedScene dayNightCycle;
 	private CanvasLayer gameOverMenu;
 	private int currentLevel;
-	public static defence_tower defenceTowerInstance;
-	PackedScene MainMenu = ResourceLoader.Load<PackedScene>("res://scenes/main_menu.tscn");
-	PackedScene levelPicker = ResourceLoader.Load<PackedScene>("res://scenes/level_picker.tscn");
+	public static DefenceTower defenceTowerInstance;
+	PackedScene MainMenu = ResourceLoader.Load<PackedScene>("res://scenes/MainMenu.tscn");
+	PackedScene levelPicker = ResourceLoader.Load<PackedScene>("res://scenes/LevelPicker.tscn");
 	private CanvasLayer SettingsMenu;
 	private bool isOnMenu;
+	RWFile rwFile = new RWFile();
 	public override void _Ready()
 	{
 		SettingsMenu = GetNode<CanvasLayer>("Settings");
-		GetNode<Sprite2D>("GameOverMenu/Panel/EmptyStar1").Texture = ResourceLoader.Load<Texture2D>("res://assets/UI/FilledStar.png");
+		
 	}
 
     public override void _PhysicsProcess(double delta)
     {
-        if (gameManager.GlobalValues.playerHealth <= 0 && !isOnMenu){
+        if (GlobalValues.playerHealth <= 0 && !isOnMenu){
 			OnGameOver();
 		}
     }
 
 	private void OnGameOver()
 	{
+		if (GlobalValues.currentLevel == 0){
+			GetNode<Button>("GameOverMenu/Panel/NextLevel").Hide();
+			GetNode<Sprite2D>("GameOverMenu/Panel/EmptyStar1").Hide();
+			GetNode<Sprite2D>("GameOverMenu/Panel/EmptyStar2").Hide();
+			GetNode<Sprite2D>("GameOverMenu/Panel/EmptyStar3").Hide();
+			SaveStruct endlessData = rwFile.Load(0);
+			if (GlobalValues.score > endlessData.Score) {
+				endlessData.Score = GlobalValues.score;
+				JsonSerializer.Serialize(endlessData);
+				GetNode<Label>("GameOverMenu/Panel/Level").Text = "New Best Score!";
+			} else {
+				GetNode<Label>("GameOverMenu/Panel/Level").Hide();
+			}
+		} else {
+			GetNode<Label>("GameOverMenu/Panel/Level").Text = "LEVEL " + GlobalValues.currentLevel + " CLEARED";
+		}
 		GlobalValues.score = GlobalValues.killedEnemies * 10 + GlobalValues.playerCurrency;
 		isOnMenu = true;
 		GD.Print("Game Over");
 		GetNode<Timer>("CanvasLayer/Timer").Stop();
 		GetNode<CanvasLayer>("GameOverMenu").Visible = true;
-		GetNode<Label>("GameOverMenu/Panel/Level").Text = "LEVEL " + GlobalValues.currentLevel + " CLEARED";
-		GetNode<Label>("GameOverMenu/Panel/VBoxContainer/ScoreLabel").Text = "Score: " + GlobalValues.score;
+		GetNode<Label>("GameOverMenu/Panel/VBoxContainer/ScoreLabel").Text = "1. Score: " + GlobalValues.score;
 		GetNode<Label>("GameOverMenu/Panel/VBoxContainer/TimeLabel").Text = "Alive " + GetNode<Label>("CanvasLayer/Time").Text;
-		GetNode<Label>("GameOverMenu/Panel/VBoxContainer/WaveLabel").Text = "Waves Survived: " + GlobalValues.waveNumber;
-		GetNode<Label>("GameOverMenu/Panel/VBoxContainer/KilledEnemiesLabel").Text = "Killed Enemies: " + GlobalValues.killedEnemies;
+		GetNode<Label>("GameOverMenu/Panel/VBoxContainer/WaveLabel").Text = "2. Waves Survived: " + GlobalValues.waveNumber;
+		GetNode<Label>("GameOverMenu/Panel/VBoxContainer/KilledEnemiesLabel").Text = "3. Killed Enemies: " + GlobalValues.killedEnemies;
 		GD.Print("Game Over");
+		int stars = 0;
 		LevelEnum currentLevelEnum = (LevelEnum)GlobalValues.currentLevel;
 		if (Levels.LevelInfo.TryGetValue(currentLevelEnum , out LevelData specificLevelData))
         {
-			GD.Print("sdadasd");
             if (specificLevelData.Score > GlobalValues.score)
 			{
+				stars++;
 				GetNode<Sprite2D>("GameOverMenu/Panel/EmptyStar1").Texture = ResourceLoader.Load<Texture2D>("res://assets/UI/FilledStar.png");
 			}
 			if (specificLevelData.Time > 10){
+				stars++;
 				GetNode<Sprite2D>("GameOverMenu/Panel/EmptyStar2").Texture = ResourceLoader.Load<Texture2D>("res://assets/UI/FilledStar.png");
 			}
 			if (specificLevelData.Wave > GlobalValues.waveNumber){
+				stars++;
 				GetNode<Sprite2D>("GameOverMenu/Panel/EmptyStar3").Texture = ResourceLoader.Load<Texture2D>("res://assets/UI/FilledStar.png");
 			}
-        }
-
+		}
+		SaveStruct savedData = rwFile.Load(GlobalValues.currentLevel);
+		if (GlobalValues.score > savedData.Score){
+			GlobalValues.score = savedData.Score;
+			stars = savedData.Stars;
+			JsonSerializer.Serialize(savedData);
+		}
 	}
+
+	private void NextLevel() {
+		if (GlobalValues.currentLevel == 10){
+			GetTree().ChangeSceneToPacked(MainMenu);
+		} else {
+			GlobalValues.currentLevel += 1;
+			GetTree().ReloadCurrentScene();
+		}
+	}
+
+	private void PlayAgain(){
+		GetTree().ReloadCurrentScene();
+		GlobalValues.playerHealth = 100;
+		GlobalValues.playerCurrency = 100;
+		GlobalValues.score = 0;
+		GlobalValues.killedEnemies = 0;
+		GlobalValues.waveNumber = 0;
+	}
+
 
     public static class GlobalValues
 	{
 		public static int currentLevel;
-		public static int playerHealth = 100;
+		public static float playerHealth = 100;
 		public static int playerCurrency = 100;
 
 		public static bool IsOccupied;

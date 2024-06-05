@@ -10,6 +10,7 @@ public partial class PlayerCamera2D : Camera2D
     private float _zoomLevel = 1.0f;
     public override void _PhysicsProcess(double delta)
     {
+        // Zoom in and out
         if (Input.IsActionJustReleased("Scroll_Up") && gameManager.GlobalValues.IsOnMenu == false && _zoomLevel < MaxZoom)
         {
             _zoomLevel += ZoomFactor;

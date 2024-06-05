@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 using System.Collections.Generic;
 
-public partial class defence_tower : StaticBody2D
+public partial class DefenceTower : StaticBody2D
 {
 	[Export] private int towerValue;
 	[Export] PackedScene bulletScene;
@@ -33,7 +33,7 @@ public partial class defence_tower : StaticBody2D
 	private CollisionShape2D attackRange;
 
 	private AnimatedSprite2D towerSprite;
-	// Called when the node enters the scene tree for the first time.
+
 	public override void _Ready()
 	{
 		towerSprite = GetNode<AnimatedSprite2D>("TowerSprite");
@@ -48,7 +48,7 @@ public partial class defence_tower : StaticBody2D
 		gameManager.defenceTowerInstance = this;
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	//Either look at the closest enemy or the enemy with the highest progress (first in line with the towers area)
 	public override void _PhysicsProcess(double delta){
 		if (lookAtClosestEnemy) {
 			LookAtClosestEnemy();
@@ -57,10 +57,13 @@ public partial class defence_tower : StaticBody2D
 		}
 	}
 
+	//Sells the tower and gives the player currency
 	public void OnSellButtonPressed(){
 		gameManager.GlobalValues.playerCurrency += towerValue;
 		QueueFree();
 	}
+
+	//Looks at the closest enemy
 
 	private void LookAtClosestEnemy(){
 		target = null;
@@ -76,6 +79,8 @@ public partial class defence_tower : StaticBody2D
 			LookAt(target.GlobalPosition);
 		}
 	}
+
+	//Looks at the enemy with the highest progress
 
 	private void LookAtHighestProgress(){
 		target = null; 
@@ -93,15 +98,16 @@ public partial class defence_tower : StaticBody2D
 		}
 	}
 
-
-	private void _on_attack_range_body_entered(Node2D body) {
+	//When an enemy enters the attack range
+	private void OnAttackRangeBodyEntered(Node2D body) {
 		if (body.IsInGroup("enemys")) {
 			enemies.Add(body);
 			attackTimer.Start();
 		}
 	}
-
-	private void _on_attack_range_body_exited(Node2D body) {
+	
+	//When an enemy exits the attack range
+	private void OnAttackRangeBodyExited(Node2D body) {
 		List<Node2D> enemiesToRemove = new List<Node2D>();
 		foreach (Node2D child in enemies) {
 			if (child == body) {
@@ -119,7 +125,8 @@ public partial class defence_tower : StaticBody2D
 		}
 	}
 
-	private void _on_attack_timer_timeout(){
+
+	private void OnAttackTimerTimeout(){
 		isShooting = true;
 		if (gameManager.defenceTowerInstance.enemies.Count >= 0 && target != null){
 			towerSprite.Play("Attack");
@@ -141,9 +148,10 @@ public partial class defence_tower : StaticBody2D
 		GD.Print("Look at first");
 	}
 
+	//When the player clicks on the tower
 	public void OnInputEvent(Viewport viewport, InputEvent @event, int shapeIdx){
 		if (@event is InputEventMouseButton mouseButton && mouseButton.ButtonMask == (MouseButtonMask)1){
-			var towerPath = GetTree().Root.GetNode<Node2D>("root/TowerSpawner");
+			var towerPath = GetTree().Root.GetNode<Node2D>("gameManager/TowerSpawner");
 			foreach (StaticBody2D towers in towerPath.GetChildren()){
 				if (towers.Name != this.Name){
 					towers.GetNode<CanvasLayer>("UpgradeMenu").Hide();

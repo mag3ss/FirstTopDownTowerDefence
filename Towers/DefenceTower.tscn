@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://cn1016sbkblk5"]
 
+[ext_resource type="Script" path="res://scripts/DefenceTower.cs" id="1_qbuaf"]
+[ext_resource type="PackedScene" uid="uid://btvliifst2v5q" path="res://entities/Projectiles/Bullet.tscn" id="2_3bxym"]
 [ext_resource type="Texture2D" uid="uid://cbhv2b220hu6y" path="res://assets/Retainers/Wizards/RedWizard.png" id="2_6r87a"]
-[ext_resource type="Script" path="res://scripts/defence_tower.cs" id="2_kublw"]
-[ext_resource type="PackedScene" uid="uid://btvliifst2v5q" path="res://entities/Projectiles/bullet.tscn" id="2_wwpc4"]
 [ext_resource type="Texture2D" uid="uid://8uku7d2mcfa5" path="res://assets/UIassets/BuyPanel.png" id="5_o76ow"]
 [ext_resource type="AudioStream" uid="uid://ktu05g7n4plt" path="res://assets/SFX/fireball-whoosh-1-179125.mp3" id="5_ytxtk"]
 [ext_resource type="Texture2D" uid="uid://bw51f4bm5eukr" path="res://assets/UI/SellButton.png" id="6_7kbdy"]
@@ -31,13 +31,13 @@ corner_radius_top_right = 790
 corner_radius_bottom_right = 790
 corner_radius_bottom_left = 790
 
-[node name="defenceTower" type="StaticBody2D"]
+[node name="DefenceTower" type="StaticBody2D"]
 position = Vector2(485, 148)
 scale = Vector2(0.265625, 0.265625)
 input_pickable = true
-script = ExtResource("2_kublw")
+script = ExtResource("1_qbuaf")
 towerValue = 50
-bulletScene = ExtResource("2_wwpc4")
+bulletScene = ExtResource("2_3bxym")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_7r2l1")
@@ -83,6 +83,7 @@ offset_top = -307.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="UpgradeMenu/Panel"]
 layout_mode = 1
@@ -97,6 +98,7 @@ grow_vertical = 2
 mouse_filter = 0
 texture = ExtResource("5_o76ow")
 expand_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Button" type="TextureButton" parent="UpgradeMenu/Panel"]
 layout_mode = 0
@@ -106,6 +108,7 @@ offset_right = 1867.0
 offset_bottom = 254.0
 texture_normal = ExtResource("6_7kbdy")
 stretch_mode = 4
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="UpgradeMenu/Panel/Button"]
 modulate = Color(0, 0, 0, 1)
@@ -116,6 +119,7 @@ offset_right = 125.0
 offset_bottom = 170.0
 text = "Sell: 50$"
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Button2" type="Button" parent="UpgradeMenu/Panel"]
 layout_mode = 0
@@ -124,6 +128,7 @@ offset_top = 56.0
 offset_right = 1323.0
 offset_bottom = 162.0
 text = "Look At Nearest"
+metadata/_edit_use_anchors_ = true
 
 [node name="Button3" type="Button" parent="UpgradeMenu/Panel"]
 layout_mode = 0
@@ -132,6 +137,25 @@ offset_top = 56.0
 offset_right = 1504.0
 offset_bottom = 162.0
 text = "Look At The Nearest The End"
+metadata/_edit_use_anchors_ = true
+
+[node name="Button4" type="Button" parent="UpgradeMenu/Panel"]
+layout_mode = 0
+offset_left = 77.0
+offset_top = 65.0
+offset_right = 212.0
+offset_bottom = 178.0
+text = "Increse Strength"
+metadata/_edit_use_anchors_ = true
+
+[node name="Button5" type="Button" parent="UpgradeMenu/Panel"]
+layout_mode = 0
+offset_left = 274.0
+offset_top = 65.0
+offset_right = 409.0
+offset_bottom = 178.0
+text = "Increse Casting Speed"
+metadata/_edit_use_anchors_ = true
 
 [node name="Range" type="Panel" parent="."]
 visible = false
@@ -144,9 +168,9 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_t7ibq")
 
 [connection signal="input_event" from="." to="." method="OnInputEvent"]
-[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
-[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
-[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
+[connection signal="timeout" from="AttackTimer" to="." method="OnAttackTimerTimeout"]
+[connection signal="body_entered" from="AttackRange" to="." method="OnAttackRangeBodyEntered"]
+[connection signal="body_exited" from="AttackRange" to="." method="OnAttackRangeBodyExited"]
 [connection signal="mouse_entered" from="UpgradeMenu/Panel" to="." method="OnPanelMouseEntered"]
 [connection signal="mouse_exited" from="UpgradeMenu/Panel" to="." method="OnPanelMouseExited"]
 [connection signal="pressed" from="UpgradeMenu/Panel/Button" to="." method="OnSellButtonPressed"]

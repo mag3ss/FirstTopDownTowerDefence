@@ -1,37 +1,37 @@
 [gd_scene load_steps=35 format=3 uid="uid://borud7k232sp0"]
 
-[ext_resource type="Script" path="res://scripts/gameManager.cs" id="1_4prpp"]
-[ext_resource type="Texture2D" uid="uid://cvn8vpax4a6lr" path="res://assets/gameBackground001-export.png" id="2_cm6ol"]
-[ext_resource type="Script" path="res://scripts/GenerateEnemies.cs" id="3_wqc84"]
-[ext_resource type="Texture2D" uid="uid://coiu6h0ckno6x" path="res://assets/Projectiles/leaveparticle.png" id="3_wtq51"]
-[ext_resource type="Curve2D" uid="uid://gfx5horlvo50" path="res://Path2Ds/ForestPath.tres" id="4_kpgli"]
-[ext_resource type="Script" path="res://scripts/Progressbars.cs" id="4_ley25"]
-[ext_resource type="PackedScene" uid="uid://bhvgeu4rf8l5d" path="res://entities/enemies/enemy.tscn" id="5_83p17"]
-[ext_resource type="Texture2D" uid="uid://blgxcc88afapk" path="res://assets/UI/HealthInline.png" id="6_a0bg5"]
-[ext_resource type="Texture2D" uid="uid://c7bjv5c3ej1lc" path="res://assets/UI/HealthOutline-export.png" id="7_56sdv"]
-[ext_resource type="PackedScene" uid="uid://bpemqhgkfugi6" path="res://entities/enemies/Cyclopse.tscn" id="7_atvyp"]
-[ext_resource type="Script" path="res://scripts/Edmondossss.cs" id="7_evys7"]
-[ext_resource type="Script" path="res://scripts/ShopMenu.cs" id="7_mv3r2"]
-[ext_resource type="PackedScene" uid="uid://bve7uattatwvu" path="res://entities/enemies/SmallGoblinE.tscn" id="7_yhdv8"]
-[ext_resource type="PackedScene" uid="uid://gfliqd61rlha" path="res://entities/enemies/MediumGoblin.tscn" id="8_8an87"]
-[ext_resource type="Texture2D" uid="uid://cbhv2b220hu6y" path="res://assets/Retainers/Wizards/RedWizard.png" id="9_pw66t"]
-[ext_resource type="PackedScene" uid="uid://curtwm2j4xne2" path="res://entities/enemies/BigGoblin.tscn" id="9_s16d5"]
-[ext_resource type="PackedScene" uid="uid://cxuhqd6wn7fld" path="res://entities/enemies/Imp.tscn" id="11_bimjs"]
-[ext_resource type="PackedScene" uid="uid://cfj184q6tnkkr" path="res://scenes/DayNightCycle.tscn" id="12_2pe2k"]
-[ext_resource type="Texture2D" uid="uid://cyq1tbno3l3ya" path="res://assets/UIassets/SettingsButton.png" id="12_p7wul"]
-[ext_resource type="Texture2D" uid="uid://62yc1xqt0k5u" path="res://assets/Retainers/Wizards/GreenWizard.png" id="13_ek7w2"]
-[ext_resource type="Texture2D" uid="uid://slymglomkqm1" path="res://assets/Retainers/Wizards/PurpleWizard.png" id="14_yqveh"]
-[ext_resource type="FontFile" uid="uid://ns3a7qjrjw2t" path="res://assets/Fonts/PublicPixel-z84yD.ttf" id="15_2ofl0"]
-[ext_resource type="Texture2D" uid="uid://8uku7d2mcfa5" path="res://assets/UIassets/BuyPanel.png" id="15_n5kwc"]
-[ext_resource type="Texture2D" uid="uid://dib3woi7lkjjy" path="res://assets/Retainers/Cleric.png" id="16_3bn1a"]
-[ext_resource type="PackedScene" uid="uid://cn1016sbkblk5" path="res://Towers/defence_tower.tscn" id="16_t101b"]
-[ext_resource type="PackedScene" uid="uid://de3orgwjaut1t" path="res://Towers/R_Executioner.tscn" id="17_a5tlw"]
-[ext_resource type="Texture2D" uid="uid://cjtfwebx84tmn" path="res://assets/Retainers/GreenHuntsman.png" id="22_tcgx7"]
-[ext_resource type="Texture2D" uid="uid://c1geltxvwwrla" path="res://assets/Retainers/Knight.png" id="23_a6mdh"]
-[ext_resource type="Texture2D" uid="uid://qcxegvtmjpwx" path="res://assets/Retainers/Villiger.png" id="23_qie3v"]
-[ext_resource type="TileSet" uid="uid://ppvax8u5ip2j" path="res://Towers/TowerImages/TowerIcons.tres" id="25_nj11i"]
-[ext_resource type="Texture2D" uid="uid://c7ygyxidch5w4" path="res://assets/Retainers/Executioner2D (2).png" id="26_s3feu"]
-[ext_resource type="Texture2D" uid="uid://bo48atjbs4jvw" path="res://assets/UI/EmptyStar.png" id="32_v1yjv"]
+[ext_resource type="Script" path="res://scripts/gameManager.cs" id="1_ssjd5"]
+[ext_resource type="PackedScene" uid="uid://cfj184q6tnkkr" path="res://scenes/DayNightCycle.tscn" id="2_qryqo"]
+[ext_resource type="Texture2D" uid="uid://cvn8vpax4a6lr" path="res://assets/gameBackground001-export.png" id="3_v77ed"]
+[ext_resource type="Texture2D" uid="uid://coiu6h0ckno6x" path="res://assets/Projectiles/leaveparticle.png" id="4_7ijbl"]
+[ext_resource type="Curve2D" uid="uid://gfx5horlvo50" path="res://Path2Ds/ForestPath.tres" id="5_fw28y"]
+[ext_resource type="Script" path="res://scripts/GenerateEnemies.cs" id="6_72iub"]
+[ext_resource type="PackedScene" uid="uid://bhvgeu4rf8l5d" path="res://entities/enemies/Enemy.tscn" id="7_k0mqk"]
+[ext_resource type="PackedScene" uid="uid://bve7uattatwvu" path="res://entities/enemies/SmallGoblinE.tscn" id="8_pvlk1"]
+[ext_resource type="PackedScene" uid="uid://gfliqd61rlha" path="res://entities/enemies/MediumGoblin.tscn" id="9_b506u"]
+[ext_resource type="PackedScene" uid="uid://curtwm2j4xne2" path="res://entities/enemies/BigGoblin.tscn" id="10_2qor5"]
+[ext_resource type="PackedScene" uid="uid://bpemqhgkfugi6" path="res://entities/enemies/Cyclopse.tscn" id="11_ut0g0"]
+[ext_resource type="PackedScene" uid="uid://cxuhqd6wn7fld" path="res://entities/enemies/Imp.tscn" id="12_46bey"]
+[ext_resource type="Script" path="res://scripts/Edmondossss.cs" id="13_sbg2i"]
+[ext_resource type="Script" path="res://scripts/ShopMenu.cs" id="14_s3q3e"]
+[ext_resource type="PackedScene" uid="uid://cn1016sbkblk5" path="res://Towers/DefenceTower.tscn" id="15_r15tf"]
+[ext_resource type="PackedScene" uid="uid://de3orgwjaut1t" path="res://Towers/R_Executioner.tscn" id="16_hrnls"]
+[ext_resource type="Texture2D" uid="uid://8uku7d2mcfa5" path="res://assets/UIassets/BuyPanel.png" id="17_mdkx6"]
+[ext_resource type="FontFile" uid="uid://ns3a7qjrjw2t" path="res://assets/Fonts/PublicPixel-z84yD.ttf" id="18_isedc"]
+[ext_resource type="Texture2D" uid="uid://cbhv2b220hu6y" path="res://assets/Retainers/Wizards/RedWizard.png" id="19_m2vhn"]
+[ext_resource type="Texture2D" uid="uid://62yc1xqt0k5u" path="res://assets/Retainers/Wizards/GreenWizard.png" id="20_3kpfr"]
+[ext_resource type="Texture2D" uid="uid://slymglomkqm1" path="res://assets/Retainers/Wizards/PurpleWizard.png" id="21_s0e8o"]
+[ext_resource type="Texture2D" uid="uid://cjtfwebx84tmn" path="res://assets/Retainers/GreenHuntsman.png" id="22_dkalb"]
+[ext_resource type="Texture2D" uid="uid://qcxegvtmjpwx" path="res://assets/Retainers/Villiger.png" id="23_xcidw"]
+[ext_resource type="Texture2D" uid="uid://c1geltxvwwrla" path="res://assets/Retainers/Knight.png" id="24_j0n8i"]
+[ext_resource type="Texture2D" uid="uid://c7ygyxidch5w4" path="res://assets/Retainers/Executioner2D (2).png" id="25_sau74"]
+[ext_resource type="Texture2D" uid="uid://dib3woi7lkjjy" path="res://assets/Retainers/Cleric.png" id="26_aosyc"]
+[ext_resource type="TileSet" uid="uid://ppvax8u5ip2j" path="res://Towers/TowerImages/TowerIcons.tres" id="27_evyd3"]
+[ext_resource type="Script" path="res://scripts/Progressbars.cs" id="28_dvdq6"]
+[ext_resource type="Texture2D" uid="uid://blgxcc88afapk" path="res://assets/UI/HealthInline.png" id="29_1syhq"]
+[ext_resource type="Texture2D" uid="uid://c7bjv5c3ej1lc" path="res://assets/UI/HealthOutline-export.png" id="30_hpbyh"]
+[ext_resource type="Texture2D" uid="uid://cyq1tbno3l3ya" path="res://assets/UIassets/SettingsButton.png" id="31_jv1u0"]
+[ext_resource type="Texture2D" uid="uid://bo48atjbs4jvw" path="res://assets/UI/EmptyStar.png" id="32_et6ey"]
 
 [sub_resource type="CSharpScript" id="CSharpScript_mxxb1"]
 script/source = "using Godot;
@@ -60,9 +60,8 @@ public partial class Tower_1 : Panel
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rj75g"]
 size = Vector2(988, 20)
 
-[node name="root" type="Node2D"]
-script = ExtResource("1_4prpp")
-dayNightCycle = ExtResource("12_2pe2k")
+[node name="gameManager" type="Node2D"]
+script = ExtResource("1_ssjd5")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
@@ -77,7 +76,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.5, 1.5)
 size_flags_vertical = 3
-texture = ExtResource("2_cm6ol")
+texture = ExtResource("3_v77ed")
 metadata/_edit_use_anchors_ = true
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="TextureRect"]
@@ -91,7 +90,7 @@ randomness = 0.27
 lifetime_randomness = 0.29
 local_coords = true
 draw_order = 1
-texture = ExtResource("3_wtq51")
+texture = ExtResource("4_7ijbl")
 emission_shape = 3
 emission_rect_extents = Vector2(800, 200)
 direction = Vector2(1, 1)
@@ -105,16 +104,16 @@ tangential_accel_max = 5.0
 scale_amount_max = 1.25
 
 [node name="Path2D" type="Path2D" parent="."]
-curve = ExtResource("4_kpgli")
-script = ExtResource("3_wqc84")
-SmallGoblin = ExtResource("5_83p17")
-SmallGoblinEquipped = ExtResource("7_yhdv8")
-MediumGoblin = ExtResource("8_8an87")
-BigGoblin = ExtResource("9_s16d5")
-Cyclopse = ExtResource("7_atvyp")
-Imp = ExtResource("11_bimjs")
+curve = ExtResource("5_fw28y")
+script = ExtResource("6_72iub")
+SmallGoblin = ExtResource("7_k0mqk")
+SmallGoblinEquipped = ExtResource("8_pvlk1")
+MediumGoblin = ExtResource("9_b506u")
+BigGoblin = ExtResource("10_2qor5")
+Cyclopse = ExtResource("11_ut0g0")
+Imp = ExtResource("12_46bey")
 
-[node name="DayNightCycle" parent="." instance=ExtResource("12_2pe2k")]
+[node name="DayNightCycle" parent="." instance=ExtResource("2_qryqo")]
 visible = false
 
 [node name="GameTimer" type="Timer" parent="."]
@@ -130,14 +129,14 @@ wait_time = 0.05
 autostart = true
 
 [node name="TowerSpawner" type="Node2D" parent="."]
-script = ExtResource("7_evys7")
+script = ExtResource("13_sbg2i")
 
 [node name="ShopMenu" type="CanvasLayer" parent="."]
 layer = 10
 visible = false
-script = ExtResource("7_mv3r2")
-FireWizard = ExtResource("16_t101b")
-Exectioner = ExtResource("17_a5tlw")
+script = ExtResource("14_s3q3e")
+FireWizard = ExtResource("15_r15tf")
+Exectioner = ExtResource("16_hrnls")
 
 [node name="Panel" type="Panel" parent="ShopMenu"]
 anchors_preset = 8
@@ -159,7 +158,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("15_n5kwc")
+texture = ExtResource("17_mdkx6")
 
 [node name="Label" type="Label" parent="ShopMenu/Panel"]
 texture_filter = 1
@@ -172,7 +171,7 @@ offset_top = 37.5
 offset_right = 140.0
 offset_bottom = 68.5
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("15_2ofl0")
+theme_override_fonts/font = ExtResource("18_isedc")
 theme_override_font_sizes/font_size = 31
 text = "Retainers"
 horizontal_alignment = 1
@@ -231,7 +230,7 @@ offset_bottom = 94.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -1.5708
-texture = ExtResource("9_pw66t")
+texture = ExtResource("19_m2vhn")
 expand_mode = 2
 flip_h = true
 
@@ -262,7 +261,7 @@ offset_bottom = 97.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -1.5708
-texture = ExtResource("13_ek7w2")
+texture = ExtResource("20_3kpfr")
 expand_mode = 2
 flip_h = true
 
@@ -293,7 +292,7 @@ offset_bottom = 96.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -1.5708
-texture = ExtResource("14_yqveh")
+texture = ExtResource("21_s0e8o")
 expand_mode = 2
 flip_h = true
 
@@ -341,7 +340,7 @@ offset_bottom = 31.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 1.5708
-texture = ExtResource("22_tcgx7")
+texture = ExtResource("22_dkalb")
 expand_mode = 2
 
 [node name="Label" type="Label" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer2/Panel3"]
@@ -371,7 +370,7 @@ offset_bottom = 31.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 1.5708
-texture = ExtResource("23_qie3v")
+texture = ExtResource("23_xcidw")
 expand_mode = 2
 
 [node name="Label" type="Label" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer2/Panel4"]
@@ -401,7 +400,7 @@ offset_bottom = 31.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 1.5708
-texture = ExtResource("23_a6mdh")
+texture = ExtResource("24_j0n8i")
 expand_mode = 2
 
 [node name="Label" type="Label" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer2/Panel5"]
@@ -446,7 +445,7 @@ offset_bottom = 11.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 1.5708
-texture = ExtResource("26_s3feu")
+texture = ExtResource("25_sau74")
 expand_mode = 2
 
 [node name="Label" type="Label" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer5/Panel"]
@@ -549,7 +548,7 @@ offset_right = 31.0
 offset_bottom = 33.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("16_3bn1a")
+texture = ExtResource("26_aosyc")
 expand_mode = 2
 flip_h = true
 
@@ -632,14 +631,14 @@ shape = SubResource("RectangleShape2D_rj75g")
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(1.5, 1.5)
-tile_set = ExtResource("25_nj11i")
+tile_set = ExtResource("27_evyd3")
 format = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(562, 401)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-script = ExtResource("4_ley25")
+script = ExtResource("28_dvdq6")
 
 [node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer"]
 texture_filter = 1
@@ -655,9 +654,9 @@ stretch_margin_left = 4
 stretch_margin_top = 4
 stretch_margin_right = 4
 stretch_margin_bottom = 4
-texture_under = ExtResource("6_a0bg5")
-texture_over = ExtResource("7_56sdv")
-texture_progress = ExtResource("6_a0bg5")
+texture_under = ExtResource("29_1syhq")
+texture_over = ExtResource("30_hpbyh")
+texture_progress = ExtResource("29_1syhq")
 tint_under = Color(0.831373, 0, 0, 0.529412)
 tint_over = Color(0, 0, 0, 1)
 tint_progress = Color(0, 0.866667, 0, 1)
@@ -701,7 +700,7 @@ offset_right = -6.0
 offset_bottom = 40.0
 grow_horizontal = 0
 size_flags_horizontal = 8
-texture_normal = ExtResource("12_p7wul")
+texture_normal = ExtResource("31_jv1u0")
 metadata/_edit_use_anchors_ = true
 
 [node name="Normal" type="Button" parent="CanvasLayer"]
@@ -980,9 +979,8 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -220.0
-offset_top = -6.0
 offset_right = -133.0
-offset_bottom = 17.0
+offset_bottom = 23.0
 grow_horizontal = 2
 scale = Vector2(5, 5)
 text = "Game Over"
@@ -1007,35 +1005,30 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -135.0
-offset_top = -51.0
+offset_top = -62.0
 offset_right = 130.0
-offset_bottom = 199.0
+offset_bottom = 188.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ScoreLabel" type="Label" parent="GameOverMenu/Panel/VBoxContainer"]
 layout_mode = 2
-text = "Score:
+text = "1. Score:
 "
-horizontal_alignment = 1
-
-[node name="TimeLabel" type="Label" parent="GameOverMenu/Panel/VBoxContainer"]
-layout_mode = 2
-text = "Time Alive:"
 horizontal_alignment = 1
 
 [node name="WaveLabel" type="Label" parent="GameOverMenu/Panel/VBoxContainer"]
 layout_mode = 2
-text = "Waves Survived:"
+text = "2. Waves Survived:"
 horizontal_alignment = 1
 
 [node name="KilledEnemiesLabel" type="Label" parent="GameOverMenu/Panel/VBoxContainer"]
 layout_mode = 2
-text = "Killed Enemies:"
+text = "3. Killed Enemies:"
 horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="GameOverMenu/Panel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 10)
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
 [node name="ExitGame" type="Button" parent="GameOverMenu/Panel/VBoxContainer"]
@@ -1050,22 +1043,31 @@ text = "Exit To Main Menu"
 layout_mode = 2
 text = "Next Level"
 
+[node name="TimeLabel" type="Label" parent="GameOverMenu/Panel"]
+layout_mode = 2
+offset_left = 132.0
+offset_top = 498.0
+offset_right = 397.0
+offset_bottom = 521.0
+text = "Time Alive:"
+horizontal_alignment = 1
+
 [node name="EmptyStar3" type="Sprite2D" parent="GameOverMenu/Panel"]
 position = Vector2(362, 182)
 scale = Vector2(3, 3)
-texture = ExtResource("32_v1yjv")
+texture = ExtResource("32_et6ey")
 
 [node name="EmptyStar1" type="Sprite2D" parent="GameOverMenu/Panel"]
 position = Vector2(151, 182)
 scale = Vector2(3, 3)
-texture = ExtResource("32_v1yjv")
+texture = ExtResource("32_et6ey")
 
 [node name="EmptyStar2" type="Sprite2D" parent="GameOverMenu/Panel"]
 position = Vector2(257, 182)
 scale = Vector2(3, 3)
-texture = ExtResource("32_v1yjv")
+texture = ExtResource("32_et6ey")
 
-[connection signal="timeout" from="GameTimer" to="Path2D" method="_on_game_timer_timeout"]
+[connection signal="timeout" from="GameTimer" to="Path2D" method="OnGameTimerTimeout"]
 [connection signal="timeout" from="WavePause" to="Path2D" method="OnWavePauseTimeout"]
 [connection signal="gui_input" from="ShopMenu/Panel/ScrollContainer/FlowContainer2/FlowContainer/Panel" to="ShopMenu" method="OnGuiInput" binds= [0, 50]]
 [connection signal="gui_input" from="ShopMenu/Panel/ScrollContainer/FlowContainer2/GridContainer5/Panel" to="ShopMenu" method="OnGuiInput" binds= [1, 50]]
@@ -1083,3 +1085,6 @@ texture = ExtResource("32_v1yjv")
 [connection signal="item_selected" from="Settings/Control/TabContainer/Video/VBoxContainer/MarginContainer/OptionButton" to="." method="VideoResolutionSelected"]
 [connection signal="item_selected" from="Settings/Control/TabContainer/Video/VBoxContainer/MarginContainer4/OptionButton" to="." method="ScreenModeSelected"]
 [connection signal="pressed" from="Settings/Control/TabContainer/Node/Button" to="." method="SettingsBackBtnPressed"]
+[connection signal="pressed" from="GameOverMenu/Panel/VBoxContainer/ExitGame" to="." method="PlayAgain"]
+[connection signal="pressed" from="GameOverMenu/Panel/VBoxContainer/ExitToMenu" to="." method="QuitToMainMenu"]
+[connection signal="pressed" from="GameOverMenu/Panel/VBoxContainer/NextLevel" to="." method="NextLevel"]

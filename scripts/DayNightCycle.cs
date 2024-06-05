@@ -10,6 +10,7 @@ public partial class DayNightCycle : CanvasModulate
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 	}
 
+	// Day night cycle
 	public override void _Process(double delta)
 	{
 		var timePassed = timer.WaitTime - timer.TimeLeft;

@@ -1,9 +1,8 @@
 using Godot;
-using System;
 
-public partial class main_menu : Control
+public partial class MainMenu : Control
 {
-	PackedScene levelsMode = ResourceLoader.Load<PackedScene>("res://scenes/level_picker.tscn");
+	PackedScene levelsMode = ResourceLoader.Load<PackedScene>("res://scenes/LevelPicker.tscn");
 	PackedScene endlessMode = ResourceLoader.Load<PackedScene>("res://scenes/root.tscn");
 	private CanvasLayer mainMenu;
 	private CanvasLayer modesMenu;
@@ -15,6 +14,7 @@ public partial class main_menu : Control
 		optionsMenu = GetNode<CanvasLayer>("OptionsMenu");
 	}
 
+	// Exits the game
 	private void OnQuitPressed(){
         GetTree().Quit();
     }
@@ -31,6 +31,7 @@ public partial class main_menu : Control
 
 	private void EndlessMode() {
 		gameManager.GlobalValues.Mode = "Endless";
+		gameManager.GlobalValues.currentLevel = 0;
 		GetTree().ChangeSceneToPacked(endlessMode);
 	}
 

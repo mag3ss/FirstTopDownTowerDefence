@@ -1,37 +1,37 @@
 [gd_scene load_steps=35 format=3 uid="uid://dfcbx3t1rrssf"]
 
-[ext_resource type="Texture2D" uid="uid://boe1r8y5cwppi" path="res://assets/WM/WorldMap2D.png" id="1_43tx6"]
-[ext_resource type="Script" path="res://scripts/level_picker.cs" id="1_owocp"]
-[ext_resource type="Texture2D" uid="uid://bvqhywn5kwjmd" path="res://assets/WM/WMPaths/Path_001.png" id="2_1pn3v"]
-[ext_resource type="Texture2D" uid="uid://cxctdyt24xnh6" path="res://assets/WM/WMPaths/Path_002.png" id="3_17kyg"]
-[ext_resource type="Texture2D" uid="uid://c3qruxvvgx0pa" path="res://assets/WM/WMPaths/Path_003.png" id="4_tn3x3"]
-[ext_resource type="Texture2D" uid="uid://dw2mhqemqq2xy" path="res://assets/WM/WMPaths/Path_004.png" id="5_l1r68"]
-[ext_resource type="Texture2D" uid="uid://kghp7fdpthkh" path="res://assets/WM/WMPaths/Path_005.png" id="6_egqma"]
-[ext_resource type="Texture2D" uid="uid://camlue8ho3eak" path="res://assets/WM/WMPaths/Path_006.png" id="7_omftd"]
-[ext_resource type="Texture2D" uid="uid://c7dp27bpfn3w6" path="res://assets/WM/WMPaths/Path_007.png" id="8_2iexo"]
-[ext_resource type="Texture2D" uid="uid://bo1ruyh7gf4pj" path="res://assets/WM/WMPaths/Path_008.png" id="9_fo54i"]
-[ext_resource type="Texture2D" uid="uid://b5jp36rgnggpq" path="res://assets/WM/WMPaths/Path_009.png" id="10_c540s"]
-[ext_resource type="Texture2D" uid="uid://cfc7hidxyx8v8" path="res://assets/WM/WMIcons/Icon1.png" id="11_n5epq"]
-[ext_resource type="Texture2D" uid="uid://cexfxefhuyjpm" path="res://assets/WM/WMIcons/Icon2.png" id="12_3tf20"]
-[ext_resource type="Texture2D" uid="uid://sw1fvq5jpeow" path="res://assets/WM/WMIcons/Icon_Hover2.png" id="12_k5i6t"]
-[ext_resource type="Texture2D" uid="uid://blscotufsglo7" path="res://assets/WM/WMIcons/Icon3.png" id="13_a125o"]
-[ext_resource type="Texture2D" uid="uid://busbjv6dgqyyx" path="res://assets/WM/WMIcons/Icon_Hover3.png" id="14_ojlka"]
-[ext_resource type="Texture2D" uid="uid://cl7o3jv3rrf7j" path="res://assets/WM/WMIcons/Icon4.png" id="14_sj2s5"]
-[ext_resource type="Texture2D" uid="uid://dmha1gct00uvu" path="res://assets/WM/WMIcons/Icon5.png" id="15_qjbu6"]
-[ext_resource type="Texture2D" uid="uid://h8chuhipecg5" path="res://assets/WM/WMIcons/Icon6.png" id="16_gl0m8"]
-[ext_resource type="Texture2D" uid="uid://debd30k0bu2k0" path="res://assets/WM/WMIcons/Icon_Hover4.png" id="16_qsxdp"]
-[ext_resource type="Texture2D" uid="uid://r87oi2m1dhau" path="res://assets/WM/WMIcons/Icon7.png" id="17_iofsn"]
-[ext_resource type="Texture2D" uid="uid://bqm3quinvs506" path="res://assets/WM/WMIcons/Icon8.png" id="18_612y6"]
-[ext_resource type="Texture2D" uid="uid://c2y1mwqocoww2" path="res://assets/WM/WMIcons/Icon_Hover5.png" id="18_myrt8"]
-[ext_resource type="Texture2D" uid="uid://1661t0rfr06x" path="res://assets/WM/WMIcons/Icon9.png" id="19_tsun1"]
-[ext_resource type="Texture2D" uid="uid://b5ch5ly2r7ysr" path="res://assets/WM/WMIcons/Icon_Hover6.png" id="20_4u5wh"]
-[ext_resource type="Texture2D" uid="uid://covuvgg8qturv" path="res://assets/WM/WMIcons/Icon10.png" id="20_7wbxa"]
-[ext_resource type="Texture2D" uid="uid://b0aa4gl7dmlco" path="res://assets/WM/WMIcons/Icon_Hover1.png" id="21_xensc"]
-[ext_resource type="Texture2D" uid="uid://dbf1nryqjeeqs" path="res://assets/WM/WMIcons/Icon_Hover7.png" id="22_lubp7"]
-[ext_resource type="Texture2D" uid="uid://cc01qf6pc3thf" path="res://assets/WM/WMIcons/Icon_Hover8.png" id="24_0q4ju"]
-[ext_resource type="Texture2D" uid="uid://vba8ulkdawg2" path="res://assets/WM/WMIcons/Icon_Hover9.png" id="26_o6are"]
-[ext_resource type="Texture2D" uid="uid://cjggpyo5cgiy" path="res://assets/WM/WMIcons/Icon_Hover10.png" id="30_qnkai"]
-[ext_resource type="Texture2D" uid="uid://bo48atjbs4jvw" path="res://assets/UI/EmptyStar.png" id="31_5ljle"]
+[ext_resource type="Script" path="res://scripts/LevelPicker.cs" id="1_jc3uf"]
+[ext_resource type="Texture2D" uid="uid://boe1r8y5cwppi" path="res://assets/WM/WorldMap2D.png" id="2_lv58l"]
+[ext_resource type="Texture2D" uid="uid://bvqhywn5kwjmd" path="res://assets/WM/WMPaths/Path_001.png" id="3_seuof"]
+[ext_resource type="Texture2D" uid="uid://cxctdyt24xnh6" path="res://assets/WM/WMPaths/Path_002.png" id="4_vpqyc"]
+[ext_resource type="Texture2D" uid="uid://c3qruxvvgx0pa" path="res://assets/WM/WMPaths/Path_003.png" id="5_hjwvd"]
+[ext_resource type="Texture2D" uid="uid://dw2mhqemqq2xy" path="res://assets/WM/WMPaths/Path_004.png" id="6_mbqiq"]
+[ext_resource type="Texture2D" uid="uid://kghp7fdpthkh" path="res://assets/WM/WMPaths/Path_005.png" id="7_8lf44"]
+[ext_resource type="Texture2D" uid="uid://camlue8ho3eak" path="res://assets/WM/WMPaths/Path_006.png" id="8_0df31"]
+[ext_resource type="Texture2D" uid="uid://c7dp27bpfn3w6" path="res://assets/WM/WMPaths/Path_007.png" id="9_ego1o"]
+[ext_resource type="Texture2D" uid="uid://bo1ruyh7gf4pj" path="res://assets/WM/WMPaths/Path_008.png" id="10_7ynnf"]
+[ext_resource type="Texture2D" uid="uid://b5jp36rgnggpq" path="res://assets/WM/WMPaths/Path_009.png" id="11_ioye1"]
+[ext_resource type="Texture2D" uid="uid://cfc7hidxyx8v8" path="res://assets/WM/WMIcons/Icon1.png" id="12_sm7g1"]
+[ext_resource type="Texture2D" uid="uid://b0aa4gl7dmlco" path="res://assets/WM/WMIcons/Icon_Hover1.png" id="13_lve7a"]
+[ext_resource type="Texture2D" uid="uid://cexfxefhuyjpm" path="res://assets/WM/WMIcons/Icon2.png" id="14_0lh8l"]
+[ext_resource type="Texture2D" uid="uid://sw1fvq5jpeow" path="res://assets/WM/WMIcons/Icon_Hover2.png" id="15_71w5m"]
+[ext_resource type="Texture2D" uid="uid://blscotufsglo7" path="res://assets/WM/WMIcons/Icon3.png" id="16_joyrw"]
+[ext_resource type="Texture2D" uid="uid://busbjv6dgqyyx" path="res://assets/WM/WMIcons/Icon_Hover3.png" id="17_8x8fv"]
+[ext_resource type="Texture2D" uid="uid://cl7o3jv3rrf7j" path="res://assets/WM/WMIcons/Icon4.png" id="18_sd8ra"]
+[ext_resource type="Texture2D" uid="uid://debd30k0bu2k0" path="res://assets/WM/WMIcons/Icon_Hover4.png" id="19_lmr0v"]
+[ext_resource type="Texture2D" uid="uid://dmha1gct00uvu" path="res://assets/WM/WMIcons/Icon5.png" id="20_6o68q"]
+[ext_resource type="Texture2D" uid="uid://c2y1mwqocoww2" path="res://assets/WM/WMIcons/Icon_Hover5.png" id="21_e5a85"]
+[ext_resource type="Texture2D" uid="uid://h8chuhipecg5" path="res://assets/WM/WMIcons/Icon6.png" id="22_568s4"]
+[ext_resource type="Texture2D" uid="uid://b5ch5ly2r7ysr" path="res://assets/WM/WMIcons/Icon_Hover6.png" id="23_3stww"]
+[ext_resource type="Texture2D" uid="uid://r87oi2m1dhau" path="res://assets/WM/WMIcons/Icon7.png" id="24_3aco7"]
+[ext_resource type="Texture2D" uid="uid://dbf1nryqjeeqs" path="res://assets/WM/WMIcons/Icon_Hover7.png" id="25_g6et2"]
+[ext_resource type="Texture2D" uid="uid://bqm3quinvs506" path="res://assets/WM/WMIcons/Icon8.png" id="26_ow53l"]
+[ext_resource type="Texture2D" uid="uid://cc01qf6pc3thf" path="res://assets/WM/WMIcons/Icon_Hover8.png" id="27_e4dbi"]
+[ext_resource type="Texture2D" uid="uid://1661t0rfr06x" path="res://assets/WM/WMIcons/Icon9.png" id="28_axu5e"]
+[ext_resource type="Texture2D" uid="uid://vba8ulkdawg2" path="res://assets/WM/WMIcons/Icon_Hover9.png" id="29_jbf34"]
+[ext_resource type="Texture2D" uid="uid://covuvgg8qturv" path="res://assets/WM/WMIcons/Icon10.png" id="30_6hslf"]
+[ext_resource type="Texture2D" uid="uid://cjggpyo5cgiy" path="res://assets/WM/WMIcons/Icon_Hover10.png" id="31_7ljo3"]
+[ext_resource type="Texture2D" uid="uid://bo48atjbs4jvw" path="res://assets/UI/EmptyStar.png" id="32_2wjae"]
 
 [sub_resource type="Theme" id="Theme_vh1rp"]
 
@@ -49,7 +49,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_owocp")
+script = ExtResource("1_jc3uf")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -63,7 +63,16 @@ offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.3, 1.3)
-texture = ExtResource("1_43tx6")
+texture = ExtResource("2_lv58l")
+
+[node name="StarCountLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1510.0
+offset_top = 871.0
+offset_right = 1567.0
+offset_bottom = 894.0
+text = "Stars: 0
+"
 
 [node name="WMPaths" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
@@ -71,49 +80,49 @@ follow_viewport_enabled = true
 [node name="Path001" type="Sprite2D" parent="WMPaths"]
 position = Vector2(1116.5, 592)
 scale = Vector2(1.6125, 1.57143)
-texture = ExtResource("2_1pn3v")
+texture = ExtResource("3_seuof")
 
 [node name="Path002" type="Sprite2D" parent="WMPaths"]
 position = Vector2(971, 629)
 scale = Vector2(1.32558, 1.21429)
-texture = ExtResource("3_17kyg")
+texture = ExtResource("4_vpqyc")
 
 [node name="Path003" type="Sprite2D" parent="WMPaths"]
 position = Vector2(943, 565.25)
 scale = Vector2(1.48624, 1.5)
-texture = ExtResource("4_tn3x3")
+texture = ExtResource("5_hjwvd")
 
 [node name="Path004" type="Sprite2D" parent="WMPaths"]
 position = Vector2(1013, 446)
 rotation = 0.0123253
 scale = Vector2(1.38298, 1.46)
-texture = ExtResource("5_l1r68")
+texture = ExtResource("6_mbqiq")
 
 [node name="Path005" type="Sprite2D" parent="WMPaths"]
 position = Vector2(951.25, 426.75)
 scale = Vector2(1.44712, 1.48558)
-texture = ExtResource("6_egqma")
+texture = ExtResource("7_8lf44")
 
 [node name="Path006" type="Sprite2D" parent="WMPaths"]
 position = Vector2(825, 499)
 scale = Vector2(1.5618, 1.61702)
-texture = ExtResource("7_omftd")
+texture = ExtResource("8_0df31")
 
 [node name="Path007" type="Sprite2D" parent="WMPaths"]
 position = Vector2(738, 581)
 rotation = 0.0428428
 scale = Vector2(1.74194, 1.41011)
-texture = ExtResource("8_2iexo")
+texture = ExtResource("9_ego1o")
 
 [node name="Path008" type="Sprite2D" parent="WMPaths"]
 position = Vector2(688.5, 688)
 scale = Vector2(1.11607, 1.48571)
-texture = ExtResource("9_fo54i")
+texture = ExtResource("10_7ynnf")
 
 [node name="Path009" type="Sprite2D" parent="WMPaths"]
 position = Vector2(711, 788.5)
 scale = Vector2(1.33929, 1.3908)
-texture = ExtResource("10_c540s")
+texture = ExtResource("11_ioye1")
 
 [node name="WMIcons" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
@@ -124,18 +133,20 @@ offset_top = 589.0
 offset_right = 1161.0
 offset_bottom = 601.0
 scale = Vector2(2, 2)
-texture_normal = ExtResource("11_n5epq")
-texture_hover = ExtResource("21_xensc")
+texture_normal = ExtResource("12_sm7g1")
+texture_hover = ExtResource("13_lve7a")
 
 [node name="Icon2" type="TextureButton" parent="WMIcons"]
+texture_filter = 1
 offset_left = 1048.0
 offset_top = 609.0
 offset_right = 1060.0
 offset_bottom = 621.0
 scale = Vector2(2, 2)
+tooltip_text = "You Must Have At LEAST 1 Stars To Play This Level"
 theme = SubResource("Theme_vh1rp")
-texture_normal = ExtResource("12_3tf20")
-texture_hover = ExtResource("12_k5i6t")
+texture_normal = ExtResource("14_0lh8l")
+texture_hover = ExtResource("15_71w5m")
 
 [node name="Icon3" type="TextureButton" parent="WMIcons"]
 offset_left = 872.0
@@ -143,8 +154,9 @@ offset_top = 610.0
 offset_right = 884.0
 offset_bottom = 622.0
 scale = Vector2(2, 2)
-texture_normal = ExtResource("13_a125o")
-texture_hover = ExtResource("14_ojlka")
+tooltip_text = "You Must Have At LEAST 3 Stars To Play This Level"
+texture_normal = ExtResource("16_joyrw")
+texture_hover = ExtResource("17_8x8fv")
 
 [node name="Icon4" type="TextureButton" parent="WMIcons"]
 offset_left = 978.0
@@ -152,8 +164,9 @@ offset_top = 496.0
 offset_right = 991.0
 offset_bottom = 508.0
 scale = Vector2(2, 2)
-texture_normal = ExtResource("14_sj2s5")
-texture_hover = ExtResource("16_qsxdp")
+tooltip_text = "You Must Have At LEAST 5 Stars To Play This Level"
+texture_normal = ExtResource("18_sd8ra")
+texture_hover = ExtResource("19_lmr0v")
 
 [node name="Icon5" type="TextureButton" parent="WMIcons"]
 offset_left = 1009.0
@@ -161,8 +174,9 @@ offset_top = 367.0
 offset_right = 1021.0
 offset_bottom = 379.0
 scale = Vector2(2, 2)
-texture_normal = ExtResource("15_qjbu6")
-texture_hover = ExtResource("18_myrt8")
+tooltip_text = "You Must Have At LEAST 7 Stars To Play This Level"
+texture_normal = ExtResource("20_6o68q")
+texture_hover = ExtResource("21_e5a85")
 
 [node name="Icon6" type="TextureButton" parent="WMIcons"]
 offset_left = 873.0
@@ -170,8 +184,9 @@ offset_top = 464.0
 offset_right = 885.0
 offset_bottom = 476.0
 scale = Vector2(2, 2)
-texture_normal = ExtResource("16_gl0m8")
-texture_hover = ExtResource("20_4u5wh")
+tooltip_text = "You Must Have At LEAST 9 Stars To Play This Level"
+texture_normal = ExtResource("22_568s4")
+texture_hover = ExtResource("23_3stww")
 
 [node name="Icon7" type="TextureButton" parent="WMIcons"]
 offset_left = 754.0
@@ -179,8 +194,9 @@ offset_top = 513.0
 offset_right = 766.0
 offset_bottom = 525.0
 scale = Vector2(2, 2)
-texture_normal = ExtResource("17_iofsn")
-texture_hover = ExtResource("22_lubp7")
+tooltip_text = "You Must Have At LEAST 11 Stars To Play This Level"
+texture_normal = ExtResource("24_3aco7")
+texture_hover = ExtResource("25_g6et2")
 
 [node name="Icon8" type="TextureButton" parent="WMIcons"]
 offset_left = 709.0
@@ -188,8 +204,9 @@ offset_top = 627.0
 offset_right = 721.0
 offset_bottom = 639.0
 scale = Vector2(2, 2)
-texture_normal = ExtResource("18_612y6")
-texture_hover = ExtResource("24_0q4ju")
+tooltip_text = "You Must Have At LEAST 13 Stars To Play This Level"
+texture_normal = ExtResource("26_ow53l")
+texture_hover = ExtResource("27_e4dbi")
 
 [node name="Icon9" type="TextureButton" parent="WMIcons"]
 offset_left = 644.0
@@ -197,8 +214,9 @@ offset_top = 721.0
 offset_right = 656.0
 offset_bottom = 733.0
 scale = Vector2(2, 2)
-texture_normal = ExtResource("19_tsun1")
-texture_hover = ExtResource("26_o6are")
+tooltip_text = "You Must Have At LEAST 15 Stars To Play This Level"
+texture_normal = ExtResource("28_axu5e")
+texture_hover = ExtResource("29_jbf34")
 
 [node name="Icon10" type="TextureButton" parent="WMIcons"]
 offset_left = 758.0
@@ -206,14 +224,16 @@ offset_top = 834.0
 offset_right = 758.0
 offset_bottom = 834.0
 scale = Vector2(2, 2)
-texture_normal = ExtResource("20_7wbxa")
-texture_hover = ExtResource("30_qnkai")
+tooltip_text = "You Must Have At LEAST 21 Stars To Play This Level"
+texture_normal = ExtResource("30_6hslf")
+texture_hover = ExtResource("31_7ljo3")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
 [node name="Level1" type="Panel" parent="CanvasLayer"]
 visible = false
+texture_filter = 2
 offset_left = 1088.0
 offset_top = 493.0
 offset_right = 1240.0
@@ -221,6 +241,7 @@ offset_bottom = 690.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_h7her")
 
 [node name="LevelName" type="Label" parent="CanvasLayer/Level1"]
+texture_filter = 2
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -234,19 +255,22 @@ text = "LEVEL 1"
 horizontal_alignment = 1
 
 [node name="Star1" type="Sprite2D" parent="CanvasLayer/Level1"]
+texture_filter = 1
 position = Vector2(30, 82)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("31_5ljle")
+texture = ExtResource("32_2wjae")
 
 [node name="Star2" type="Sprite2D" parent="CanvasLayer/Level1"]
+texture_filter = 1
 position = Vector2(73, 82)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("31_5ljle")
+texture = ExtResource("32_2wjae")
 
 [node name="Star3" type="Sprite2D" parent="CanvasLayer/Level1"]
+texture_filter = 1
 position = Vector2(121, 82)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("31_5ljle")
+texture = ExtResource("32_2wjae")
 
 [node name="PlayButton" type="Button" parent="CanvasLayer/Level1"]
 layout_mode = 1
@@ -282,6 +306,7 @@ text = "Score: 0
 horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/Level1"]
+texture_filter = 2
 layout_mode = 0
 offset_left = 37.0
 offset_top = 113.0
@@ -293,6 +318,7 @@ text = "1. Don't Lose Any Health
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="CanvasLayer/Level1"]
+texture_filter = 2
 layout_mode = 0
 offset_left = 37.0
 offset_top = 123.0
@@ -303,6 +329,7 @@ text = "2. Survive Until Wave 10"
 horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="CanvasLayer/Level1"]
+texture_filter = 2
 layout_mode = 0
 offset_left = 37.0
 offset_top = 133.0
@@ -352,17 +379,17 @@ horizontal_alignment = 1
 [node name="Star1" type="Sprite2D" parent="CanvasLayer/Level2"]
 position = Vector2(30, 82)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("31_5ljle")
+texture = ExtResource("32_2wjae")
 
 [node name="Star2" type="Sprite2D" parent="CanvasLayer/Level2"]
 position = Vector2(73, 82)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("31_5ljle")
+texture = ExtResource("32_2wjae")
 
 [node name="Star3" type="Sprite2D" parent="CanvasLayer/Level2"]
 position = Vector2(121, 82)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("31_5ljle")
+texture = ExtResource("32_2wjae")
 
 [node name="PlayButton" type="Button" parent="CanvasLayer/Level2"]
 layout_mode = 1
@@ -467,17 +494,17 @@ horizontal_alignment = 1
 [node name="Star1" type="Sprite2D" parent="CanvasLayer/Level3"]
 position = Vector2(30, 82)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("31_5ljle")
+texture = ExtResource("32_2wjae")
 
 [node name="Star2" type="Sprite2D" parent="CanvasLayer/Level3"]
 position = Vector2(73, 82)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("31_5ljle")
+texture = ExtResource("32_2wjae")
 
 [node name="Star3" type="Sprite2D" parent="CanvasLayer/Level3"]
 position = Vector2(121, 82)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("31_5ljle")
+texture = ExtResource("32_2wjae")
 
 [node name="PlayButton" type="Button" parent="CanvasLayer/Level3"]
 layout_mode = 1
@@ -582,17 +609,17 @@ horizontal_alignment = 1
 [node name="Star1" type="Sprite2D" parent="CanvasLayer/Level4"]
 position = Vector2(30, 82)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("31_5ljle")
+texture = ExtResource("32_2wjae")
 
 [node name="Star2" type="Sprite2D" parent="CanvasLayer/Level4"]
 position = Vector2(73, 82)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("31_5ljle")
+texture = ExtResource("32_2wjae")
 
 [node name="Star3" type="Sprite2D" parent="CanvasLayer/Level4"]
 position = Vector2(121, 82)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("31_5ljle")
+texture = ExtResource("32_2wjae")
 
 [node name="PlayButton" type="Button" parent="CanvasLayer/Level4"]
 layout_mode = 1
@@ -697,17 +724,17 @@ horizontal_alignment = 1
 [node name="Star1" type="Sprite2D" parent="CanvasLayer/Level5"]
 position = Vector2(30, 82)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("31_5ljle")
+texture = ExtResource("32_2wjae")
 
 [node name="Star2" type="Sprite2D" parent="CanvasLayer/Level5"]
 position = Vector2(73, 82)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("31_5ljle")
+texture = ExtResource("32_2wjae")
 
 [node name="Star3" type="Sprite2D" parent="CanvasLayer/Level5"]
 position = Vector2(121, 82)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("31_5ljle")
+texture = ExtResource("32_2wjae")
 
 [node name="PlayButton" type="Button" parent="CanvasLayer/Level5"]
 layout_mode = 1
@@ -812,17 +839,17 @@ horizontal_alignment = 1
 [node name="Star1" type="Sprite2D" parent="CanvasLayer/Level6"]
 position = Vector2(30, 82)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("31_5ljle")
+texture = ExtResource("32_2wjae")
 
 [node name="Star2" type="Sprite2D" parent="CanvasLayer/Level6"]
 position = Vector2(73, 82)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("31_5ljle")
+texture = ExtResource("32_2wjae")
 
 [node name="Star3" type="Sprite2D" parent="CanvasLayer/Level6"]
 position = Vector2(121, 82)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("31_5ljle")
+texture = ExtResource("32_2wjae")
 
 [node name="PlayButton" type="Button" parent="CanvasLayer/Level6"]
 layout_mode = 1
@@ -927,17 +954,17 @@ horizontal_alignment = 1
 [node name="Star1" type="Sprite2D" parent="CanvasLayer/Level7"]
 position = Vector2(30, 82)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("31_5ljle")
+texture = ExtResource("32_2wjae")
 
 [node name="Star2" type="Sprite2D" parent="CanvasLayer/Level7"]
 position = Vector2(73, 82)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("31_5ljle")
+texture = ExtResource("32_2wjae")
 
 [node name="Star3" type="Sprite2D" parent="CanvasLayer/Level7"]
 position = Vector2(121, 82)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("31_5ljle")
+texture = ExtResource("32_2wjae")
 
 [node name="PlayButton" type="Button" parent="CanvasLayer/Level7"]
 layout_mode = 1
@@ -1042,17 +1069,17 @@ horizontal_alignment = 1
 [node name="Star1" type="Sprite2D" parent="CanvasLayer/Level8"]
 position = Vector2(30, 82)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("31_5ljle")
+texture = ExtResource("32_2wjae")
 
 [node name="Star2" type="Sprite2D" parent="CanvasLayer/Level8"]
 position = Vector2(73, 82)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("31_5ljle")
+texture = ExtResource("32_2wjae")
 
 [node name="Star3" type="Sprite2D" parent="CanvasLayer/Level8"]
 position = Vector2(121, 82)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("31_5ljle")
+texture = ExtResource("32_2wjae")
 
 [node name="PlayButton" type="Button" parent="CanvasLayer/Level8"]
 layout_mode = 1
@@ -1157,17 +1184,17 @@ horizontal_alignment = 1
 [node name="Star1" type="Sprite2D" parent="CanvasLayer/Level9"]
 position = Vector2(30, 82)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("31_5ljle")
+texture = ExtResource("32_2wjae")
 
 [node name="Star2" type="Sprite2D" parent="CanvasLayer/Level9"]
 position = Vector2(73, 82)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("31_5ljle")
+texture = ExtResource("32_2wjae")
 
 [node name="Star3" type="Sprite2D" parent="CanvasLayer/Level9"]
 position = Vector2(121, 82)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("31_5ljle")
+texture = ExtResource("32_2wjae")
 
 [node name="PlayButton" type="Button" parent="CanvasLayer/Level9"]
 layout_mode = 1
@@ -1272,17 +1299,17 @@ horizontal_alignment = 1
 [node name="Star1" type="Sprite2D" parent="CanvasLayer/Level10"]
 position = Vector2(30, 82)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("31_5ljle")
+texture = ExtResource("32_2wjae")
 
 [node name="Star2" type="Sprite2D" parent="CanvasLayer/Level10"]
 position = Vector2(73, 82)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("31_5ljle")
+texture = ExtResource("32_2wjae")
 
 [node name="Star3" type="Sprite2D" parent="CanvasLayer/Level10"]
 position = Vector2(121, 82)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("31_5ljle")
+texture = ExtResource("32_2wjae")
 
 [node name="PlayButton" type="Button" parent="CanvasLayer/Level10"]
 layout_mode = 1
@@ -1377,6 +1404,7 @@ zoom = Vector2(1.35, 1.35)
 [connection signal="pressed" from="WMIcons/Icon8" to="." method="TogglePanel" binds= [8, false]]
 [connection signal="pressed" from="WMIcons/Icon9" to="." method="TogglePanel" binds= [9, false]]
 [connection signal="pressed" from="WMIcons/Icon10" to="." method="TogglePanel" binds= [10, false]]
+[connection signal="pressed" from="CanvasLayer/Level1/PlayButton" to="." method="OnPlayButton"]
 [connection signal="pressed" from="CanvasLayer/Level1/CloseButton" to="." method="TogglePanel" binds= [1, true]]
 [connection signal="pressed" from="CanvasLayer/Level2/CloseButton" to="." method="TogglePanel" binds= [2, true]]
 [connection signal="pressed" from="CanvasLayer/Level3/CloseButton" to="." method="TogglePanel" binds= [3, true]]

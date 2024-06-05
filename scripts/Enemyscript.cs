@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Enemyscript : CharacterBody2D
+public partial class Enemyscript : CharacterBody2D, IDamageable
 {
 	public Guid id { get;set; }
 	public int enemySpeed { get; set; } = 2;
@@ -11,7 +11,7 @@ public partial class Enemyscript : CharacterBody2D
     public Timer attackTimer;
 	private Timer _timer;
 
-    [Export] protected int enemyDamage { get; set; } = 5;
+    [Export] protected float enemyDamage { get; set; } = 5;
     [Export] protected float enemyHealth { get; set; } = 50;
     [Export] protected int enemyValue { get; set; } = 10;
 
@@ -35,6 +35,10 @@ public partial class Enemyscript : CharacterBody2D
 		}
 	}
 
+	public void SetDamage(float damage) {
+        enemyDamage *= damage;
+    }
+
 	public void HandleEnemyDamage(int damageDealt, string Id){
 		if (Id != id.ToString())
 			return;
@@ -57,7 +61,12 @@ public partial class Enemyscript : CharacterBody2D
 		_follow.Progress += 1 * enemySpeed;
 	}
 
-	public void _on_attack_timer_timeout(){
+	public void OnAttackTimerTimeout(){
 		gameManager.GlobalValues.playerHealth -= enemyDamage;
 	}
+}
+
+public interface IDamageable
+{
+	void SetDamage(float damage);
 }

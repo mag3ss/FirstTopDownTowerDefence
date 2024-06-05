@@ -1,7 +1,6 @@
-using System;
 using Godot;
 
-public partial class bullet : CharacterBody2D
+public partial class Bullet : CharacterBody2D
 {
 
 	// Called when the node enters the scene tree for the first time.
@@ -14,7 +13,8 @@ public partial class bullet : CharacterBody2D
 	
 	public override void _Ready()
 	{
-		var parentTower = (defence_tower)GetParent().GetParent();
+		//Checks if parent (Tower) is valid to then get the target
+		var parentTower = (DefenceTower)GetParent().GetParent();
 		if (parentTower.target != null){
 			previousName = parentTower.target.GetInstanceId();
 		}
@@ -25,6 +25,7 @@ public partial class bullet : CharacterBody2D
 
     }
 
+	//Called when a enemy entered the bullet area
     public void OnArea2dBodyEntered(Enemyscript body){
 		if (body.IsInGroup("enemys")){
 			_customSignals.EmitSignal(nameof(CustomSignals.EnemyDamage), bulletDamage, body.id.ToString());
@@ -32,9 +33,9 @@ public partial class bullet : CharacterBody2D
 		}
 	}
 
-
+	// Constantly moves the bullet towards the target, if target changes. Then it stops rotating ()
 	public override void _PhysicsProcess(double delta){
-		var parent = (defence_tower)GetParent().GetParent();
+		var parent = (DefenceTower)GetParent().GetParent();
 		if (parent.target != null){
 			var tempName = parent.target.GetInstanceId();
 			if (tempName == previousName){
@@ -45,6 +46,7 @@ public partial class bullet : CharacterBody2D
         MoveAndSlide();
 	}
 
+	//Changes the speed of the bullet
     private void ChangedEnemySpeed(int speedChange){
         speedMultiplier = speedChange;
     }

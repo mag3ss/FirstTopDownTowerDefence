@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://de3orgwjaut1t"]
 
-[ext_resource type="Script" path="res://scripts/defence_tower.cs" id="1_5cksg"]
+[ext_resource type="Script" path="res://scripts/DefenceTower.cs" id="1_5cksg"]
 [ext_resource type="PackedScene" uid="uid://nh1jow0usta5" path="res://entities/Projectiles/Axe.tscn" id="2_c36cd"]
 [ext_resource type="Texture2D" uid="uid://bs0anixw3adsw" path="res://assets/Retainers/Executioner2D.png" id="3_gsatn"]
 [ext_resource type="Texture2D" uid="uid://8uku7d2mcfa5" path="res://assets/UIassets/BuyPanel.png" id="5_q5wu0"]

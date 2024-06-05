@@ -1,7 +1,6 @@
 using Godot;
 using Godot.Collections;
 using System;
-using System.Collections.Generic;
 
 public partial class GenerateEnemies : Path2D
 {
@@ -22,9 +21,10 @@ public partial class GenerateEnemies : Path2D
 
     private bool ongoingWave;
     private int WaveNum;
-    private float difficulty = 1;
     private int totalEnemies = 10;
     private int newEnemySpeed = 1;
+    private float damageScaler = 1.1f;
+    private float gameDifficulty = 1;
     private int enemyIndex;
     private CustomSignals _customSignals;
     private Array<PackedScene> monsterCollection = new Array<PackedScene>();
@@ -75,10 +75,9 @@ public partial class GenerateEnemies : Path2D
         gameManager.GlobalValues.aliveEnemies = totalEnemies;
         timer.Start();
         ongoingWave = true;
-        difficulty *= 1.125f;
+        gameDifficulty *= damageScaler;
     }
-
-    public void _on_game_timer_timeout() {
+    public void OnGameTimerTimeout() {
         enemyIndex = GetRandomEnemyIndex();
         switch (enemyIndex)
         {
@@ -120,7 +119,8 @@ public partial class GenerateEnemies : Path2D
     private void SpawnMonsters(int index)
     {
         if (monsterCollection[index].CanInstantiate()) {
-            var monster = monsterCollection[index].Instantiate();
+            var monster = monsterCollection[index].Instantiate() as Enemyscript;
+            monster.SetDamage(damageScaler);
             monster.AddToGroup("enemys");
             pathToFollow = new PathFollow2D();
             pathToFollow.Loop = false;
@@ -129,6 +129,5 @@ public partial class GenerateEnemies : Path2D
         } else {
             GD.Print("Can't instantiate");
         }
-        
     }
 }

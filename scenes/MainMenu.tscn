@@ -1,21 +1,21 @@
 [gd_scene load_steps=10 format=3 uid="uid://vc32k6gsjfhk"]
 
-[ext_resource type="Texture2D" uid="uid://c62c7c1sm6slk" path="res://assets/UIassets/UpdatedMainMenu.png" id="1_75odl"]
-[ext_resource type="Script" path="res://scripts/main_menu.cs" id="1_nk774"]
-[ext_resource type="Texture2D" uid="uid://duq2v4sw4qg26" path="res://assets/UIassets/PlayButton.png" id="3_1mk0b"]
-[ext_resource type="Texture2D" uid="uid://cykduiywi6min" path="res://assets/UIassets/PlayButton_OnHover.png" id="4_ij0od"]
-[ext_resource type="Texture2D" uid="uid://b6j118iqj25yi" path="res://assets/GameTitle.png" id="5_lcyfx"]
-[ext_resource type="AudioStream" uid="uid://6x0gq70vyv1p" path="res://assets/Music/MainMenuMusic/calm-fantasy-harp-and-strings-197736.mp3" id="6_4j034"]
-[ext_resource type="AudioStream" uid="uid://d3arsrxcwby7j" path="res://assets/Music/MainMenuMusic/medieval-background-196571.mp3" id="7_g5nfk"]
-[ext_resource type="AudioStream" uid="uid://crx6lg4celr6v" path="res://assets/Music/MainMenuMusic/the-britons-127687.mp3" id="8_y7gh5"]
+[ext_resource type="Script" path="res://scripts/MainMenu.cs" id="1_61rpg"]
+[ext_resource type="Texture2D" uid="uid://c62c7c1sm6slk" path="res://assets/UIassets/UpdatedMainMenu.png" id="2_vss3t"]
+[ext_resource type="Texture2D" uid="uid://duq2v4sw4qg26" path="res://assets/UIassets/PlayButton.png" id="3_rjk3e"]
+[ext_resource type="Texture2D" uid="uid://cykduiywi6min" path="res://assets/UIassets/PlayButton_OnHover.png" id="4_vu6do"]
+[ext_resource type="Texture2D" uid="uid://b6j118iqj25yi" path="res://assets/GameTitle.png" id="5_hqr66"]
+[ext_resource type="AudioStream" uid="uid://6x0gq70vyv1p" path="res://assets/Music/MainMenuMusic/calm-fantasy-harp-and-strings-197736.mp3" id="6_gkdf8"]
+[ext_resource type="AudioStream" uid="uid://d3arsrxcwby7j" path="res://assets/Music/MainMenuMusic/medieval-background-196571.mp3" id="7_sjusv"]
+[ext_resource type="AudioStream" uid="uid://crx6lg4celr6v" path="res://assets/Music/MainMenuMusic/the-britons-127687.mp3" id="8_3dufq"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_s2v24"]
 streams_count = 3
-stream_0/stream = ExtResource("6_4j034")
+stream_0/stream = ExtResource("6_gkdf8")
 stream_0/weight = 1.0
-stream_1/stream = ExtResource("7_g5nfk")
+stream_1/stream = ExtResource("7_sjusv")
 stream_1/weight = 1.0
-stream_2/stream = ExtResource("8_y7gh5")
+stream_2/stream = ExtResource("8_3dufq")
 stream_2/weight = 1.0
 
 [node name="MainMenu" type="Control"]
@@ -25,7 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_nk774")
+script = ExtResource("1_61rpg")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -34,7 +34,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_75odl")
+texture = ExtResource("2_vss3t")
 
 [node name="OptionsMenu" type="CanvasLayer" parent="."]
 visible = false
@@ -87,8 +87,8 @@ size_flags_vertical = 4
 texture_filter = 1
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
-texture_normal = ExtResource("3_1mk0b")
-texture_hover = ExtResource("4_ij0od")
+texture_normal = ExtResource("3_rjk3e")
+texture_hover = ExtResource("4_vu6do")
 stretch_mode = 0
 
 [node name="Settings" type="Button" parent="MainMenu/VBoxContainer"]
@@ -159,7 +159,7 @@ offset_right = -241.0
 offset_bottom = 184.0
 grow_horizontal = 2
 scale = Vector2(4, 4)
-texture = ExtResource("5_lcyfx")
+texture = ExtResource("5_hqr66")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_s2v24")
