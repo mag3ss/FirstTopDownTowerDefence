@@ -33,7 +33,7 @@ public static class Levels
 {
     public static readonly IReadOnlyDictionary<LevelEnum, LevelData> LevelInfo = new Dictionary<LevelEnum, LevelData>
     {
-        { LevelEnum.Level1, new LevelData(10, 10, 60) },
+        { LevelEnum.Level1, new LevelData(10, 5, 300) },
         { LevelEnum.Level2, new LevelData(20000, 20, 120) },
         { LevelEnum.Level3, new LevelData(30000, 30, 180) },
         { LevelEnum.Level4, new LevelData(40000, 40, 240) },

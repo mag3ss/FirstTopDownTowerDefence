@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://borud7k232sp0"]
+[gd_scene load_steps=32 format=3 uid="uid://borud7k232sp0"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.cs" id="1_ssjd5"]
 [ext_resource type="PackedScene" uid="uid://cfj184q6tnkkr" path="res://scenes/DayNightCycle.tscn" id="2_qryqo"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://curtwm2j4xne2" path="res://entities/enemies/BigGoblin.tscn" id="10_2qor5"]
 [ext_resource type="PackedScene" uid="uid://bpemqhgkfugi6" path="res://entities/enemies/Cyclopse.tscn" id="11_ut0g0"]
 [ext_resource type="PackedScene" uid="uid://cxuhqd6wn7fld" path="res://entities/enemies/Imp.tscn" id="12_46bey"]
-[ext_resource type="Script" path="res://scripts/Edmondossss.cs" id="13_sbg2i"]
 [ext_resource type="Script" path="res://scripts/ShopMenu.cs" id="14_s3q3e"]
 [ext_resource type="PackedScene" uid="uid://cn1016sbkblk5" path="res://Towers/DefenceTower.tscn" id="15_r15tf"]
 [ext_resource type="PackedScene" uid="uid://de3orgwjaut1t" path="res://Towers/R_Executioner.tscn" id="16_hrnls"]
@@ -26,7 +25,6 @@
 [ext_resource type="Texture2D" uid="uid://c1geltxvwwrla" path="res://assets/Retainers/Knight.png" id="24_j0n8i"]
 [ext_resource type="Texture2D" uid="uid://c7ygyxidch5w4" path="res://assets/Retainers/Executioner2D (2).png" id="25_sau74"]
 [ext_resource type="Texture2D" uid="uid://dib3woi7lkjjy" path="res://assets/Retainers/Cleric.png" id="26_aosyc"]
-[ext_resource type="TileSet" uid="uid://ppvax8u5ip2j" path="res://Towers/TowerImages/TowerIcons.tres" id="27_evyd3"]
 [ext_resource type="Script" path="res://scripts/Progressbars.cs" id="28_dvdq6"]
 [ext_resource type="Texture2D" uid="uid://blgxcc88afapk" path="res://assets/UI/HealthInline.png" id="29_1syhq"]
 [ext_resource type="Texture2D" uid="uid://c7bjv5c3ej1lc" path="res://assets/UI/HealthOutline-export.png" id="30_hpbyh"]
@@ -56,9 +54,6 @@ public partial class Tower_1 : Panel
 	// }
 }
 "
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rj75g"]
-size = Vector2(988, 20)
 
 [node name="gameManager" type="Node2D"]
 script = ExtResource("1_ssjd5")
@@ -129,7 +124,6 @@ wait_time = 0.05
 autostart = true
 
 [node name="TowerSpawner" type="Node2D" parent="."]
-script = ExtResource("13_sbg2i")
 
 [node name="ShopMenu" type="CanvasLayer" parent="."]
 layer = 10
@@ -618,21 +612,6 @@ offset_right = 81.5
 offset_bottom = 80.0
 text = "50$"
 horizontal_alignment = 1
-
-[node name="Sprite2D" type="StaticBody2D" parent="."]
-disable_mode = 1
-collision_layer = 3
-collision_mask = 3
-input_pickable = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D"]
-position = Vector2(484, 0)
-shape = SubResource("RectangleShape2D_rj75g")
-
-[node name="TileMap" type="TileMap" parent="."]
-scale = Vector2(1.5, 1.5)
-tile_set = ExtResource("27_evyd3")
-format = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(562, 401)

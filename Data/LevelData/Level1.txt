@@ -1,1 +1,0 @@
-{"Score":10400,"LengthAlive":1,"KilledEnemies":1,"Wave":1,"Health":100,"Stars":1}

@@ -2,7 +2,7 @@ using Godot;
 
 public partial class LevelPicker : Control
 {
-	PackedScene endlessMode = ResourceLoader.Load<PackedScene>("res://scenes/root.tscn");
+	PackedScene endlessMode = ResourceLoader.Load<PackedScene>("res://scenes/gameManager.tscn");
 	RWFile rwFile = new RWFile();
 	private bool[] levelsUnlocked = new bool[10] {true, false, false, false, false, false, false, false, false, false};
 	private CanvasLayer mainMenu;
@@ -11,7 +11,6 @@ public partial class LevelPicker : Control
 	{
 		StarLabel = GetNode<Label>("StarCountLabel");
 		StarLabel.Text = "Stars: " + StarsCount().ToString();
-		rwFile.Save(10400, 1, 1, 1, 100, 1, 1);
 		mainMenu = GetNode<CanvasLayer>("WMIcons");
 		
 		switch (StarsCount()){
@@ -88,7 +87,11 @@ public partial class LevelPicker : Control
 		}
 	}
 
-	private void OnPlayButton() {
-		GetTree().ChangeSceneToPacked(endlessMode);
+	private void OnPlayButton(int index) {
+		gameManager.GlobalValues.currentLevel = index;
+		if (endlessMode != null) {
+			GetTree().ChangeSceneToPacked(endlessMode);
+		}
+		
 	}
 }

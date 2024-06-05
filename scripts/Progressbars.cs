@@ -3,9 +3,9 @@ using Godot;
 public partial class Progressbars : CanvasLayer
 {
 	private TextureProgressBar healthBar;
-	private Label timerLabel;
+	public Label timerLabel;
 	private Timer timer;
-	private Label WaveLabel;
+	public Label WaveLabel;
 
 	private Label currentMoney;
 	public int seconds, minutes, hours;
@@ -35,7 +35,7 @@ public partial class Progressbars : CanvasLayer
 		currentMoney.Text = "Money: " + gameManager.GlobalValues.playerCurrency;
 	}
 
-	
+
 	private void HandleNewWave(int NewWave) {
 		WaveLabel.Text = "Wave: " + NewWave;
 		GD.Print("Wave: " + NewWave);

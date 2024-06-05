@@ -3,7 +3,7 @@ using Godot;
 public partial class MainMenu : Control
 {
 	PackedScene levelsMode = ResourceLoader.Load<PackedScene>("res://scenes/LevelPicker.tscn");
-	PackedScene endlessMode = ResourceLoader.Load<PackedScene>("res://scenes/root.tscn");
+	PackedScene endlessMode = ResourceLoader.Load<PackedScene>("res://scenes/gameManager.tscn");
 	private CanvasLayer mainMenu;
 	private CanvasLayer modesMenu;
 	private CanvasLayer optionsMenu;

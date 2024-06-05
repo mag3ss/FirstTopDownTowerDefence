@@ -48,6 +48,7 @@ public partial class PlayerMovement : CharacterBody2D
 position = Vector2(960, 539)
 motion_mode = 1
 script = SubResource("CSharpScript_gwvh1")
+StepSize = null
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = -500

@@ -27,7 +27,6 @@ public struct SaveStruct {
 
         // Saves data, creates a struct and serializes it to a file
         public void Save(int score, int lengthAlive, int killedEnemies, int wave, int playerHealth, int star, int slot) {
-        try {
             string filePath = $"res://Data/LevelData/Level{slot}.txt";
             var saveData = new SaveStruct {
                 Score = score,
@@ -38,19 +37,8 @@ public struct SaveStruct {
                 Stars = star
             };
             string data = JsonSerializer.Serialize(saveData);
-            using (var file = FileAccess.Open(filePath, FileAccess.ModeFlags.Write)) {
-                if (file == null) {
-                    GD.PrintErr("Failed to open file for writing.");
-                    return;
-                }
-                file.StoreString(data);
-            }
-
-            GD.Print("Data saved successfully");
-        } catch (Exception ex) {
-            GD.PrintErr($"Error saving data: {ex.Message}");
-            GD.PrintErr(ex.ToString());
-        }   
+            using (var file = FileAccess.Open(filePath, FileAccess.ModeFlags.Write))
+            file.StoreString(data);     
     }
 
     public void SaveEndlessScore (int score) {
@@ -59,13 +47,9 @@ public struct SaveStruct {
             Score = score
         };
         string data = JsonSerializer.Serialize(saveData);
-        using (var file = FileAccess.Open(filePath, FileAccess.ModeFlags.Write)) {
-            if (file == null) {
-                GD.PrintErr("Failed to open file for writing.");
-                return;
-            }
-            file.StoreString(data);
-        }
+        using (var file = FileAccess.Open(filePath, FileAccess.ModeFlags.Write))
+        file.StoreString(data);
+        
     }
 
     // Loads data, deserializes it from a file and returns a struct

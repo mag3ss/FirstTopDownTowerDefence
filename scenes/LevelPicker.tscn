@@ -232,7 +232,6 @@ texture_hover = ExtResource("31_7ljo3")
 follow_viewport_enabled = true
 
 [node name="Level1" type="Panel" parent="CanvasLayer"]
-visible = false
 texture_filter = 2
 offset_left = 1088.0
 offset_top = 493.0
@@ -313,7 +312,7 @@ offset_top = 113.0
 offset_right = 204.0
 offset_bottom = 136.0
 scale = Vector2(0.4, 0.4)
-text = "1. Don't Lose Any Health
+text = "1. Score over 10
 "
 horizontal_alignment = 1
 
@@ -325,7 +324,7 @@ offset_top = 123.0
 offset_right = 226.0
 offset_bottom = 146.0
 scale = Vector2(0.4, 0.4)
-text = "2. Survive Until Wave 10"
+text = "2. Survive Until Wave 5"
 horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="CanvasLayer/Level1"]
@@ -336,7 +335,7 @@ offset_top = 133.0
 offset_right = 226.0
 offset_bottom = 156.0
 scale = Vector2(0.4, 0.4)
-text = "3. Get A Score over 10.000"
+text = "3. Survive For 5 Minutes"
 horizontal_alignment = 1
 
 [node name="CloseButton" type="Button" parent="CanvasLayer/Level1"]
@@ -1404,7 +1403,7 @@ zoom = Vector2(1.35, 1.35)
 [connection signal="pressed" from="WMIcons/Icon8" to="." method="TogglePanel" binds= [8, false]]
 [connection signal="pressed" from="WMIcons/Icon9" to="." method="TogglePanel" binds= [9, false]]
 [connection signal="pressed" from="WMIcons/Icon10" to="." method="TogglePanel" binds= [10, false]]
-[connection signal="pressed" from="CanvasLayer/Level1/PlayButton" to="." method="OnPlayButton"]
+[connection signal="pressed" from="CanvasLayer/Level1/PlayButton" to="." method="OnPlayButton" binds= [1]]
 [connection signal="pressed" from="CanvasLayer/Level1/CloseButton" to="." method="TogglePanel" binds= [1, true]]
 [connection signal="pressed" from="CanvasLayer/Level2/CloseButton" to="." method="TogglePanel" binds= [2, true]]
 [connection signal="pressed" from="CanvasLayer/Level3/CloseButton" to="." method="TogglePanel" binds= [3, true]]
