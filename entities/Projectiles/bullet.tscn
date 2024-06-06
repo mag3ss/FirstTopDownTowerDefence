@@ -10,7 +10,6 @@ size = Vector2(11, 10)
 floor_constant_speed = true
 floor_max_angle = 3.14159
 script = ExtResource("1_du7cg")
-bulletDamage = 5
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(5.96046e-08, 1)

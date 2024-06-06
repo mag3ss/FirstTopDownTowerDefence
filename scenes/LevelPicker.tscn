@@ -232,6 +232,7 @@ texture_hover = ExtResource("31_7ljo3")
 follow_viewport_enabled = true
 
 [node name="Level1" type="Panel" parent="CanvasLayer"]
+visible = false
 texture_filter = 2
 offset_left = 1088.0
 offset_top = 493.0

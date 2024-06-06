@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://borud7k232sp0"]
+[gd_scene load_steps=31 format=3 uid="uid://borud7k232sp0"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.cs" id="1_ssjd5"]
 [ext_resource type="PackedScene" uid="uid://cfj184q6tnkkr" path="res://scenes/DayNightCycle.tscn" id="2_qryqo"]
@@ -30,30 +30,6 @@
 [ext_resource type="Texture2D" uid="uid://c7bjv5c3ej1lc" path="res://assets/UI/HealthOutline-export.png" id="30_hpbyh"]
 [ext_resource type="Texture2D" uid="uid://cyq1tbno3l3ya" path="res://assets/UIassets/SettingsButton.png" id="31_jv1u0"]
 [ext_resource type="Texture2D" uid="uid://bo48atjbs4jvw" path="res://assets/UI/EmptyStar.png" id="32_et6ey"]
-
-[sub_resource type="CSharpScript" id="CSharpScript_mxxb1"]
-script/source = "using Godot;
-using System;
-
-public partial class Tower_1 : Panel
-{
-	// Called when the node enters the scene tree for the first time.
-	private CustomSignals _customSignals;
-	public int _towerID = 100;
-	private int _towerCost = 50;
-	public override void _Ready(){
-		_customSignals = GetNode<CustomSignals>(\"/root/CustomSignals\");
-	}
-
-	// private void OnGuiInput(InputEvent @event){
-	// 	if (@event is InputEventMouseButton mouseButton && mouseButton.Pressed && _towerCost <= gameManager.GlobalValues.playerCurrency){
-	// 		gameManager.GlobalValues.playerCurrency -= _towerCost;
-	// 		_customSignals.EmitSignal(nameof(CustomSignals.ChangedCurrency));
-	// 		_customSignals.EmitSignal(nameof(CustomSignals.BuyedTower), _towerID, _towerCost);
-	// 	}
-	// }
-}
-"
 
 [node name="gameManager" type="Node2D"]
 script = ExtResource("1_ssjd5")
@@ -208,7 +184,6 @@ columns = 3
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 tooltip_text = "Red Wizard"
-script = SubResource("CSharpScript_mxxb1")
 
 [node name="TextureRect" type="TextureRect" parent="ShopMenu/Panel/ScrollContainer/FlowContainer2/FlowContainer/Panel"]
 layout_mode = 1

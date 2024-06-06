@@ -53,13 +53,101 @@ public partial class LevelPicker : Control
 		}
 		
 		int index = 1;
-		foreach (Panel levels in GetNode("CanvasLayer").GetChildren()) {
-			if (Godot.FileAccess.FileExists($"res://Data/LevelData/Level{index}.txt")) {
-				SaveStruct dataSave = rwFile.Load(index);
-				levels.GetNode<Label>("Score").Text = "Score: " + dataSave.Score.ToString();
+
+		foreach (Panel levels in GetNode("CanvasLayer").GetChildren())
+		{
+			if (levels == null)
+			{
+				GD.Print($"Panel at index {index} is null");
+				index++;
+				continue;
 			}
+
+			if (Godot.FileAccess.FileExists($"res://Data/LevelData/Level{index}.txt"))
+			{
+				SaveStruct dataSave = rwFile.Load(index);
+				if (dataSave.IsDefault())
+				{
+					GD.Print($"Failed to load data for Level{index}");
+				}
+				else
+				{
+					var scoreLabel = levels.GetNode<Label>("Score");
+					if (scoreLabel == null)
+					{
+						GD.Print($"Score label not found in Panel at index {index}");
+					}
+					else
+					{
+						scoreLabel.Text = "Score: " + dataSave.Score.ToString();
+					}
+				}
+			}
+
+			SaveStruct newData = rwFile.Load(index);
+			if (newData.IsDefault())
+			{
+				GD.Print($"Failed to load new data for Level{index}");
+			}
+			else
+			{
+				LevelEnum currentLevelEnum = (LevelEnum)index;
+				if (Levels.LevelInfo.TryGetValue(currentLevelEnum, out LevelData specificLevelData))
+				{
+					if (specificLevelData == null)
+					{
+						GD.Print($"No LevelData found for {currentLevelEnum}");
+					}
+					else
+					{
+						if (newData.Score >= specificLevelData.Score)
+						{
+							var star1 = levels.GetNode<Sprite2D>("Star1");
+							if (star1 == null)
+							{
+								GD.Print($"EmptyStar1 not found in Panel at index {index}");
+							}
+							else
+							{
+								star1.Texture = ResourceLoader.Load<Texture2D>("res://assets/UI/FilledStar.png");
+							}
+						}
+						if (newData.Wave >= specificLevelData.Wave)
+						{
+							var star2 = levels.GetNode<Sprite2D>("Star2");
+							if (star2 == null)
+							{
+								GD.Print($"EmptyStar2 not found in Panel at index {index}");
+							}
+							else
+							{
+								star2.Texture = ResourceLoader.Load<Texture2D>("res://assets/UI/FilledStar.png");
+							}
+						}
+						if (newData.LengthAlive >= specificLevelData.Time)
+						{
+							var star3 = levels.GetNode<Sprite2D>("Star3");
+							if (star3 == null)
+							{
+								GD.Print($"EmptyStar3 not found in Panel at index {index}");
+							}
+							else
+							{
+								star3.Texture = ResourceLoader.Load<Texture2D>("res://assets/UI/FilledStar.png");
+							}
+						}
+						rwFile.Save(newData.Score, newData.LengthAlive, newData.KilledEnemies, newData.Wave, newData.Stars, index);
+					}
+				}
+				else
+				{
+					GD.Print($"LevelEnum {currentLevelEnum} not found in LevelInfo");
+				}
+			}
+
 			index++;
 		}
+
 	}
 
 	private int StarsCount() {
